@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2019--2020 by Philipp Tempel <latex@philipptempel.me>
+% Copyright (C) 2019--2021--2020 by Philipp Tempel <latex@philipptempel.me>
 % -------------------------------------------------------
 %
 % This file may be distributed and/or modified under the
@@ -22,7 +22,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{philipptempel-mechanics}
 %<*package>
-    [2020/05/01 v1.0.0 Cable Robots Mechanics]
+    [2021/01/11 v1.0.0 Philipp Tempel Mechanics]
 %</package>
 %
 %<*driver>
@@ -59,7 +59,7 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v1.0}{2020/05/01}{Initial version}
+% \changes{v1.0}{2021/01/11}{Initial version}
 %
 % \GetFileInfo{philipptempel-mechanics.dtx}
 %
@@ -163,66 +163,66 @@
 \RequirePackage{pgfopts}
 %    \end{macrocode}
 %
-% \begin{macro}{\pgfcaromechanicsset}
-% \cmd{\pgfcaromechanicsset}\marg{key list}.\\
+% \begin{macro}{\pgfphilipptempelmechanicsset}
+% \cmd{\pgfphilipptempelmechanicsset}\marg{key list}.\\
 % Wrapper around |\pgfqkeys{/philipptempel/mechanics}{#1}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaromechanicsset}{ m }{%
+\NewDocumentCommand{\pgfphilipptempelmechanicsset}{ m }{%
   \pgfqkeys{/philipptempel/mechanics}{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaromechanicslet}
-% \cmd{\pgfcaromechanicslet}\marg{full key}\marg{macro}.\\
+% \begin{macro}{\pgfphilipptempelmechanicslet}
+% \cmd{\pgfphilipptempelmechanicslet}\marg{full key}\marg{macro}.\\
 % Wrapper around |\pgfkeyslet{/philipptempel/mechanics/#1}{#2}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaromechanicslet}{ m m }{%
+\NewDocumentCommand{\pgfphilipptempelmechanicslet}{ m m }{%
   \pgfkeyslet{/philipptempel/mechanics/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaromechanicsvalueof}
-% \cmd{\pgfcaromechanicsvalueof}\marg{full key}.\\
+% \begin{macro}{\pgfphilipptempelmechanicsvalueof}
+% \cmd{\pgfphilipptempelmechanicsvalueof}\marg{full key}.\\
 % Wrapper around |\pgfkeysvalueof{/philipptempel/mechanics/#1}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaromechanicsvalueof}{ m }{%
+\NewDocumentCommand{\pgfphilipptempelmechanicsvalueof}{ m }{%
   \pgfkeysvalueof{/philipptempel/mechanics/#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaromechanicsgetvalue}
-% \cmd{\pgfcaromechanicsgetvalue}\marg{full key}\marg{macro}.\\
+% \begin{macro}{\pgfphilipptempelmechanicsgetvalue}
+% \cmd{\pgfphilipptempelmechanicsgetvalue}\marg{full key}\marg{macro}.\\
 % Wrapper around |\pgfkeysgetvalue{/philipptempel/mechanics/#1}{#2}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaromechanicsgetvalue}{ m m }{%
+\NewDocumentCommand{\pgfphilipptempelmechanicsgetvalue}{ m m }{%
   \pgfkeysgetvalue{/philipptempel/mechanics/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaromechanicsresetstyle}
-% \cmd{\pgfcaromechanicsresetstyle}\marg{fullkey}.\\
+% \begin{macro}{\pgfphilipptempelmechanicsresetstyle}
+% \cmd{\pgfphilipptempelmechanicsresetstyle}\marg{fullkey}.\\
 % Wrapper around |\pgfqkeys{/philipptempel/mechanics/#1/.style}{{}}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaromechanicsresetstyle}{ m }{%
+\NewDocumentCommand{\pgfphilipptempelmechanicsresetstyle}{ m }{%
   \pgfqkeys{/philipptempel/mechanics/#1/.style}{{}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaromechanicsifdefined}
-% \cmd{\pgfcaromechanicsifdefined}\marg{full key}\marg{if}\marg{else}.\\
+% \begin{macro}{\pgfphilipptempelmechanicsifdefined}
+% \cmd{\pgfphilipptempelmechanicsifdefined}\marg{full key}\marg{if}\marg{else}.\\
 % Wrapper around |\pgfkeysifdefined{/philipptempel/mechanics/#1}{#2}{#3}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaromechanicsifdefined}{ m m m }{%
+\NewDocumentCommand{\pgfphilipptempelmechanicsifdefined}{ m m m }{%
   \pgfkeysifdefined{/philipptempel/mechanics/#1}{#2}{#3}%
 }%
 %    \end{macrocode}

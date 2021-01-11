@@ -17,23 +17,23 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{philipptempel-text.dtx}
+\ProvidesFile{philipptempel-todo.dtx}
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
-%<package>\ProvidesPackage{philipptempel-text}
+%<package>\ProvidesPackage{philipptempel-todo}
 %<*package>
-    [2021/01/11 v1.0.0 Philipp Tempel Text]
+    [2021/01/11 v1.0.0 Philipp Tempel ToDo]
 %</package>
 %
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hyperref}
-\usepackage{philipptempel-text}
+\usepackage{philipptempel-todo}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
 \begin{document}
-  \DocInput{philipptempel-text.dtx}
+  \DocInput{philipptempel-todo.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -61,7 +61,7 @@
 %
 % \changes{v1.0}{2021/01/11}{Initial version}
 %
-% \GetFileInfo{philipptempel-text.dtx}
+% \GetFileInfo{philipptempel-todo.dtx}
 %
 % \DoNotIndex{%
 %   \",%
@@ -99,8 +99,8 @@
 % }
 %
 %
-% \title{The \textsf{philipptempel-text} package\thanks{This document
-%   corresponds to \textsf{philipptempel-text}~\fileversion, dated \filedate.}}
+% \title{The \textsf{philipptempel-todo} package\thanks{This document
+%   corresponds to \textsf{philipptempel-todo}~\fileversion, dated \filedate.}}
 % \author{Philipp Tempel \\ \texttt{latex@philipptempel.me}}
 %
 % \maketitle
@@ -175,10 +175,10 @@
 %
 % \begin{macro}{\pgfphilipptempeltextset}
 % \cmd{\pgfphilipptempeltextset}\marg{key list}.\\
-% Wrapper around |\pgfqkeys{/philipptempel/text}{#1}|
+% Wrapper around |\pgfqkeys{/philipptempel/todo}{#1}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfphilipptempeltextset}{ m }{%
-  \pgfqkeys{/philipptempel/text}{#1}%
+  \pgfqkeys{/philipptempel/todo}{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -186,10 +186,10 @@
 %
 % \begin{macro}{\pgfphilipptempeltextlet}
 % \cmd{\pgfphilipptempeltextlet}\marg{full key}\marg{macro}.\\
-% Wrapper around |\pgfkeyslet{/philipptempel/text/#1}{#2}|
+% Wrapper around |\pgfkeyslet{/philipptempel/todo/#1}{#2}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfphilipptempeltextlet}{ m m }{%
-  \pgfkeyslet{/philipptempel/text/#1}{#2}%
+  \pgfkeyslet{/philipptempel/todo/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -197,10 +197,10 @@
 %
 % \begin{macro}{\pgfphilipptempeltextvalueof}
 % \cmd{\pgfphilipptempeltextvalueof}\marg{full key}.\\
-% Wrapper around |\pgfkeysvalueof{/philipptempel/text/#1}|
+% Wrapper around |\pgfkeysvalueof{/philipptempel/todo/#1}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfphilipptempeltextvalueof}{ m }{%
-  \pgfkeysvalueof{/philipptempel/text/#1}%
+  \pgfkeysvalueof{/philipptempel/todo/#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -208,10 +208,10 @@
 %
 % \begin{macro}{\pgfphilipptempeltextgetvalue}
 % \cmd{\pgfphilipptempeltextgetvalue}\marg{full key}\marg{macro}.\\
-% Wrapper around |\pgfkeysgetvalue{/philipptempel/text/#1}{#2}|
+% Wrapper around |\pgfkeysgetvalue{/philipptempel/todo/#1}{#2}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfphilipptempeltextgetvalue}{ m m }{%
-  \pgfkeysgetvalue{/philipptempel/text/#1}{#2}%
+  \pgfkeysgetvalue{/philipptempel/todo/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -219,10 +219,10 @@
 %
 % \begin{macro}{\pgfphilipptempeltextresetstyle}
 % \cmd{\pgfphilipptempeltextresetstyle}\marg{fullkey}.\\
-% Wrapper around |\pgfqkeys{/philipptempel/text/#1/.style}{{}}|
+% Wrapper around |\pgfqkeys{/philipptempel/todo/#1/.style}{{}}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfphilipptempeltextresetstyle}{ m }{%
-  \pgfqkeys{/philipptempel/text/#1/.style}{{}}%
+  \pgfqkeys{/philipptempel/todo/#1/.style}{{}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -230,10 +230,10 @@
 %
 % \begin{macro}{\pgfphilipptempeltextifdefined}
 % \cmd{\pgfphilipptempeltextifdefined}\marg{full key}\marg{if}\marg{else}.\\
-% Wrapper around |\pgfkeysifdefined{/philipptempel/text/#1}{#2}{#3}|
+% Wrapper around |\pgfkeysifdefined{/philipptempel/todo/#1}{#2}{#3}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfphilipptempeltextifdefined}{ m m m }{%
-  \pgfkeysifdefined{/philipptempel/text/#1}{#2}{#3}%
+  \pgfkeysifdefined{/philipptempel/todo/#1}{#2}{#3}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -244,8 +244,8 @@
 % Configure the |pgfopts|-package
 %    \begin{macrocode}
 \pgfkeys{%
-  /philipptempel/text/.is family,%
-  /philipptempel/text/.cd,%
+  /philipptempel/todo/.is family,%
+  /philipptempel/todo/.cd,%
 }
 %    \end{macrocode}
 %
@@ -253,7 +253,7 @@
 % |glossaries-extra| class
 %    \begin{macrocode}
 \pgfkeys{%
-  /philipptempel/text/.cd,%
+  /philipptempel/todo/.cd,%
     .unknown/.code={%
       \let\currname\pgfkeyscurrentname%
       \let\currval\pgfkeyscurrentvalue%
@@ -269,7 +269,7 @@
 % Setting default values for options
 %    \begin{macrocode}
 \newcommand{\philipptempel@text@setdefaults}{%
-  \pgfkeys{/philipptempel/text/.cd,%
+  \pgfkeys{/philipptempel/todo/.cd,%
   }%
 }%
 %    \end{macrocode}
@@ -277,437 +277,12 @@
 % Process options passed to the class
 %    \begin{macrocode}
 \philipptempel@text@setdefaults
-\ProcessPgfPackageOptions{/philipptempel/text}
+\ProcessPgfPackageOptions{/philipptempel/todo}
 %    \end{macrocode}
 %
 %
 %
 % \section{Macros}
-%
-% \begin{macro}{\registered}
-% \cmd{\registered} A nicer way of putting \textregistered{} mark next to a
-% text.
-%
-%  |\registered{MATLAB}| yields \registered{MATLAB}
-%    \begin{macrocode}
-\providecommand{\registered}[1]{#1\textsuperscript{\textregistered}}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\trademark}
-% \cmd{\trademark} A nicer way of putting \texttrademark{} mark next to a text.
-%
-%  |\trademark{5G Toolbox}| yields \trademark{5G Toolbox}
-%    \begin{macrocode}
-\providecommand{\trademark}[1]{#1\textsuperscript{\texttrademark}}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\wrt}
-% \cmd{\wrt} With respect to
-%    \begin{macrocode}
-\providecommand{\wrt}{w.r.t.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\wolog}
-% \cmd{\wolog} Without loss of generality
-%    \begin{macrocode}
-\providecommand{\wolog}{w.l.o.g.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\aka}
-% \cmd{\aka} AKA, also known as
-%    \begin{macrocode}
-\providecommand{\aka}{a.k.a.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\obda}
-% \cmd{\obda} Ohne Beschr\"ankung der Allgemeinheit
-%    \begin{macrocode}
-\providecommand{\obda}{o.\@~B.\@~d.\@~A.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\zb}
-% \cmd{\zb} Zum Beispiel
-%    \begin{macrocode}
-\providecommand{\zb}{z.\@~B.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\oae}
-% \cmd{\oae} Oder \"ahnlich\{e,er,es,en\}
-%    \begin{macrocode}
-\providecommand{\oae}{o.\@~\"a.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\oa}
-% \cmd{\oa} Oder andere
-%    \begin{macrocode}
-\providecommand{\oa}{o.\@~a.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ua}
-% \cmd{\ua} Unter anderem
-%    \begin{macrocode}
-\providecommand{\ua}{u.\@~a.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\bzw}
-% \cmd{\bzw} Beziehungsweise
-%    \begin{macrocode}
-\providecommand{\bzw}{bzw.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\dh}
-% \cmd{\dh} Das hei{\ss}t
-%    \begin{macrocode}
-% \providecommand{\dh}{d.\@\xspace~h.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\og}
-% \cmd{\og} Oben genannt\{e,er,es,en\}
-%    \begin{macrocode}
-\providecommand{\og}{o.\@~g.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ggf}
-% \cmd{\ggf} Gegebenenfalls
-%    \begin{macrocode}
-\providecommand{\ggf}{ggf.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \subsection{Latin Abbreviations}
-%
-%
-% \begin{macro}{\ca}
-% \cmd{\ca} Circa: ``around''. In the sense of ``approximately'' or ``about''. % Usually used of a date.
-%    \begin{macrocode}
-\providecommand{\ca}{ca.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\vv}
-% \cmd{\vv} Vice versa: ``with position turned''. Thus, ``the other way
-% around'', ``conversely'', et cetera.
-%    \begin{macrocode}
-\providecommand{\vv}{v.v.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\etc}
-% \cmd{\etc} Et cetera: ``and the rest''. In modern usage, used to mean "``and
-% so on''" or "``and more''".
-%    \begin{macrocode}
-\providecommand{\etc}{etc.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\eg}
-% \cmd{\eg} Exempli gratia: ``for the sake of example'', ``for example''.
-% Exempli gratiā, `for example', is usually abbreviated ``e.g.'' (less
-% commonly, ``ex.\@ gr.''). The abbreviation ``e.g.'' often is interpreted
-% anglicised as `example given'. It is not usually followed by a comma in
-% British English, but it is in American usage. It is often confused with
-% i.e.\@ (id est, meaning `that is' or `in other words'). Some writing styles
-% give such abbreviations without punctuation, as ie and eg.
-%    \begin{macrocode}
-\providecommand{\eg}{e.g.\@,\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ie}
-% \cmd{\ie} Id est: ``That is (to say)'' in the sense of ``that means'' and
-% ``which means'', or ``in other words'', ``namely'', or sometimes ``in this
-% case'', depending on the context. The abbreviation may be followed by a comma
-% or not, depending on the style of the writer (or the grammatical sense of
-% what follows.) The comma is more apt to be dropped before a simple expression
-% with no punctuation of its own, and is more likely to be retained for
-% multiple items. It is often confused with e.g.\@ (exempli gratia, `for
-% example'). Some writing styles give such abbreviations without punctuation,
-% as ie and eg.
-%    \begin{macrocode}
-\providecommand{\ie}{i.e.\@,\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\cf}
-% \cmd{\cf} Confer: ``compare''. The abbreviation cf.\@ is used in text to
-% suggest a comparison with something else (cf.\@ citation signal).
-%    \begin{macrocode}
-\providecommand{\cf}{cf.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\vs}
-% \cmd{\vs} Versus; ``towards''. Literally, ``in the direction [of]''. It is
-% erroneously used in English for ``against'', probably as the truncation of
-% ``adversus'', especially in reference to two opponents, e.g., the parties to
-% litigation or a sports match.
-%    \begin{macrocode}
-\providecommand{\vs}{vs.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\etal}
-% \cmd{\etal} Et alii: ``and others''. Used similarly to et cetera (``and the rest'') to
-% denote names that, usually for the sake of space, are unenumerated/omitted.
-% Alii is masculine, and therefore it can be used to refer to men, or groups of
-% men and women; the feminine et aliae is proper when the "others" are all
-% female, but as with many loanwords, interlingual use, such as in reference
-% lists, is often invariable. Et alia is neuter plural and thus in Latin text is
-% properly used only for inanimate, genderless objects, but some use it as a
-% gender-neutral alternative. APA style uses et~al.\@ (normal font) if the work
-% cited was written by more than six authors; MLA style uses et~al.\@ for more
-% than three authors; AMA style lists all authors if $\leq 6$, and $3+$
-% et~al.\@ if $>6$. AMA style forgoes the period (because it forgoes the period
-% on abbreviations generally) and it forgoes the italic (as it does with other
-% loanwords naturalized into scientific English); many journals that follow AMA
-% style do likewise.
-%    \begin{macrocode}
-\providecommand{\etal}{et~al.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\sic}
-% \cmd{\sic} Sic: ``thus''. Or "``just so''". States that the preceding quoted
-% material appears exactly that way in the source, despite any errors of
-% spelling, grammar, usage, or fact that may be present. Used only for previous
-% quoted text; ita or similar must be used to mean "``thus''" when referring to
-% something about to be stated.
-%    \begin{macrocode}
-\providecommand{\sic}{sic\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ia}
-% \cmd{\ia} Inter alia: ``among other things''. A term used in formal extract
-% minutes to indicate that the minute quoted has been taken from a fuller
-% record of other matters, or when alluding to the parent group after quoting a
-% particular example.
-%    \begin{macrocode}
-\providecommand{\ia}{i.a.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \subsection{Titles and Degrees}
-%
-% \begin{macro}{\eh}
-% \cmd{|eh} Ehrenhalber
-%    \begin{macrocode}
-\providecommand{\eh}{E.\@\xspace~h.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\hc}
-% \begin{macro}{\hcmult}
-% \cmd{\hc} Honoris causa: honorary degree. In German ``ehrenhalber'', formerly
-% E.~h.\\
-% \cmd{\hcmult} honoris causa multiplex: multiple honorary degrees.
-%    \begin{macrocode}
-\providecommand{\hc}{h.c.\@\xspace}
-\providecommand{\hcmult}{h.c.\@\xspace~mult.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-%
-%
-% \begin{macro}{\dipling}
-% \cmd{\dipling} Diplomingenieur
-%    \begin{macrocode}
-\providecommand{\dipling}{Dipl.-Ing.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\bsc}
-% \cmd{\bsc} Bachelor of Science
-%    \begin{macrocode}
-\providecommand{\bsc}{B.Sc.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\msc}
-% \cmd{\msc} Master of Science
-%    \begin{macrocode}
-\providecommand{\msc}{M.Sc.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\meng}
-% \cmd{\meng} Master of Engineering
-%    \begin{macrocode}
-\providecommand{\msc}{M.Eng.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\dring}
-% \cmd{\dring} Doktoringenieur
-%    \begin{macrocode}
-\providecommand{\dring}{Dr.-Ing.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\prof}
-% \cmd{\prof} Professor
-%    \begin{macrocode}
-\providecommand{\prof}{Prof.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\phd}
-% \cmd{\phd} PhD
-%    \begin{macrocode}
-\providecommand{\phd}{PhD\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\juniorprof}
-% \cmd{\juniorprof} Juniorprof
-%    \begin{macrocode}
-\providecommand{\juniorprof}{Juniorprof.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \subsection{Legal Forms}
-%
-% \begin{macro}{\gmbh}
-% \cmd{\gmbh} Gesellschaft mit beschr\"ankter Haftung
-%    \begin{macrocode}
-\providecommand{\gmbh}{GmbH\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ggmbh}
-% \cmd{\ggmbh} Gemeinn\"utzige Gesellschaft mit beschr\"ankter Haftung
-%    \begin{macrocode}
-\providecommand{\ggmbh}{gGmbH\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ug}
-% \cmd{\ug} Unternehmergesellschaft (haftungsbeschr\"ankt)
-%    \begin{macrocode}
-\providecommand{\ug}{UG~(haftungsbeschr\"ankt)\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ag}
-% \cmd{\ag} Aktiengesellschaft
-%    \begin{macrocode}
-\providecommand{\ag}{AG\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gag}
-% \cmd{\gag} Geminn\"utzige Aktiengesellschaft
-%    \begin{macrocode}
-\providecommand{\gag}{gAG\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\kga}
-% \cmd{\kga} Kommanditgesellschaft auf Aktien
-%    \begin{macrocode}
-\providecommand{\kga}{KGaA}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\kg}
-% \cmd{\kg} Kommanditgesellschaft
-%    \begin{macrocode}
-\providecommand{\kg}{KG\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\inc}
-% \cmd{\inc} Incorporation
-%    \begin{macrocode}
-\providecommand{\inc}{Inc.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ltd}
-% \cmd{\ltd} Private company limited by shares
-%    \begin{macrocode}
-\providecommand{\ltd}{Ltd.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\llc}
-% \cmd{\llc} Limited liability company
-%    \begin{macrocode}
-\providecommand{\llc}{LLC\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\sarl}
-% \cmd{\sarl} Soci\'et\'e \`a responsabilit\'e limit\'ee
-%    \begin{macrocode}
-\providecommand{\sarl}{SARL\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\ev}
-% \cmd{\ev} Eingetragener Verein
-%    \begin{macrocode}
-\providecommand{\ev}{e.\@\xspace~V.\@\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
 %
 % \begin{macro}{\comment}
 % \cmd{\comment} Place a blue-colored todo note with text

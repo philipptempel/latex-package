@@ -1,8 +1,8 @@
-# Contributing to Cable Robots -- LaTeX Packages
+# Contributing to Philipp Tempel -- LaTeX Packages
 
 Thank you for your contributions!
 
-## Reporting a bug with ```Cable Robots -- LaTeX Packages```
+## Reporting a bug with ```Philipp Tempel -- LaTeX Packages```
 
 
 We work hard to process bugs that are reported, to assist with this please ensure the following details are always included:

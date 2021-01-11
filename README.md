@@ -1,6 +1,11 @@
-# Cable Robots - LaTeX Packages
+# Philipp Tempel - LaTeX Packages
 
-[![pipeline status](https://github.com/cable-robots/latex/badges/master/pipeline.svg)](https://github.com/cable-robots/latex/commits/master) [![GitHub license](https://img.shields.io/github/license/iswunistuttgart/latex-templates.svg)](https://github.com/cable-robots/latex/blob/master/LICENSE) [![GitHub release](https://img.shields.io/github/release/iswunistuttgart/latex-templates.svg)](https://github.com/cable-robots/latex/releases/) [![GitHub version](https://badge.fury.io/gh/iswunistuttgart%2Flatex-templates.svg)](https://github.com/cable-robots/latex) [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/cable-robots/latex/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/cable-robots/latex/graphs/commit-activity) [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://github.com/cable-robots/latex)
+[![pipeline status](https://gitlab.com/philipptempel/latex-package/badges/master/pipeline.svg)](https://gitlab.com/philipptempel/latex-package/commits/master)
+[![license](https://img.shields.io/badge/license-LPPL--1.3c-brightgreen)](https://gitlab.com/philipptempel/latex-package/blob/master/LICENSE.txt)
+[![release](https://img.shields.io/github/release/iswunistuttgart/latex-templates.svg)](https://gitlab.com/philipptempel/latex-package/releases/)
+[![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://gitlab.com/philipptempel/latex-package/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://gitlab.com/philipptempel/latex-package/graphs/commit-activity)
+[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://github.com/cable-robots/latex)
 
 This is the nonofficial repository of LaTeX document classes, styles, packages, and templates for documents at the University of Stuttgart.
 If you are interested in just finding the most recent files you need for writing code, please refer to the releases page:
@@ -46,6 +51,6 @@ Before sending a pull request, be sure to check out the [Contribution Guidelines
 
 ## Development Team
 
-`Cable Robots -- LaTeX Packages` was created by [Philipp Tempel](https://www.tudelft.nl/en/3me/departments/precision-and-microsystems-engineering-pme/people/junior-research-staff/tempel-philipp/) who both uses and continues developing the packages.
+`Philipp Tempel -- LaTeX Packages` was created by [Philipp Tempel](https://www.tudelft.nl/en/3me/departments/precision-and-microsystems-engineering-pme/people/junior-research-staff/tempel-philipp/) who both uses and continues developing the packages.
 
 * [Philipp Tempel](http://philipptempel.me)

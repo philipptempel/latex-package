@@ -1,6 +1,6 @@
 # Developer's Guide
 
-How to contribute your own code to ```Cable Robots -- LaTeX Packages```
+How to contribute your own code to ```Philipp Tempel -- LaTeX Packages```
 
 ## Development Environment
 

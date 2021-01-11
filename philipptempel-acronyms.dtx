@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2019 by Philipp Tempel <p.tempel@tudelft.nl>
+% Copyright (C) 2019--2021 by Philipp Tempel <latex@philipptempel.me>
 % -------------------------------------------------------
 %
 % This file may be distributed and/or modified under the
@@ -22,7 +22,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{philipptempel-acronyms}
 %<*package>
-    [2020/05/01 v1.0.0 Cable Robots Acronyms]
+    [2021/01/11 v1.0.0 Philipp Tempel Acronyms]
 %</package>
 %
 %<*driver>
@@ -61,7 +61,7 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v1.0}{2020/05/01}{Initial version}
+% \changes{v1.0}{2021/01/11}{Initial version}
 %
 % \GetFileInfo{philipptempel-acronyms.dtx}
 %
@@ -100,7 +100,7 @@
 %
 % \title{The \textsf{philipptempel-acronyms} package\thanks{This document
 %   corresponds to \textsf{philipptempel-acronyms}~\fileversion, dated \filedate.}}
-% \author{Philipp Tempel \\ \texttt{p.tempel@tudelft.nl}}
+% \author{Philipp Tempel \\ \texttt{latex@philipptempel.me}}
 %
 % \maketitle
 %
@@ -161,66 +161,66 @@
 \RequirePackage{pgfopts}
 %    \end{macrocode}
 %
-% \begin{macro}{\pgfcaroacronymsset}
-% \cmd{\pgfcaroacronymsset}\marg{key list}.\\
+% \begin{macro}{\pgfphilipptempelacronymsset}
+% \cmd{\pgfphilipptempelacronymsset}\marg{key list}.\\
 % Wrapper around |\pgfqkeys{/philipptempel/acronyms}{#1}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaroacronymsset}{ m }{%
+\NewDocumentCommand{\pgfphilipptempelacronymsset}{ m }{%
   \pgfqkeys{/philipptempel/acronyms}{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaroacronymslet}
-% \cmd{\pgfcaroacronymslet}\marg{full key}\marg{macro}.\\
+% \begin{macro}{\pgfphilipptempelacronymslet}
+% \cmd{\pgfphilipptempelacronymslet}\marg{full key}\marg{macro}.\\
 % Wrapper around |\pgfkeyslet{/philipptempel/acronyms/#1}{#2}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaroacronymslet}{ m m }{%
+\NewDocumentCommand{\pgfphilipptempelacronymslet}{ m m }{%
   \pgfkeyslet{/philipptempel/acronyms/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaroacronymsvalueof}
-% \cmd{\pgfcaroacronymsvalueof}\marg{full key}.\\
+% \begin{macro}{\pgfphilipptempelacronymsvalueof}
+% \cmd{\pgfphilipptempelacronymsvalueof}\marg{full key}.\\
 % Wrapper around |\pgfkeysvalueof{/philipptempel/acronyms/#1}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaroacronymsvalueof}{ m }{%
+\NewDocumentCommand{\pgfphilipptempelacronymsvalueof}{ m }{%
   \pgfkeysvalueof{/philipptempel/acronyms/#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaroacronymsgetvalue}
-% \cmd{\pgfcaroacronymsgetvalue}\marg{full key}\marg{macro}.\\
+% \begin{macro}{\pgfphilipptempelacronymsgetvalue}
+% \cmd{\pgfphilipptempelacronymsgetvalue}\marg{full key}\marg{macro}.\\
 % Wrapper around |\pgfkeysgetvalue{/philipptempel/acronyms/#1}{#2}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaroacronymsgetvalue}{ m m }{%
+\NewDocumentCommand{\pgfphilipptempelacronymsgetvalue}{ m m }{%
   \pgfkeysgetvalue{/philipptempel/acronyms/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaroacronymsresetstyle}
-% \cmd{\pgfcaroacronymsresetstyle}\marg{fullkey}.\\
+% \begin{macro}{\pgfphilipptempelacronymsresetstyle}
+% \cmd{\pgfphilipptempelacronymsresetstyle}\marg{fullkey}.\\
 % Wrapper around |\pgfqkeys{/philipptempel/acronyms/#1/.style}{{}}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaroacronymsresetstyle}{ m }{%
+\NewDocumentCommand{\pgfphilipptempelacronymsresetstyle}{ m }{%
   \pgfqkeys{/philipptempel/acronyms/#1/.style}{{}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfcaroacronymsifdefined}
-% \cmd{\pgfcaroacronymsifdefined}\marg{full key}\marg{if}\marg{else}.\\
+% \begin{macro}{\pgfphilipptempelacronymsifdefined}
+% \cmd{\pgfphilipptempelacronymsifdefined}\marg{full key}\marg{if}\marg{else}.\\
 % Wrapper around |\pgfkeysifdefined{/philipptempel/acronyms/#1}{#2}{#3}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfcaroacronymsifdefined}{ m m m }{%
+\NewDocumentCommand{\pgfphilipptempelacronymsifdefined}{ m m m }{%
   \pgfkeysifdefined{/philipptempel/acronyms/#1}{#2}{#3}%
 }%
 %    \end{macrocode}
@@ -288,7 +288,7 @@
 %
 %
 %    \begin{macrocode}
-\setabbreviationstyle[acronym]{\pgfcaroacronymsvalueof{style}}
+\setabbreviationstyle[acronym]{\pgfphilipptempelacronymsvalueof{style}}
 % Enable counting of all glossaries entries
 \glsenableentrycount
 % Enable counting of `abbreviation` type after a value of `2`
