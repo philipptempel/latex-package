@@ -4,7 +4,7 @@ date: 2020-04-30T15:18:11+02:00
 draft: false
 ---
 
-# Cable Robots LaTeX Package
+# Philipp Tempels LaTeX Package
 
 Welcome to a LaTeX package for writing publications with a focus on cable-driven parallel robots.
 
