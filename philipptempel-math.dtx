@@ -742,18 +742,20 @@
 %
 %
 % \begin{macro}{\npr}
-% \cmd{\npr}\marg{n}\marg{var} writes the $n$-th prime-derivative of |<var>|.
+% \cmd{\npr}\marg{var} writes the $n$-th prime derivative of \marg{var}.\\
+% \cmd{\npr}\oarg{k}\marg{var} writes the $k$-th prime-derivative of \marg{var}.\\
+% \cmd{\npr}*\oarg{n}\marg{var} auto scale parentheses around.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\npr}{ s m m }{%
-  #3^{
+\ProvideDocumentCommand{\npr}{ s O{n} m }{%
+  #3^{%
     \IfBooleanTF{#1}{%
       \parentheses*{#2}%
     }{%
-    \parentheses{#2}%
+      \parentheses{#2}%
     }%
-  }
-  }\mkern-1.2mu%
-}
+  }%
+  \mkern-1.2mu%
+}%
 %    \end{macrocode}
 % \end{macro}
 %
