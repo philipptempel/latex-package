@@ -5,4 +5,4 @@ bookComments: false
 ---
 # Math
 
-For the time being, please refer to the rendered documentation in the [generated artifacts](https://gitlab.com/philipptempel/latex-package-philipptempel/-/jobs/artifacts/master/raw/dist/philipptempel-math.pdf?job=dist).
+For the time being, please refer to the rendered documentation in the [generated artifacts](https://gitlab.com/philipptempel/latex-package/-/jobs/artifacts/master/raw/dist/philipptempel-math.pdf?job=dist).

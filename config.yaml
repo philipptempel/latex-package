@@ -1,4 +1,4 @@
-baseURL: https://cable-robots.gitlab.io/latex/
+baseURL: https://philipptempel.gitlab.io/latex-package/
 languageCode: en-us
 title: Cable Robots LaTeX
 theme: book
@@ -11,6 +11,6 @@ disableKinds:
   - taxonomyTerm
 params:
   BookComments: false
-  BookRepo: https://cable-robots.gitlab.io/latex/
+  BookRepo: https://philipptempel.gitlab.io/latex-package/
   BookEditPath: -/edit/docs/content/
   BookToC: true
