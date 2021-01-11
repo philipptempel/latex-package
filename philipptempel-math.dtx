@@ -741,6 +741,23 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\npr}
+% \cmd{\npr}\marg{n}\marg{var} writes the $n$-th prime-derivative of |<var>|.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\npr}{ s m m }{%
+  #3^{
+    \IfBooleanTF{#1}{%
+      \parentheses*{#2}%
+    }{%
+    \parentheses{#2}%
+    }%
+  }
+  }\mkern-1.2mu%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\jacobian}
 % \cmd{\jacobian}\marg{var} applies the Jacobian operator to argument |<var>|.\\
 % \cmd{\jacobian}\oarg{sub}\marg{var} prepends subscript |<var>| to the
