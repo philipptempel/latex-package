@@ -58,7 +58,7 @@ Then, simply build the make target `install`
 $ make install
 ```
 
-If you do not see any errors, you have successfully installed all cable robot packages into your local TeX environment.
+If you do not see any errors, you have successfully installed the package into your local TeX environment.
 
 
 ## Order of Loading Packages
