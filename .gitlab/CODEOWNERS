@@ -11,6 +11,6 @@ Makefile @philipptempel
 README.md @philipptempel
 TODO.md @philipptempel
 *.dtx @philipptempel
-cablerobot.ins @philipptempel
+philipptempel.ins @philipptempel
 requirements.txt @philipptempel
 

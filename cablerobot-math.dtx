@@ -2,7 +2,7 @@
 %
 % Copyright (C) 2019--2020 by Philipp Tempel <p.tempel@tudelft.nl>
 % -------------------------------------------------------
-% 
+%
 % This file may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
 % of this license or (at your option) any later version.
@@ -10,17 +10,17 @@
 %
 %    http://www.latex-project.org/lppl.txt
 %
-% and version 1.3 or later is part of all distributions of LaTeX 
+% and version 1.3 or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
 %
 % \fi
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{cablerobot-math.dtx}
+\ProvidesFile{philipptempel-math.dtx}
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
-%<package>\ProvidesPackage{cablerobot-math}
+%<package>\ProvidesPackage{philipptempel-math}
 %<*package>
     [2020/05/01 v1.0.0 Cable Robots Math]
 %</package>
@@ -28,12 +28,12 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hyperref}
-\usepackage{cablerobot-math}
+\usepackage{philipptempel-math}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
 \begin{document}
-  \DocInput{cablerobot-math.dtx}
+  \DocInput{philipptempel-math.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -61,7 +61,7 @@
 %
 % \changes{v1.0}{2020/05/01}{Initial version}
 %
-% \GetFileInfo{cablerobot-math.dtx}
+% \GetFileInfo{philipptempel-math.dtx}
 %
 % \DoNotIndex{%
 %   \!,%
@@ -168,10 +168,10 @@
 % }
 % \expandafter\DoNotIndex\expandafter{\string\{}
 % \expandafter\DoNotIndex\expandafter{\string\}}
-% 
 %
-% \title{The \textsf{cablerobot-math} package\thanks{This document
-%   corresponds to \textsf{cablerobot-math}~\fileversion, dated \filedate.}}
+%
+% \title{The \textsf{philipptempel-math} package\thanks{This document
+%   corresponds to \textsf{philipptempel-math}~\fileversion, dated \filedate.}}
 % \author{Philipp Tempel \\ \texttt{p.tempel@tudelft.nl}}
 %
 % \maketitle
@@ -269,7 +269,7 @@
 % amsmath is part of the LaTeX required distribution; however, several
 % contributed packages add still further to its appeal; examples are empheq,
 % which provides functions for decorating and highlighting mathematics, and
-% ntheorem, for specifying theorem (and similar) definitions. 
+% ntheorem, for specifying theorem (and similar) definitions.
 %    \begin{macrocode}
 \RequirePackage{amsmath}
 %    \end{macrocode}
@@ -280,7 +280,7 @@
 % real numbers (R) and complex numbers (C); coverage includes all Roman capital
 % letters, ‘1’, ‘h’ and ‘k’. The font is available both as METAFONT source and
 % in Adobe Type 1 format, and LaTeX macros for its use are provided.
-% The fonts appear in the blackboard bold sampler. 
+% The fonts appear in the blackboard bold sampler.
 % For a full list of additional math symbols, see
 % \url{http://milde.users.sourceforge.net/LUCR/Math/mathpackages/dsfont-symbols.pdf}
 %    \begin{macrocode}
@@ -413,8 +413,8 @@
 % Configure the |pgfopts|-package
 %    \begin{macrocode}
 \pgfkeys{%
-  /cablerobot/math/.is family,%
-  /cablerobot/math/.cd,%
+  /philipptempel/math/.is family,%
+  /philipptempel/math/.cd,%
 }
 %    \end{macrocode}
 %
@@ -422,14 +422,14 @@
 % |glossaries-extra| package only the options defined here are for the actual
 % package.
 %    \begin{macrocode}
-\newif\ifcablerobot@math@rotationbold
-\cablerobot@math@rotationboldtrue
+\newif\ifphilipptempel@math@rotationbold
+\philipptempel@math@rotationboldtrue
 \pgfkeys{
-  /cablerobot/math/rotation/.cd,%
+  /philipptempel/math/rotation/.cd,%
     .is choice,%
-    bold/.code={\cablerobot@math@rotationboldtrue},%
-    regular/.code={\cablerobot@math@rotationboldfalse},%
-    normal/.code={\cablerobot@math@rotationboldfalse},%
+    bold/.code={\philipptempel@math@rotationboldtrue},%
+    regular/.code={\philipptempel@math@rotationboldfalse},%
+    normal/.code={\philipptempel@math@rotationboldfalse},%
 }
 %    \end{macrocode}
 %
@@ -437,7 +437,7 @@
 % |glossaries-extra| class
 %    \begin{macrocode}
 \pgfkeys{%
-  /cablerobot/math/.cd,%
+  /philipptempel/math/.cd,%
     .unknown/.code={%
       \let\currname\pgfkeyscurrentname%
       \let\currval\pgfkeyscurrentvalue%
@@ -452,8 +452,8 @@
 %
 % Setting default values for options
 %    \begin{macrocode}
-\newcommand{\cablerobot@math@setdefaults}{%
-  \pgfkeys{/cablerobot/math/.cd,%
+\newcommand{\philipptempel@math@setdefaults}{%
+  \pgfkeys{/philipptempel/math/.cd,%
     rotation=bold,%
   }%
 }%
@@ -461,8 +461,8 @@
 %
 % Process options passed to the class
 %    \begin{macrocode}
-\cablerobot@math@setdefaults
-\ProcessPgfPackageOptions{/cablerobot/math}
+\philipptempel@math@setdefaults
+\ProcessPgfPackageOptions{/philipptempel/math}
 %    \end{macrocode}
 %
 %
@@ -1710,8 +1710,8 @@
 \ProvideDocumentCommand{\rotationsymbol}{ }{%
   R%
 }%
-\ProvideDocumentCommand{\cablerobot@math@rotation}{ }{
-  \ifcablerobot@math@rotationbold%
+\ProvideDocumentCommand{\philipptempel@math@rotation}{ }{
+  \ifphilipptempel@math@rotationbold%
     \bm{\rotationsymbol}%
   \else%
     \rotationsymbol%
@@ -1725,9 +1725,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotation}{ o O{} }{%
   \IfValueTF{#1}{%
-    \prescript{#1}{#2}{\cablerobot@math@rotation}%
+    \prescript{#1}{#2}{\philipptempel@math@rotation}%
   }{%
-    \cablerobot@math@rotation%
+    \philipptempel@math@rotation%
   }%
 }%
 %    \end{macrocode}
@@ -1738,9 +1738,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\dotrotation}{ o O{} }{%
   \IfValueTF{#1}{%
-    \prescript{#1}{#2}{\dot{\cablerobot@math@rotation}}%
+    \prescript{#1}{#2}{\dot{\philipptempel@math@rotation}}%
   }{%
-    \dot{\cablerobot@math@rotation}%
+    \dot{\philipptempel@math@rotation}%
   }%
 }%
 %    \end{macrocode}
@@ -1751,9 +1751,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\ddotrotation}{ o O{} }{%
   \IfValueTF{#1}{%
-    \prescript{#1}{#2}{\ddot{\cablerobot@math@rotation}}%
+    \prescript{#1}{#2}{\ddot{\philipptempel@math@rotation}}%
   }{%
-    \ddot{\cablerobot@math@rotation}%
+    \ddot{\philipptempel@math@rotation}%
   }%
 }%
 %    \end{macrocode}

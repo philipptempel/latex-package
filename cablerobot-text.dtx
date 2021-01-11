@@ -2,7 +2,7 @@
 %
 % Copyright (C) 2019 by Philipp Tempel <p.tempel@tudelft.nl>
 % -------------------------------------------------------
-% 
+%
 % This file may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
 % of this license or (at your option) any later version.
@@ -17,10 +17,10 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{cablerobot-text.dtx}
+\ProvidesFile{philipptempel-text.dtx}
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
-%<package>\ProvidesPackage{cablerobot-text}
+%<package>\ProvidesPackage{philipptempel-text}
 %<*package>
     [2020/05/01 v1.0.0 Cable Robots Text]
 %</package>
@@ -28,12 +28,12 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hyperref}
-\usepackage{cablerobot-text}
+\usepackage{philipptempel-text}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
 \begin{document}
-  \DocInput{cablerobot-text.dtx}
+  \DocInput{philipptempel-text.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -61,7 +61,7 @@
 %
 % \changes{v1.0}{2020/05/01}{Initial version}
 %
-% \GetFileInfo{cablerobot-text.dtx}
+% \GetFileInfo{philipptempel-text.dtx}
 %
 % \DoNotIndex{%
 %   \",%
@@ -97,10 +97,10 @@
 %   \todo,%
 %   \xspace,%
 % }
-% 
 %
-% \title{The \textsf{cablerobot-text} package\thanks{This document
-%   corresponds to \textsf{cablerobot-text}~\fileversion, dated \filedate.}}
+%
+% \title{The \textsf{philipptempel-text} package\thanks{This document
+%   corresponds to \textsf{philipptempel-text}~\fileversion, dated \filedate.}}
 % \author{Philipp Tempel \\ \texttt{p.tempel@tudelft.nl}}
 %
 % \maketitle
@@ -147,7 +147,7 @@
 % next thing proves to be punctuation, the chances are there was no space, but
 % if it's a letter, there's probably a need for space. This technique is not
 % perfect, but works in a large proportion of cases.\\
-% The package is part of the latex-tools bundle in the LaTeX required distribution. 
+% The package is part of the latex-tools bundle in the LaTeX required distribution.
 %    \begin{macrocode}
 \RequirePackage{xspace}
 %    \end{macrocode}
@@ -175,10 +175,10 @@
 %
 % \begin{macro}{\pgfcarotextset}
 % \cmd{\pgfcarotextset}\marg{key list}.\\
-% Wrapper around |\pgfqkeys{/cablerobot/text}{#1}|
+% Wrapper around |\pgfqkeys{/philipptempel/text}{#1}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcarotextset}{ m }{%
-  \pgfqkeys{/cablerobot/text}{#1}%
+  \pgfqkeys{/philipptempel/text}{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -186,10 +186,10 @@
 %
 % \begin{macro}{\pgfcarotextlet}
 % \cmd{\pgfcarotextlet}\marg{full key}\marg{macro}.\\
-% Wrapper around |\pgfkeyslet{/cablerobot/text/#1}{#2}|
+% Wrapper around |\pgfkeyslet{/philipptempel/text/#1}{#2}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcarotextlet}{ m m }{%
-  \pgfkeyslet{/cablerobot/text/#1}{#2}%
+  \pgfkeyslet{/philipptempel/text/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -197,10 +197,10 @@
 %
 % \begin{macro}{\pgfcarotextvalueof}
 % \cmd{\pgfcarotextvalueof}\marg{full key}.\\
-% Wrapper around |\pgfkeysvalueof{/cablerobot/text/#1}|
+% Wrapper around |\pgfkeysvalueof{/philipptempel/text/#1}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcarotextvalueof}{ m }{%
-  \pgfkeysvalueof{/cablerobot/text/#1}%
+  \pgfkeysvalueof{/philipptempel/text/#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -208,10 +208,10 @@
 %
 % \begin{macro}{\pgfcarotextgetvalue}
 % \cmd{\pgfcarotextgetvalue}\marg{full key}\marg{macro}.\\
-% Wrapper around |\pgfkeysgetvalue{/cablerobot/text/#1}{#2}|
+% Wrapper around |\pgfkeysgetvalue{/philipptempel/text/#1}{#2}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcarotextgetvalue}{ m m }{%
-  \pgfkeysgetvalue{/cablerobot/text/#1}{#2}%
+  \pgfkeysgetvalue{/philipptempel/text/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -219,10 +219,10 @@
 %
 % \begin{macro}{\pgfcarotextresetstyle}
 % \cmd{\pgfcarotextresetstyle}\marg{fullkey}.\\
-% Wrapper around |\pgfqkeys{/cablerobot/text/#1/.style}{{}}|
+% Wrapper around |\pgfqkeys{/philipptempel/text/#1/.style}{{}}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcarotextresetstyle}{ m }{%
-  \pgfqkeys{/cablerobot/text/#1/.style}{{}}%
+  \pgfqkeys{/philipptempel/text/#1/.style}{{}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -230,10 +230,10 @@
 %
 % \begin{macro}{\pgfcarotextifdefined}
 % \cmd{\pgfcarotextifdefined}\marg{full key}\marg{if}\marg{else}.\\
-% Wrapper around |\pgfkeysifdefined{/cablerobot/text/#1}{#2}{#3}|
+% Wrapper around |\pgfkeysifdefined{/philipptempel/text/#1}{#2}{#3}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcarotextifdefined}{ m m m }{%
-  \pgfkeysifdefined{/cablerobot/text/#1}{#2}{#3}%
+  \pgfkeysifdefined{/philipptempel/text/#1}{#2}{#3}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -244,8 +244,8 @@
 % Configure the |pgfopts|-package
 %    \begin{macrocode}
 \pgfkeys{%
-  /cablerobot/text/.is family,%
-  /cablerobot/text/.cd,%
+  /philipptempel/text/.is family,%
+  /philipptempel/text/.cd,%
 }
 %    \end{macrocode}
 %
@@ -253,7 +253,7 @@
 % |glossaries-extra| class
 %    \begin{macrocode}
 \pgfkeys{%
-  /cablerobot/text/.cd,%
+  /philipptempel/text/.cd,%
     .unknown/.code={%
       \let\currname\pgfkeyscurrentname%
       \let\currval\pgfkeyscurrentvalue%
@@ -268,16 +268,16 @@
 %
 % Setting default values for options
 %    \begin{macrocode}
-\newcommand{\cablerobot@text@setdefaults}{%
-  \pgfkeys{/cablerobot/text/.cd,%
+\newcommand{\philipptempel@text@setdefaults}{%
+  \pgfkeys{/philipptempel/text/.cd,%
   }%
 }%
 %    \end{macrocode}
 %
 % Process options passed to the class
 %    \begin{macrocode}
-\cablerobot@text@setdefaults
-\ProcessPgfPackageOptions{/cablerobot/text}
+\philipptempel@text@setdefaults
+\ProcessPgfPackageOptions{/philipptempel/text}
 %    \end{macrocode}
 %
 %
@@ -413,7 +413,7 @@
 %
 %
 % \begin{macro}{\vv}
-% \cmd{\vv} Vice versa: ``with position turned''. Thus, ``the other way 
+% \cmd{\vv} Vice versa: ``with position turned''. Thus, ``the other way
 % around'', ``conversely'', et cetera.
 %    \begin{macrocode}
 \providecommand{\vv}{v.v.\@\xspace}
@@ -432,11 +432,11 @@
 %
 % \begin{macro}{\eg}
 % \cmd{\eg} Exempli gratia: ``for the sake of example'', ``for example''.
-% Exempli gratiā, `for example', is usually abbreviated ``e.g.'' (less 
-% commonly, ``ex.\@ gr.''). The abbreviation ``e.g.'' often is interpreted 
-% anglicised as `example given'. It is not usually followed by a comma in 
-% British English, but it is in American usage. It is often confused with 
-% i.e.\@ (id est, meaning `that is' or `in other words'). Some writing styles 
+% Exempli gratiā, `for example', is usually abbreviated ``e.g.'' (less
+% commonly, ``ex.\@ gr.''). The abbreviation ``e.g.'' often is interpreted
+% anglicised as `example given'. It is not usually followed by a comma in
+% British English, but it is in American usage. It is often confused with
+% i.e.\@ (id est, meaning `that is' or `in other words'). Some writing styles
 % give such abbreviations without punctuation, as ie and eg.
 %    \begin{macrocode}
 \providecommand{\eg}{e.g.\@,\xspace}
@@ -445,14 +445,14 @@
 %
 %
 % \begin{macro}{\ie}
-% \cmd{\ie} Id est: ``That is (to say)'' in the sense of ``that means'' and 
-% ``which means'', or ``in other words'', ``namely'', or sometimes ``in this 
-% case'', depending on the context. The abbreviation may be followed by a comma 
-% or not, depending on the style of the writer (or the grammatical sense of 
-% what follows.) The comma is more apt to be dropped before a simple expression 
-% with no punctuation of its own, and is more likely to be retained for 
-% multiple items. It is often confused with e.g.\@ (exempli gratia, `for 
-% example'). Some writing styles give such abbreviations without punctuation, 
+% \cmd{\ie} Id est: ``That is (to say)'' in the sense of ``that means'' and
+% ``which means'', or ``in other words'', ``namely'', or sometimes ``in this
+% case'', depending on the context. The abbreviation may be followed by a comma
+% or not, depending on the style of the writer (or the grammatical sense of
+% what follows.) The comma is more apt to be dropped before a simple expression
+% with no punctuation of its own, and is more likely to be retained for
+% multiple items. It is often confused with e.g.\@ (exempli gratia, `for
+% example'). Some writing styles give such abbreviations without punctuation,
 % as ie and eg.
 %    \begin{macrocode}
 \providecommand{\ie}{i.e.\@,\xspace}
@@ -461,7 +461,7 @@
 %
 %
 % \begin{macro}{\cf}
-% \cmd{\cf} Confer: ``compare''. The abbreviation cf.\@ is used in text to 
+% \cmd{\cf} Confer: ``compare''. The abbreviation cf.\@ is used in text to
 % suggest a comparison with something else (cf.\@ citation signal).
 %    \begin{macrocode}
 \providecommand{\cf}{cf.\@\xspace}
@@ -470,10 +470,10 @@
 %
 %
 % \begin{macro}{\vs}
-% \cmd{\vs} Versus; ``towards''. Literally, ``in the direction [of]''. It is 
-% erroneously used in English for ``against'', probably as the truncation of 
-% ``adversus'', especially in reference to two opponents, e.g., the parties to 
-% litigation or a sports match. 
+% \cmd{\vs} Versus; ``towards''. Literally, ``in the direction [of]''. It is
+% erroneously used in English for ``against'', probably as the truncation of
+% ``adversus'', especially in reference to two opponents, e.g., the parties to
+% litigation or a sports match.
 %    \begin{macrocode}
 \providecommand{\vs}{vs.\@\xspace}
 %    \end{macrocode}
@@ -491,7 +491,7 @@
 % gender-neutral alternative. APA style uses et~al.\@ (normal font) if the work
 % cited was written by more than six authors; MLA style uses et~al.\@ for more
 % than three authors; AMA style lists all authors if $\leq 6$, and $3+$
-% et~al.\@ if $>6$. AMA style forgoes the period (because it forgoes the period 
+% et~al.\@ if $>6$. AMA style forgoes the period (because it forgoes the period
 % on abbreviations generally) and it forgoes the italic (as it does with other
 % loanwords naturalized into scientific English); many journals that follow AMA
 % style do likewise.
@@ -502,9 +502,9 @@
 %
 %
 % \begin{macro}{\sic}
-% \cmd{\sic} Sic: ``thus''. Or "``just so''". States that the preceding quoted 
-% material appears exactly that way in the source, despite any errors of 
-% spelling, grammar, usage, or fact that may be present. Used only for previous 
+% \cmd{\sic} Sic: ``thus''. Or "``just so''". States that the preceding quoted
+% material appears exactly that way in the source, despite any errors of
+% spelling, grammar, usage, or fact that may be present. Used only for previous
 % quoted text; ita or similar must be used to mean "``thus''" when referring to
 % something about to be stated.
 %    \begin{macrocode}
@@ -514,7 +514,7 @@
 %
 %
 % \begin{macro}{\ia}
-% \cmd{\ia} Inter alia: ``among other things''. A term used in formal extract 
+% \cmd{\ia} Inter alia: ``among other things''. A term used in formal extract
 % minutes to indicate that the minute quoted has been taken from a fuller
 % record of other matters, or when alluding to the parent group after quoting a
 % particular example.

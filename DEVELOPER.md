@@ -34,8 +34,8 @@ For building the files locally, you can make use of our awesome `Makefile` with 
 | `clean` | Remove all created `.cls`, `.sty`, `.dict`, ... files | |
 | `distclean` | Clean and also remove `dist/` directory | `clean` |
 | `dist` | Copy all files into directory `dist/` | `ins` |
-| `install` | Install all created files to global TeX directory `kpsewhich --var-value TEXMFHOME/tex/latex/cablerobot/` so that they are available system wide | `ins` |
-| `uninstall` | Remove directory `kpsewhich --var-value TEXMFHOME/tex/latex/cablerobot/` | |
+| `install` | Install all created files to global TeX directory `kpsewhich --var-value TEXMFHOME/tex/latex/philipptempel/` so that they are available system wide | `ins` |
+| `uninstall` | Remove directory `kpsewhich --var-value TEXMFHOME/tex/latex/philipptempel/` | |
 
 ## Testing
 

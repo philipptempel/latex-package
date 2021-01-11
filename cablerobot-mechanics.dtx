@@ -2,7 +2,7 @@
 %
 % Copyright (C) 2019--2020 by Philipp Tempel <latex@philipptempel.me>
 % -------------------------------------------------------
-% 
+%
 % This file may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
 % of this license or (at your option) any later version.
@@ -10,17 +10,17 @@
 %
 %    http://www.latex-project.org/lppl.txt
 %
-% and version 1.3 or later is part of all distributions of LaTeX 
+% and version 1.3 or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
 %
 % \fi
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{cablerobot-mechanics.dtx}
+\ProvidesFile{philipptempel-mechanics.dtx}
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
-%<package>\ProvidesPackage{cablerobot-mechanics}
+%<package>\ProvidesPackage{philipptempel-mechanics}
 %<*package>
     [2020/05/01 v1.0.0 Cable Robots Mechanics]
 %</package>
@@ -28,12 +28,12 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hyperref}
-\usepackage{cablerobot-mechanics}
+\usepackage{philipptempel-mechanics}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
 \begin{document}
-  \DocInput{cablerobot-mechanics.dtx}
+  \DocInput{philipptempel-mechanics.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -61,7 +61,7 @@
 %
 % \changes{v1.0}{2020/05/01}{Initial version}
 %
-% \GetFileInfo{cablerobot-mechanics.dtx}
+% \GetFileInfo{philipptempel-mechanics.dtx}
 %
 % \DoNotIndex{
 %   \alpha,%
@@ -106,10 +106,10 @@
 %   \vect,%
 %   \xi,%
 % }
-% 
 %
-% \title{The \textsf{cablerobot-mechanics} package\thanks{This document
-%   corresponds to \textsf{cablerobot-mechanics}~\fileversion, dated \filedate.}}
+%
+% \title{The \textsf{philipptempel-mechanics} package\thanks{This document
+%   corresponds to \textsf{philipptempel-mechanics}~\fileversion, dated \filedate.}}
 % \author{Philipp Tempel \\ \texttt{latex@philipptempel.me}}
 %
 % \maketitle
@@ -118,7 +118,7 @@
 %
 % \section{Usage}
 %
-% If you want to use |cablerobot-mechanics|, you must also load package |cablerobot-math|.
+% If you want to use |philipptempel-mechanics|, you must also load package |philipptempel-math|.
 %
 % \StopEventually{}
 %
@@ -165,10 +165,10 @@
 %
 % \begin{macro}{\pgfcaromechanicsset}
 % \cmd{\pgfcaromechanicsset}\marg{key list}.\\
-% Wrapper around |\pgfqkeys{/cablerobot/mechanics}{#1}|
+% Wrapper around |\pgfqkeys{/philipptempel/mechanics}{#1}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcaromechanicsset}{ m }{%
-  \pgfqkeys{/cablerobot/mechanics}{#1}%
+  \pgfqkeys{/philipptempel/mechanics}{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -176,10 +176,10 @@
 %
 % \begin{macro}{\pgfcaromechanicslet}
 % \cmd{\pgfcaromechanicslet}\marg{full key}\marg{macro}.\\
-% Wrapper around |\pgfkeyslet{/cablerobot/mechanics/#1}{#2}|
+% Wrapper around |\pgfkeyslet{/philipptempel/mechanics/#1}{#2}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcaromechanicslet}{ m m }{%
-  \pgfkeyslet{/cablerobot/mechanics/#1}{#2}%
+  \pgfkeyslet{/philipptempel/mechanics/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -187,10 +187,10 @@
 %
 % \begin{macro}{\pgfcaromechanicsvalueof}
 % \cmd{\pgfcaromechanicsvalueof}\marg{full key}.\\
-% Wrapper around |\pgfkeysvalueof{/cablerobot/mechanics/#1}|
+% Wrapper around |\pgfkeysvalueof{/philipptempel/mechanics/#1}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcaromechanicsvalueof}{ m }{%
-  \pgfkeysvalueof{/cablerobot/mechanics/#1}%
+  \pgfkeysvalueof{/philipptempel/mechanics/#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -198,10 +198,10 @@
 %
 % \begin{macro}{\pgfcaromechanicsgetvalue}
 % \cmd{\pgfcaromechanicsgetvalue}\marg{full key}\marg{macro}.\\
-% Wrapper around |\pgfkeysgetvalue{/cablerobot/mechanics/#1}{#2}|
+% Wrapper around |\pgfkeysgetvalue{/philipptempel/mechanics/#1}{#2}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcaromechanicsgetvalue}{ m m }{%
-  \pgfkeysgetvalue{/cablerobot/mechanics/#1}{#2}%
+  \pgfkeysgetvalue{/philipptempel/mechanics/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -209,10 +209,10 @@
 %
 % \begin{macro}{\pgfcaromechanicsresetstyle}
 % \cmd{\pgfcaromechanicsresetstyle}\marg{fullkey}.\\
-% Wrapper around |\pgfqkeys{/cablerobot/mechanics/#1/.style}{{}}|
+% Wrapper around |\pgfqkeys{/philipptempel/mechanics/#1/.style}{{}}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcaromechanicsresetstyle}{ m }{%
-  \pgfqkeys{/cablerobot/mechanics/#1/.style}{{}}%
+  \pgfqkeys{/philipptempel/mechanics/#1/.style}{{}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -220,10 +220,10 @@
 %
 % \begin{macro}{\pgfcaromechanicsifdefined}
 % \cmd{\pgfcaromechanicsifdefined}\marg{full key}\marg{if}\marg{else}.\\
-% Wrapper around |\pgfkeysifdefined{/cablerobot/mechanics/#1}{#2}{#3}|
+% Wrapper around |\pgfkeysifdefined{/philipptempel/mechanics/#1}{#2}{#3}|
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfcaromechanicsifdefined}{ m m m }{%
-  \pgfkeysifdefined{/cablerobot/mechanics/#1}{#2}{#3}%
+  \pgfkeysifdefined{/philipptempel/mechanics/#1}{#2}{#3}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -234,8 +234,8 @@
 % Configure the |pgfopts|-package
 %    \begin{macrocode}
 \pgfkeys{%
-  /cablerobot/mechanics/.is family,%
-  /cablerobot/mechanics/.cd,%
+  /philipptempel/mechanics/.is family,%
+  /philipptempel/mechanics/.cd,%
 }
 %    \end{macrocode}
 %
@@ -244,7 +244,7 @@
 % package.
 %    \begin{macrocode}
 \pgfkeys{
-  /cablerobot/mechanics/rotation/.cd,%
+  /philipptempel/mechanics/rotation/.cd,%
     .is choice,%
 }
 %    \end{macrocode}
@@ -253,7 +253,7 @@
 % |glossaries-extra| class
 %    \begin{macrocode}
 \pgfkeys{%
-  /cablerobot/mechanics/.cd,%
+  /philipptempel/mechanics/.cd,%
     .unknown/.code={%
       \let\currname\pgfkeyscurrentname%
       \let\currval\pgfkeyscurrentvalue%
@@ -268,16 +268,16 @@
 %
 % Setting default values for options
 %    \begin{macrocode}
-\newcommand{\cablerobot@mechanics@setdefaults}{%
-  \pgfkeys{/cablerobot/mechanics/.cd,%
+\newcommand{\philipptempel@mechanics@setdefaults}{%
+  \pgfkeys{/philipptempel/mechanics/.cd,%
   }%
 }%
 %    \end{macrocode}
 %
 % Process options passed to the class
 %    \begin{macrocode}
-\cablerobot@mechanics@setdefaults
-\ProcessPgfPackageOptions{/cablerobot/mechanics}
+\philipptempel@mechanics@setdefaults
+\ProcessPgfPackageOptions{/philipptempel/mechanics}
 %    \end{macrocode}
 %
 %
