@@ -48,8 +48,8 @@ You should now be ready to use the packages in any LaTeX document without any ad
 
 First, clone the repo and change into the directory
 ```bash
-$ git clone https://philipptempel.gitlab.io/latex-package/
-$ cd latex
+$ git clone https://gitlab.com/philipptempel/latex-package.git
+$ cd latex-package
 ```
 
 Then, simply build the make target `install`
@@ -83,6 +83,6 @@ If you cloned the repository and have `make` available on your system, you simpl
 Just run the following commands in your local command line in the directory of your clone
 
 ```bash
-$ git pull oriign master
+$ git pull origin master
 $ make install
 ```
