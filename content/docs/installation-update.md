@@ -11,7 +11,7 @@ For more advanced LaTeX users or those who want to install the LaTeX packages gl
 
 ## Basic Installation
 
-To install the LaTeX packages, you simply need to download the most recent release from our [releases page](https://gitlab.com/cable-robots/latex/-/releases) or form the [CI/CD build arifacts](https://gitlab.com/cable-robots/latex/-/jobs/artifacts/master/download?job=dist) and unpack it into your working directory.
+To install the LaTeX packages, you simply need to download the most recent release from our [releases page](https://gitlab.com/philipptempel/latex-package-philipptempel/-/releases) or form the [CI/CD build arifacts](https://gitlab.com/philipptempel/latex-package-philipptempel/-/jobs/artifacts/master/download?job=dist) and unpack it into your working directory.
 Then, use the packages as you would normally use a package in any LaTeX document.
 Refer to [Order of Loading Packages](#order-of-loading-packages) to see in which order packages should be loaded in.
 
@@ -33,11 +33,11 @@ $ kpsewhich --var-value TEXMFHOME
 ```
 
 Note the value of this directory and navigate into it using your preferred method.
-Within the directory, navigate to `tex/latex` and create a new directory called `cablerobot`
+Within the directory, navigate to `tex/latex` and create a new directory called `philipptempel`
 
 ```bash
 $ cd `(kpsewhich --var-value TEXMFHOME)`/tex/latex
-$ mkdir cablerobot
+$ mkdir philipptempel
 ```
 
 Copy all `.sty` files into this directory.
@@ -66,12 +66,12 @@ If you do not see any errors, you have successfully installed all cable robot pa
 Since some packages depend on others, the recommended loading order is given below.
 
 ```latex
-\usepackage{cablerobot-colors}
-\usepackage{cablerobot-math}
-\usepackage{cablerobot-symbols}
-\usepackage{cablerobot-mechanics}
-\usepackage{cablerobot-text}
-\usepackage{cablerobot-acronyms}
+\usepackage{philipptempel-colors}
+\usepackage{philipptempel-math}
+\usepackage{philipptempel-symbols}
+\usepackage{philipptempel-mechanics}
+\usepackage{philipptempel-text}
+\usepackage{philipptempel-acronyms}
 ```
 
 
