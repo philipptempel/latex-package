@@ -4,6 +4,7 @@
 *.dict
 *.tex
 *.pdf
+docs/
 
 # release directory
 dist/*
