@@ -28,12 +28,12 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hyperref}
-\usepackage{philipptempel-tikzpgf}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{philipptempel}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-\makeindex
-\makeglossaries
 \begin{document}
   \DocInput{philipptempel-tikzpgf.dtx}
   \PrintChanges
@@ -107,6 +107,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% additional tikz/pgf libraries to load                                      %%
 
+%    \begin{macrocode}
 \usepgflibrary{plotmarks}
 \usepgflibrary{fpu}
 
@@ -1623,15 +1624,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% plot styles
 
-\providelength{\subplotwidth}
-\providelength{\subplotheight}
-\providelength{\subplothsep}
-\providelength{\subplotvsep}
-
 \pgfplotsset{%
   % General group settings
-  group/horizontal sep=\subplothsep,%
-  group/vertical sep=\subplotvsep,%
+  group/horizontal sep=0.50ex,%
+  group/vertical sep=0.50ex,%
   %
   % Tufte styles
   tufte-like/.style={%
@@ -1998,6 +1994,11 @@
     draw opacity=1.00,%
   },%
 }
-
+%    \end{macrocode}
 %% END plot styles
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+% \Finale
+\endinput
