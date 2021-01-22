@@ -22,7 +22,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{philipptempel-colors}
 %<*package>
-    [2021/01/11 v1.0.0 Philipp Tempel Colors]
+    [2021/01/22 v1.0.0 Philipp Tempel Colors]
 %</package>
 %
 %<*driver>
@@ -59,7 +59,7 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v1.0}{2021/01/11}{Initial version}
+% \changes{v1.0}{2021/01/22}{Initial version}
 %
 % \GetFileInfo{philipptempel-colors.dtx}
 %
@@ -195,47 +195,38 @@
 %
 % \subsection{Package Options}
 %
-% Configure the |pgfopts|-package
+% Configure |pgfopts|-package
 %    \begin{macrocode}
 \pgfkeys{%
   /philipptempel/color/.cd,%
     .is family,%
-}
+}%
 %    \end{macrocode}
 %
-% Color space. By default, we define all colors as RGB, but there might be cases
-% where you want to professionally print your document. Then, you would want to
-% use color space |cmyk|
+%
 %    \begin{macrocode}
-\newif\ifphilipptempel@color@rgb
-\philipptempel@color@rgbtrue
 \pgfkeys{
-% Change path
-  /philipptempel/color/.cd,%
-    space/.is choice,%
-% RGB will be the default
-    space/rgb/.code={%
-      \philipptempel@color@rgbtrue%
-    },
-% CMYK is an option complementary to RGB
-    space/cmyk/.code={%
-      \philipptempel@color@rgbfalse%
-    },%
-    space/.initial=rgb,%
-}
-\pgfkeys{%
-% Change path
-  /philipptempel/color/.cd,%
-% A short-hand alias for |space=cmyk|
-    cmyk/.link={/philipptempel/color/space=cmyk},%
-% A short-hand alias for |space=rgb|
-    rgb/.link={/philipptempel/color/space=rgb},%
-}
+  /philipptempel/color/scheme/.cd,%
+    .is choice,%
+    accent/.code={\philipptempel@activatescheme{Accent}},%
+    dark/.code={\philipptempel@activatescheme{Dark}},%
+    paired/.code={\philipptempel@activatescheme{Paired}},%
+    pastel-1/.code={\philipptempel@activatescheme{Pastel1}},%
+    pastel-2/.code={\philipptempel@activatescheme{Pastel2}},%
+    set-1/.code={\philipptempel@activatescheme{Set1}},%
+    set-2/.code={\philipptempel@activatescheme{Set2}},%
+    set-3/.code={\philipptempel@activatescheme{Set3}},%
+    spectral/.code={\philipptempel@activatescheme{Spectral}},%
+}%
 %    \end{macrocode}
 %
-% Process options passed to the package
+% Setting default values for options
 %    \begin{macrocode}
-\ProcessPgfOptions{/philipptempel/color}
+\newcommand{\philipptempel@color@setdefaults}{%
+  \pgfkeys{/philipptempel/color/.cd,%
+    scheme=dark,%
+  }%
+}%
 %    \end{macrocode}
 %
 %
@@ -244,364 +235,181 @@
 %
 % \begin{macro}{\philipptempel@color@lighter}
 % \cmd{\philipptempel@color@lighter}\marg{color}\marg{percent original}\marg{new color}.\\
-% Define new color |<new color>| which is only |<percent original>| parts of
-% the original color |<color>| and the remainder White.
-%
+% Define new color \marg{new color} which is only \marg{percent original} parts of the original color \marg{color} and the remainder White.\\
 % For example, to get lighter shades of Red
-% \begin{verbatim}
-%
-%  |\philipptempel@color@lighter{Red}{0.80}{RedLighter}| gives 80\% Red, 20\% White
-%
-%  |\philipptempel@color@lighter{Red}{0.50}{RedLight}| gives 50\% Red, 50\% White
-%
-%  |\philipptempel@color@lighter{Red}{0.20}{RedVeryLight}| gives 20\% Red, 80\% White
+% |\philipptempel@color@lighter{Red}{0.80}{RedLighter}| gives 80\% Red, 20\% White.\\
+% |\philipptempel@color@lighter{Red}{0.50}{RedLight}| gives 50\% Red, 50\% White.\\
+% |\philipptempel@color@lighter{Red}{0.20}{RedVeryLight}| gives 20\% Red, 80\% White.\\
 %    \begin{macrocode}
 \NewDocumentCommand{\philipptempel@color@lighter}{ m m m }{%
 % #1 Original color
 % #2 Percentage of white mix
 % #3 New color name
   \colorlet{#3}{#1!#2!white}%
-}
+}%
 %    \end{macrocode}
-% \end{verbatim}
 % \end{macro}
 %
 % \begin{macro}{\philipptempel@color@darker}
 % \cmd{\philipptempel@color@darker}\marg{color}\marg{percent original}\marg{new color}.\\
-% Define new color |<new color>| which is only |<percent original>| parts of
-% the original color |<color>| and the remainder black.
-%
-%  |\philipptempel@color@darker{Red}{0.80}{RedDarker}| gives 80\% Red, 20\% Black
-%
-%  |\philipptempel@color@darker{Red}{0.50}{RedDark}| gives 50\% Red, 50\% Black
-%
-%  |\philipptempel@color@darker{Red}{0.20}{RedVeryDark}| gives 20\% Red, 80\% Black
+% Define new color \marg{new color} which is only \marg{percent original} parts of the original color \marg{color} and the remainder black.\\
+% |\philipptempel@color@darker{Red}{0.80}{RedDarker}| gives 80\% Red, 20\% Black.\\
+% |\philipptempel@color@darker{Red}{0.50}{RedDark}| gives 50\% Red, 50\% Black.\\
+% |\philipptempel@color@darker{Red}{0.20}{RedVeryDark}| gives 20\% Red, 80\% Black.\\
 %    \begin{macrocode}
 \NewDocumentCommand{\philipptempel@color@darker}{ m m m }{%
   \colorlet{#3}{#1!#2!black}%
-}
+}%
 %    \end{macrocode}
 % \end{macro}
 %
-% Definition of colors in CMYK color space and RGB color space
+%
+% \begin{macro}{\philipptempel@activatescheme}
 %    \begin{macrocode}
-\ifphilipptempel@color@rgb
-% Cyan
-  \definecolor{philipptempelOne}{RGB}{0,166,214}
-% Black
-  \definecolor{philipptempelTwo}{RGB}{0,0,0}
-% White
-  \definecolor{philipptempelThree}{RGB}{255,255,255}
-% Sky Blue
-  \definecolor{philipptempelFour}{RGB}{110,186,212}
-% Purple
-  \definecolor{philipptempelFive}{RGB}{29,28,115}
-% Orange
-  \definecolor{philipptempelSix}{RGB}{230,69,22}
-% Yellow
-  \definecolor{philipptempelSeven}{RGB}{225,196,0}
-% Red
-  \definecolor{philipptempelEight}{RGB}{226,25,25}
-% Green
-  \definecolor{philipptempelNine}{RGB}{0,135,145}
-% Bright Green
-  \definecolor{philipptempelTen}{RGB}{164,202,25}
-% Warm Purple
-  \definecolor{philipptempelEleven}{RGB}{108,23,127}
-% Gray Green
-  \definecolor{philipptempelTwelve}{RGB}{106,134,137}
-\else
-% Cyan
-  \definecolor{philipptempelOne}{cmyk}{100,22,0,99}
-% Black
-  \definecolor{philipptempelTwo}{cmyk}{0,0,0,100}
-% White
-  \definecolor{philipptempelThree}{cmyk}{0,0,0,99}
-% Sky Blue
-  \definecolor{philipptempelFour}{cmyk}{48,12,0,99}
-% Purple
-  \definecolor{philipptempelFive}{cmyk}{74,75,0,99}
-% Orange
-  \definecolor{philipptempelSix}{cmyk}{0,69,90,99}
-% Yellow
-  \definecolor{philipptempelSeven}{cmyk}{0,12,100,99}
-% Red
-  \definecolor{philipptempelEight}{cmyk}{0,88,88,99}
-% Green
-  \definecolor{philipptempelNine}{cmyk}{100,6,0,99}
-% Bright Green
-  \definecolor{philipptempelTen}{cmyk}{18,0,87,99}
-% Warm Purple
-  \definecolor{philipptempelEleven}{cmyk}{14,81,0,99}
-% Gray Green
-  \definecolor{philipptempelTwelve}{cmyk}{21,2,0,99}
-\fi
+\NewDocumentCommand{\philipptempel@activatescheme}{ m }{%
+  \colorlet{PT-1}{PT#1-1}%
+  \colorlet{PT-2}{PT#1-2}%
+  \colorlet{PT-3}{PT#1-3}%
+  \colorlet{PT-4}{PT#1-4}%
+  \colorlet{PT-5}{PT#1-5}%
+  \colorlet{PT-6}{PT#1-6}%
+  \colorlet{PT-7}{PT#1-7}%
+  \colorlet{PT-8}{PT#1-8}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% Colors of scheme ``accent''
+%    \begin{macrocode}
+\definecolor{PTAccent-1}{RGB}{127,201,127}
+\definecolor{PTAccent-2}{RGB}{190,174,212}
+\definecolor{PTAccent-3}{RGB}{253,192,134}
+\definecolor{PTAccent-4}{RGB}{255,255,153}
+\definecolor{PTAccent-5}{RGB}{56,108,176}
+\definecolor{PTAccent-6}{RGB}{240,2,127}
+\definecolor{PTAccent-7}{RGB}{191,91,23}
+\definecolor{PTAccent-8}{RGB}{102,102,102}
 %    \end{macrocode}
 %
-% More human readable color names
+%
+% Colors of scheme ``set-1''
 %    \begin{macrocode}
-\colorlet{philipptempelCyan}{philipptempelOne}
-\colorlet{philipptempelBlack}{philipptempelTwo}
-\colorlet{philipptempelWhite}{philipptempelThree}
-\colorlet{philipptempelSkyBlue}{philipptempelFour}
-\colorlet{philipptempelPurple}{philipptempelFive}
-\colorlet{philipptempelOrange}{philipptempelSix}
-\colorlet{philipptempelYellow}{philipptempelSeven}
-\colorlet{philipptempelRed}{philipptempelEight}
-\colorlet{philipptempelGreen}{philipptempelNine}
-\colorlet{philipptempelBrightGreen}{philipptempelTen}
-\colorlet{philipptempelWarmPurple}{philipptempelEleven}
-\colorlet{philipptempelGrayGreen}{philipptempelTwelve}
-\colorlet{philipptempelGreyGreen}{philipptempelTwelve}
+\definecolor{PTSet1-1}{RGB}{228,26,28}
+\definecolor{PTSet1-2}{RGB}{55,126,184}
+\definecolor{PTSet1-3}{RGB}{77,175,74}
+\definecolor{PTSet1-4}{RGB}{152,78,163}
+\definecolor{PTSet1-5}{RGB}{255,127,0}
+\definecolor{PTSet1-6}{RGB}{255,255,51}
+\definecolor{PTSet1-7}{RGB}{166,86,40}
+\definecolor{PTSet1-8}{RGB}{247,129,191}
+\definecolor{PTSet1-9}{RGB}{153,153,153}
 %    \end{macrocode}
 %
-% Shades of color One
+% Colors of scheme ``set-2''
 %    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelOne}{25}{philipptempelOneVeryLight}
-\philipptempel@color@lighter{philipptempelOne}{50}{philipptempelOneLight}
-\philipptempel@color@lighter{philipptempelOne}{75}{philipptempelOneLighter}
-\philipptempel@color@darker{philipptempelOne}{75}{philipptempelOneDarker}
-\philipptempel@color@darker{philipptempelOne}{50}{philipptempelOneDark}
-\philipptempel@color@darker{philipptempelOne}{25}{philipptempelOneVeryDark}
+\definecolor{PTSet2-1}{RGB}{102,194,165}
+\definecolor{PTSet2-2}{RGB}{252,141,98}
+\definecolor{PTSet2-3}{RGB}{141,160,203}
+\definecolor{PTSet2-4}{RGB}{231,138,195}
+\definecolor{PTSet2-5}{RGB}{166,216,84}
+\definecolor{PTSet2-6}{RGB}{255,217,47}
+\definecolor{PTSet2-7}{RGB}{229,196,148}
+\definecolor{PTSet2-8}{RGB}{179,179,179}
 %    \end{macrocode}
 %
-% Shades of Cyan
+% Colors of scheme ``set-3''
 %    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelCyan}{25}{philipptempelCyanVeryLight}
-\philipptempel@color@lighter{philipptempelCyan}{50}{philipptempelCyanLight}
-\philipptempel@color@lighter{philipptempelCyan}{75}{philipptempelCyanLighter}
-\philipptempel@color@darker{philipptempelCyan}{75}{philipptempelCyanDarker}
-\philipptempel@color@darker{philipptempelCyan}{50}{philipptempelCyanDark}
-\philipptempel@color@darker{philipptempelCyan}{25}{philipptempelCyanVeryDark}
+\definecolor{PTSet3-1}{RGB}{141,211,199}
+\definecolor{PTSet3-2}{RGB}{255,255,179}
+\definecolor{PTSet3-3}{RGB}{190,186,218}
+\definecolor{PTSet3-4}{RGB}{251,128,114}
+\definecolor{PTSet3-5}{RGB}{128,177,211}
+\definecolor{PTSet3-6}{RGB}{253,180,98}
+\definecolor{PTSet3-7}{RGB}{179,222,105}
+\definecolor{PTSet3-8}{RGB}{252,205,229}
+\definecolor{PTSet3-9}{RGB}{217,217,217}
+\definecolor{PTSet3-10}{RGB}{188,128,189}
+\definecolor{PTSet3-11}{RGB}{204,235,197}
+\definecolor{PTSet3-12}{RGB}{255,237,111}
 %    \end{macrocode}
 %
-% Shades of color Two
+% Colors of scheme ``paired''
 %    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelTwo}{25}{philipptempelTwoVeryLight}
-\philipptempel@color@lighter{philipptempelTwo}{50}{philipptempelTwoLight}
-\philipptempel@color@lighter{philipptempelTwo}{75}{philipptempelTwoLighter}
-\philipptempel@color@darker{philipptempelTwo}{75}{philipptempelTwoDarker}
-\philipptempel@color@darker{philipptempelTwo}{50}{philipptempelTwoDark}
-\philipptempel@color@darker{philipptempelTwo}{25}{philipptempelTwoVeryDark}
+\definecolor{PTPaired-1}{RGB}{166,206,227}
+\definecolor{PTPaired-2}{RGB}{31,120,180}
+\definecolor{PTPaired-3}{RGB}{178,223,138}
+\definecolor{PTPaired-4}{RGB}{51,160,44}
+\definecolor{PTPaired-5}{RGB}{251,154,153}
+\definecolor{PTPaired-6}{RGB}{227,26,28}
+\definecolor{PTPaired-7}{RGB}{253,191,111}
+\definecolor{PTPaired-8}{RGB}{255,127,0}
+\definecolor{PTPaired-9}{RGB}{202,178,214}
+\definecolor{PTPaired-10}{RGB}{106,61,154}
+\definecolor{PTPaired-11}{RGB}{255,255,153}
+\definecolor{PTPaired-12}{RGB}{177,89,40}
 %    \end{macrocode}
 %
-% Shades of Black
+% Colors of scheme ``dark''
 %    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelBlack}{25}{philipptempelBlackVeryLight}
-\philipptempel@color@lighter{philipptempelBlack}{50}{philipptempelBlackLight}
-\philipptempel@color@lighter{philipptempelBlack}{75}{philipptempelBlackLighter}
-\philipptempel@color@darker{philipptempelBlack}{75}{philipptempelBlackDarker}
-\philipptempel@color@darker{philipptempelBlack}{50}{philipptempelBlackDark}
-\philipptempel@color@darker{philipptempelBlack}{25}{philipptempelBlackVeryDark}
+\definecolor{PTDark-1}{RGB}{27,158,119}
+\definecolor{PTDark-2}{RGB}{217,95,2}
+\definecolor{PTDark-3}{RGB}{117,112,179}
+\definecolor{PTDark-4}{RGB}{231,41,138}
+\definecolor{PTDark-5}{RGB}{102,166,30}
+\definecolor{PTDark-6}{RGB}{230,171,2}
+\definecolor{PTDark-7}{RGB}{166,118,29}
+\definecolor{PTDark-8}{RGB}{102,102,102}
 %    \end{macrocode}
 %
-% Shades of color Three
+% Colors of scheme ``pastel-1''
 %    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelThree}{25}{philipptempelThreeVeryLight}
-\philipptempel@color@lighter{philipptempelThree}{50}{philipptempelThreeLight}
-\philipptempel@color@lighter{philipptempelThree}{75}{philipptempelThreeLighter}
-\philipptempel@color@darker{philipptempelThree}{75}{philipptempelThreeDarker}
-\philipptempel@color@darker{philipptempelThree}{50}{philipptempelThreeDark}
-\philipptempel@color@darker{philipptempelThree}{25}{philipptempelThreeVeryDark}
+\definecolor{PTPastel1-1}{RGB}{251,180,174}
+\definecolor{PTPastel1-2}{RGB}{179,205,227}
+\definecolor{PTPastel1-3}{RGB}{204,235,197}
+\definecolor{PTPastel1-4}{RGB}{222,203,228}
+\definecolor{PTPastel1-5}{RGB}{254,217,166}
+\definecolor{PTPastel1-6}{RGB}{255,255,204}
+\definecolor{PTPastel1-7}{RGB}{229,216,189}
+\definecolor{PTPastel1-8}{RGB}{253,218,236}
+\definecolor{PTPastel1-9}{RGB}{242,242,242}
 %    \end{macrocode}
 %
-% Shades of White
+% Colors of scheme ``pastel-2''
 %    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelWhite}{25}{philipptempelWhiteVeryLight}
-\philipptempel@color@lighter{philipptempelWhite}{50}{philipptempelWhiteLight}
-\philipptempel@color@lighter{philipptempelWhite}{75}{philipptempelWhiteLighter}
-\philipptempel@color@darker{philipptempelWhite}{75}{philipptempelWhiteDarker}
-\philipptempel@color@darker{philipptempelWhite}{50}{philipptempelWhiteDark}
-\philipptempel@color@darker{philipptempelWhite}{25}{philipptempelWhiteVeryDark}
+\definecolor{PTPastel2-1}{RGB}{179,226,205}
+\definecolor{PTPastel2-2}{RGB}{253,205,172}
+\definecolor{PTPastel2-3}{RGB}{203,213,232}
+\definecolor{PTPastel2-4}{RGB}{244,202,228}
+\definecolor{PTPastel2-5}{RGB}{230,245,201}
+\definecolor{PTPastel2-6}{RGB}{255,242,174}
+\definecolor{PTPastel2-7}{RGB}{241,226,204}
+\definecolor{PTPastel2-8}{RGB}{204,204,204}
 %    \end{macrocode}
 %
-% Shades of color Four
+% Colors of scheme ``spectral''
 %    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelFour}{25}{philipptempelFourVeryLight}
-\philipptempel@color@lighter{philipptempelFour}{50}{philipptempelFourLight}
-\philipptempel@color@lighter{philipptempelFour}{75}{philipptempelFourLighter}
-\philipptempel@color@darker{philipptempelFour}{75}{philipptempelFourDarker}
-\philipptempel@color@darker{philipptempelFour}{50}{philipptempelFourDark}
-\philipptempel@color@darker{philipptempelFour}{25}{philipptempelFourVeryDark}
+\definecolor{PTSpectral-1}{RGB}{158,1,66}
+\definecolor{PTSpectral-2}{RGB}{213,62,79}
+\definecolor{PTSpectral-3}{RGB}{244,109,67}
+\definecolor{PTSpectral-4}{RGB}{253,174,97}
+\definecolor{PTSpectral-5}{RGB}{254,224,139}
+\definecolor{PTSpectral-6}{RGB}{255,255,191}
+\definecolor{PTSpectral-7}{RGB}{230,245,152}
+\definecolor{PTSpectral-8}{RGB}{171,221,164}
+\definecolor{PTSpectral-9}{RGB}{102,194,165}
+\definecolor{PTSpectral-10}{RGB}{50,136,189}
+\definecolor{PTSpectral-11}{RGB}{94,79,162}
 %    \end{macrocode}
 %
-% Shades of Sky Blue
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelSkyBlue}{25}{philipptempelSkyBlueVeryLight}
-\philipptempel@color@lighter{philipptempelSkyBlue}{50}{philipptempelSkyBlueLight}
-\philipptempel@color@lighter{philipptempelSkyBlue}{75}{philipptempelSkyBlueLighter}
-\philipptempel@color@darker{philipptempelSkyBlue}{75}{philipptempelSkyBlueDarker}
-\philipptempel@color@darker{philipptempelSkyBlue}{50}{philipptempelSkyBlueDark}
-\philipptempel@color@darker{philipptempelSkyBlue}{25}{philipptempelSkyBlueVeryDark}
-%    \end{macrocode}
 %
-% Shades of color Five
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelFive}{25}{philipptempelFiveVeryLight}
-\philipptempel@color@lighter{philipptempelFive}{50}{philipptempelFiveLight}
-\philipptempel@color@lighter{philipptempelFive}{75}{philipptempelFiveLighter}
-\philipptempel@color@darker{philipptempelFive}{75}{philipptempelFiveDarker}
-\philipptempel@color@darker{philipptempelFive}{50}{philipptempelFiveDark}
-\philipptempel@color@darker{philipptempelFive}{25}{philipptempelFiveVeryDark}
-%    \end{macrocode}
-%
-% Shades of Purple
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelPurple}{25}{philipptempelPurpleVeryLight}
-\philipptempel@color@lighter{philipptempelPurple}{50}{philipptempelPurpleLight}
-\philipptempel@color@lighter{philipptempelPurple}{75}{philipptempelPurpleLighter}
-\philipptempel@color@darker{philipptempelPurple}{75}{philipptempelPurpleDarker}
-\philipptempel@color@darker{philipptempelPurple}{50}{philipptempelPurpleDark}
-\philipptempel@color@darker{philipptempelPurple}{25}{philipptempelPurpleVeryDark}
-%    \end{macrocode}
-%
-% Shades of color Six
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelSix}{25}{philipptempelSixVeryLight}
-\philipptempel@color@lighter{philipptempelSix}{50}{philipptempelSixLight}
-\philipptempel@color@lighter{philipptempelSix}{75}{philipptempelSixLighter}
-\philipptempel@color@darker{philipptempelSix}{75}{philipptempelSixDarker}
-\philipptempel@color@darker{philipptempelSix}{50}{philipptempelSixDark}
-\philipptempel@color@darker{philipptempelSix}{25}{philipptempelSixVeryDark}
-%    \end{macrocode}
-%
-% Shades of Orange
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelOrange}{25}{philipptempelOrangeVeryLight}
-\philipptempel@color@lighter{philipptempelOrange}{50}{philipptempelOrangeLight}
-\philipptempel@color@lighter{philipptempelOrange}{75}{philipptempelOrangeLighter}
-\philipptempel@color@darker{philipptempelOrange}{75}{philipptempelOrangeDarker}
-\philipptempel@color@darker{philipptempelOrange}{50}{philipptempelOrangeDark}
-\philipptempel@color@darker{philipptempelOrange}{25}{philipptempelOrangeVeryDark}
-%    \end{macrocode}
-%
-% Shades of color Seven
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelSeven}{25}{philipptempelSevenVeryLight}
-\philipptempel@color@lighter{philipptempelSeven}{50}{philipptempelSevenLight}
-\philipptempel@color@lighter{philipptempelSeven}{75}{philipptempelSevenLighter}
-\philipptempel@color@darker{philipptempelSeven}{75}{philipptempelSevenDarker}
-\philipptempel@color@darker{philipptempelSeven}{50}{philipptempelSevenDark}
-\philipptempel@color@darker{philipptempelSeven}{25}{philipptempelSevenVeryDark}
-%    \end{macrocode}
-%
-% Shades of Yellow
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelYellow}{25}{philipptempelYellowVeryLight}
-\philipptempel@color@lighter{philipptempelYellow}{50}{philipptempelYellowLight}
-\philipptempel@color@lighter{philipptempelYellow}{75}{philipptempelYellowLighter}
-\philipptempel@color@darker{philipptempelYellow}{75}{philipptempelYellowDarker}
-\philipptempel@color@darker{philipptempelYellow}{50}{philipptempelYellowDark}
-\philipptempel@color@darker{philipptempelYellow}{25}{philipptempelYellowVeryDark}
-%    \end{macrocode}
-%
-% Shades of color Eight
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelEight}{25}{philipptempelEightVeryLight}
-\philipptempel@color@lighter{philipptempelEight}{50}{philipptempelEightLight}
-\philipptempel@color@lighter{philipptempelEight}{75}{philipptempelEightLighter}
-\philipptempel@color@darker{philipptempelEight}{75}{philipptempelEightDarker}
-\philipptempel@color@darker{philipptempelEight}{50}{philipptempelEightDark}
-\philipptempel@color@darker{philipptempelEight}{25}{philipptempelEightVeryDark}
-%    \end{macrocode}
-%
-% Shades of Red
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelRed}{25}{philipptempelRedVeryLight}
-\philipptempel@color@lighter{philipptempelRed}{50}{philipptempelRedLight}
-\philipptempel@color@lighter{philipptempelRed}{75}{philipptempelRedLighter}
-\philipptempel@color@darker{philipptempelRed}{75}{philipptempelRedDarker}
-\philipptempel@color@darker{philipptempelRed}{50}{philipptempelRedDark}
-\philipptempel@color@darker{philipptempelRed}{25}{philipptempelRedVeryDark}
-%    \end{macrocode}
-%
-% Shades of color Nine
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelNine}{25}{philipptempelNineVeryLight}
-\philipptempel@color@lighter{philipptempelNine}{50}{philipptempelNineLight}
-\philipptempel@color@lighter{philipptempelNine}{75}{philipptempelNineLighter}
-\philipptempel@color@darker{philipptempelNine}{75}{philipptempelNineDarker}
-\philipptempel@color@darker{philipptempelNine}{50}{philipptempelNineDark}
-\philipptempel@color@darker{philipptempelNine}{25}{philipptempelNineVeryDark}
-%    \end{macrocode}
-%
-% Shades of Green
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelGreen}{25}{philipptempelGreenVeryLight}
-\philipptempel@color@lighter{philipptempelGreen}{50}{philipptempelGreenLight}
-\philipptempel@color@lighter{philipptempelGreen}{75}{philipptempelGreenLighter}
-\philipptempel@color@darker{philipptempelGreen}{75}{philipptempelGreenDarker}
-\philipptempel@color@darker{philipptempelGreen}{50}{philipptempelGreenDark}
-\philipptempel@color@darker{philipptempelGreen}{25}{philipptempelGreenVeryDark}
-%    \end{macrocode}
-%
-% Shades of color Ten
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelTen}{25}{philipptempelTenVeryLight}
-\philipptempel@color@lighter{philipptempelTen}{50}{philipptempelTenLight}
-\philipptempel@color@lighter{philipptempelTen}{75}{philipptempelTenLighter}
-\philipptempel@color@darker{philipptempelTen}{75}{philipptempelTenDarker}
-\philipptempel@color@darker{philipptempelTen}{50}{philipptempelTenDark}
-\philipptempel@color@darker{philipptempelTen}{25}{philipptempelTenVeryDark}
-%    \end{macrocode}
-%
-% Shades of Bright Green
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelBrightGreen}{25}{philipptempelBrightGreenVeryLight}
-\philipptempel@color@lighter{philipptempelBrightGreen}{50}{philipptempelBrightGreenLight}
-\philipptempel@color@lighter{philipptempelBrightGreen}{75}{philipptempelBrightGreenLighter}
-\philipptempel@color@darker{philipptempelBrightGreen}{75}{philipptempelBrightGreenDarker}
-\philipptempel@color@darker{philipptempelBrightGreen}{50}{philipptempelBrightGreenDark}
-\philipptempel@color@darker{philipptempelBrightGreen}{25}{philipptempelBrightGreenVeryDark}
-%    \end{macrocode}
-%
-% Shades of color Eleven
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelEleven}{25}{philipptempelElevenVeryLight}
-\philipptempel@color@lighter{philipptempelEleven}{50}{philipptempelElevenLight}
-\philipptempel@color@lighter{philipptempelEleven}{75}{philipptempelElevenLighter}
-\philipptempel@color@darker{philipptempelEleven}{75}{philipptempelElevenDarker}
-\philipptempel@color@darker{philipptempelEleven}{50}{philipptempelElevenDark}
-\philipptempel@color@darker{philipptempelEleven}{25}{philipptempelElevenVeryDark}
-%    \end{macrocode}
-%
-% Shades of Warm Purple
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelWarmPurple}{25}{philipptempelWarmPurpleVeryLight}
-\philipptempel@color@lighter{philipptempelWarmPurple}{50}{philipptempelWarmPurpleLight}
-\philipptempel@color@lighter{philipptempelWarmPurple}{75}{philipptempelWarmPurpleLighter}
-\philipptempel@color@darker{philipptempelWarmPurple}{75}{philipptempelWarmPurpleDarker}
-\philipptempel@color@darker{philipptempelWarmPurple}{50}{philipptempelWarmPurpleDark}
-\philipptempel@color@darker{philipptempelWarmPurple}{25}{philipptempelWarmPurpleVeryDark}
-%    \end{macrocode}
-%
-% Shades of color Twelve
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelTwelve}{25}{philipptempelTwelveVeryLight}
-\philipptempel@color@lighter{philipptempelTwelve}{50}{philipptempelTwelveLight}
-\philipptempel@color@lighter{philipptempelTwelve}{75}{philipptempelTwelveLighter}
-\philipptempel@color@darker{philipptempelTwelve}{75}{philipptempelTwelveDarker}
-\philipptempel@color@darker{philipptempelTwelve}{50}{philipptempelTwelveDark}
-\philipptempel@color@darker{philipptempelTwelve}{25}{philipptempelTwelveVeryDark}
-%    \end{macrocode}
-%
-% Shades of Grey Green
-%    \begin{macrocode}
-\philipptempel@color@lighter{philipptempelGreyGreen}{25}{philipptempelGreyGreenVeryLight}
-\philipptempel@color@lighter{philipptempelGreyGreen}{50}{philipptempelGreyGreenLight}
-\philipptempel@color@lighter{philipptempelGreyGreen}{75}{philipptempelGreyGreenLighter}
-\philipptempel@color@darker{philipptempelGreyGreen}{75}{philipptempelGreyGreenDarker}
-\philipptempel@color@darker{philipptempelGreyGreen}{50}{philipptempelGreyGreenDark}
-\philipptempel@color@darker{philipptempelGreyGreen}{25}{philipptempelGreyGreenVeryDark}
-%    \end{macrocode}
 %
 % \begin{macro}{\philipptempelcolormatrix}
 % \cmd{\philipptempelcolormatrix}.\\
-% Create a color matrix to be displayed within a document showing all the colors available in the UStutt package
+% Create a color matrix to be displayed within a document showing all the colors available in the philipptempel package
 %    \begin{macrocode}
 \NewDocumentCommand{\philipptempelcolormatrix}{ }{%
-  \newcommand{\philipptempelcolorlist}{philipptempelOne,philipptempelTwo,philipptempelThree,philipptempelFour,philipptempelFive,philipptempelSix,philipptempelSeven,philipptempelEight,philipptempelNine,philipptempelTen,philipptempelEleven,philipptempelTwelve,philipptempelCyan,philipptempelBlack,philipptempelWhite,philipptempelSkyBlue,philipptempelPurple,philipptempelOrange,philipptempelYellow,philipptempelRed,philipptempelGreen,philipptempelBrightGreen,philipptempelWarmPurple,philipptempelGreyGreen}
-  \newcommand{\philipptempeltintlist}{VeryLight,Light,Lighter,,Darker,Dark,VeryDark}
+  \newcommand{\philipptempelcolorlist}{,Accent,Set1,Set2,Set3,Paired,Dark,Pastel1,Pastel2,Spectral}
+  \newcommand{\philipptempeltintlist}{1,2,3,4,5,6,7,8}
   \begin{tikzpicture}[%
       x=0.50cm,%
       y=-0.50cm,%
@@ -642,7 +450,7 @@
             {\color};
       \foreach \tint [count=\x from 0] in \philipptempeltintlist {
         \draw[
-            color=\color\tint,%
+            color=PT\color-\tint,%
             draw,%
             fill,%
             fill opacity=1.00,%
@@ -653,9 +461,15 @@
       }
     }
   \end{tikzpicture}
-}
+}%
 %    \end{macrocode}
 % \end{macro}
+%
+% Process options passed to the package
+%    \begin{macrocode}
+\philipptempel@color@setdefaults%
+\ProcessPgfOptions{/philipptempel/color}%
+%    \end{macrocode}
 %
 %
 % \Finale

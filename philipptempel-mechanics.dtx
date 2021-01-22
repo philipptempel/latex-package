@@ -22,7 +22,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{philipptempel-mechanics}
 %<*package>
-    [2021/01/11 v1.0.0 Philipp Tempel Mechanics]
+    [2021/01/22 v1.0.0 Philipp Tempel Mechanics]
 %</package>
 %
 %<*driver>
@@ -59,7 +59,7 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v1.0}{2021/01/11}{Initial version}
+% \changes{v1.0}{2021/01/22}{Initial version}
 %
 % \GetFileInfo{philipptempel-mechanics.dtx}
 %
@@ -163,6 +163,7 @@
 \RequirePackage{pgfopts}
 %    \end{macrocode}
 %
+%
 % \begin{macro}{\pgfphilipptempelmechanicsset}
 % \cmd{\pgfphilipptempelmechanicsset}\marg{key list}.\\
 % Wrapper around |\pgfqkeys{/philipptempel/mechanics}{#1}|
@@ -202,17 +203,6 @@
 %    \begin{macrocode}
 \NewDocumentCommand{\pgfphilipptempelmechanicsgetvalue}{ m m }{%
   \pgfkeysgetvalue{/philipptempel/mechanics/#1}{#2}%
-}%
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\pgfphilipptempelmechanicsresetstyle}
-% \cmd{\pgfphilipptempelmechanicsresetstyle}\marg{fullkey}.\\
-% Wrapper around |\pgfqkeys{/philipptempel/mechanics/#1/.style}{{}}|
-%    \begin{macrocode}
-\NewDocumentCommand{\pgfphilipptempelmechanicsresetstyle}{ m }{%
-  \pgfqkeys{/philipptempel/mechanics/#1/.style}{{}}%
 }%
 %    \end{macrocode}
 % \end{macro}

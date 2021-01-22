@@ -1,0 +1,2003 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2019--2021 by Philipp Tempel <latex@philipptempel.me>
+% -------------------------------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{philipptempel-tikzpgf.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<package>\ProvidesPackage{philipptempel-tikzpgf}
+%<*package>
+    [2021/01/22 v1.0.0 Philipp Tempel TikZ/PGF]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{hyperref}
+\usepackage{philipptempel-tikzpgf}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\makeindex
+\makeglossaries
+\begin{document}
+  \DocInput{philipptempel-tikzpgf.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2021/01/22}{Initial version}
+%
+% \GetFileInfo{philipptempel-tikzpgf.dtx}
+%
+% \DoNotIndex{%
+% }
+%
+%
+% \title{The \textsf{philipptempel-tikzpgf} package\thanks{This document
+%   corresponds to \textsf{philipptempel-tikzpgf}~\fileversion, dated \filedate.}}
+% \author{Philipp Tempel \\ \texttt{latex@philipptempel.me}}
+%
+% \maketitle
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% commands
+
+% \begin{macro}{\tikzphilipptempelset}
+% Allows keys that belong to tikz-philipptempel to be easily set.
+%    \begin{macrocode}
+\newcommand\tikzphilipptempelset[1]{\tikzset{/philipptempel/.cd, #1}}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tikzphilipptempelget}
+% Allows keys that belong to tikz-philipptempel to be easily retrieved.
+%    \begin{macrocode}
+\newcommand\tikzphilipptempelget[1]{\pgfkeysvalueof{/philipptempel/#1}}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tikzphilipptempelresetstyle}
+% Allows resetting a style within tikz-philipptempel quite easily
+%    \begin{macrocode}
+\newcommand\tikzphilipptempelresetstyle[1]{\tikzset{/philipptempel/#1/.style={}}}%
+%    \end{macrocode}
+% \end{macro}
+
+%% END commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% additional tikz/pgf libraries to load                                      %%
+
+\usepgflibrary{plotmarks}
+\usepgflibrary{fpu}
+
+\usetikzlibrary{3d}
+\usetikzlibrary{angles}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{bending}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{external}
+\usetikzlibrary{fadings}
+\usetikzlibrary{fillbetween}
+\usetikzlibrary{fit}
+\usetikzlibrary{intersections}
+\usetikzlibrary{mindmap}
+\usetikzlibrary{patterns}
+\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{pgfplots.statistics}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{positioning}
+\usetikzlibrary{quotes}
+\usetikzlibrary{shadows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{spy}
+\usetikzlibrary{through}
+\usetikzlibrary{trees}
+
+\pgfplotsset{compat=newest}
+
+%% END additional tikz/pgf libraries to load                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% setup
+
+\pgfkeys{%
+  % This namespace is a family of namespaces
+  /philipptempel/.is family,%
+  % Fall back to searching inside /pgf/
+  /philipptempel/.belongs to family=/pgf,%
+  % % Forward anything unknown to the '/pgf' namespace
+  % /philipptempel/.unknown/.forward to=/pgf,%
+}%
+
+%% END setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% interface
+
+% Set an initially empty style for "remaining keys"
+\tikzphilipptempelresetstyle{remaining keys}%
+
+% Handling of unknown options
+\tikzphilipptempelset{%
+  % Remaining keys not matching in this namespace
+  remaining keys/.style={},%
+  %
+  % collect unknown keys in style 'philipptempel/remaining keys':
+  .unknown/.code={%
+    \let\currname\pgfkeyscurrentname%
+    \let\currval\pgfkeyscurrentvalue%
+    \ifx#1\pgfkeysnovalue%
+      \pgfqkeys{/philipptempel}{%
+        remaining keys/.append style/.expand once={\currname}%
+      }%
+    \else%
+      \pgfqkeys{/philipptempel}{%
+        remaining keys/.append style/.expand twice={\expandafter\currname\expandafter=\currval}%
+      }%
+    \fi%
+  }%
+}%
+
+% Marker styling
+\newlength\tikz@philipptempel@markersize
+\tikzphilipptempelset{%
+  % Default marker size for automatically marked lines
+  marker size/.code={%
+    \setlength{\tikz@philipptempel@markersize}{#1}%
+  },%
+  % Set marker size
+  marker size=1.50pt,%
+  %
+  % Default number of markers for automatically marked lines
+  marker step/.initial=7,%
+}
+
+% Colors
+\tikzphilipptempelset{%
+  % Axis border and background
+  axis border color/.initial=PTDark-8,%
+  axis background color/.initial=White,%
+  %
+  % Legend border color and background
+  legend border color/.initial=PTDark-8,%
+  legend background color/.initial=PTDark-8!2!White,%
+  %
+  % Grid colors
+  minor grid color/.initial=PTDark-8!0,%
+  major grid color/.initial=PTDark-8!10,%
+  %
+  % Axes labels
+  label color/.initial=PTDark-8,%
+  xlabel color/.initial=PTDark-8,%
+  ylabel color/.initial=PTDark-8,%
+  zlabel color/.initial=PTDark-8,%
+  %
+  % Axes titles
+  title color/.initial=PTDark-8,%
+  %
+  % Zoom-in Spy Box
+  zoom in spy box color/.initial=PTDark-1,%
+}
+
+%% END interface
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% node styles
+
+\tikzphilipptempelset{%
+  % No inside margin
+  no margin/.style={%
+    inner sep=0pt,%
+  },%
+  % A very tight node inside
+  very tight margin/.style={%
+    inner sep=0.0416625em,%
+  },%
+  % A tight node inside
+  tight margin/.style={%
+    inner sep=0.16665em,%
+  },%
+  % Normal node inside
+  normal margin/.style={%
+    inner sep=0.3333em,%
+  },%
+  % Loose node inside
+  loose margin/.style={%
+    inner sep=0.6666em,%
+  },%
+  % Very loose node inside
+  very loose margin/.style={%
+    inner sep=1.3332em,%
+  },%
+  super loose margin/.style={%
+    inner sep=5.3328em,%
+  },%
+  % No outside distance
+  no padding/.style={%
+    outer sep=0pt,%
+  },%
+  % A very tight node outside
+  very tight padding/.style={%
+    outer sep=0.0416625em,%
+  },%
+  % A tight node outside
+  tight padding/.style={%
+    outer sep=0.16665em,%
+  },%
+  % A normal node outside
+  normal padding/.style={%
+    outer sep=0.3333em,%
+  },%
+  % A loose node outside
+  loose padding/.style={%
+    outer sep=0.6666em,%
+  },%
+  % A very loose node outside
+  very loose padding/.style={%
+    outer sep=1.3332em,%
+  },%
+  super loose padding/.style={%
+    outer sep=5.3328em,%
+  },%
+  % A boxed node
+  boxed/.style={%
+    draw,%
+  },%
+  %
+  % A highlighted style
+  highlighted/.style={%
+    color=\tikzphilipptempelget{highlight color},%
+  },%
+  % Draw a top border
+  top border/.style={%
+    append after command={%
+      \pgfextra{%
+        \begin{pgfinterruptpath}%
+          \draw[%
+              #1,%
+            ]%
+            (\tikzlastnode.north west)%
+            -- (\tikzlastnode.north east)%
+            ;%
+        \end{pgfinterruptpath}%
+      }%
+    }%
+  },%
+  % Draw a right border
+  right border/.style={%
+    append after command={%
+      \pgfextra{%
+        \begin{pgfinterruptpath}%
+          \draw[%
+              #1,%
+            ]%
+            (\tikzlastnode.north east)%
+            -- (\tikzlastnode.south east)%
+            ;%
+        \end{pgfinterruptpath}%
+      }%
+    }%
+  },%
+  % Draw a bottom border
+  bottom border/.style={%
+    append after command={%
+      \pgfextra{%
+        \begin{pgfinterruptpath}%
+          \draw[%
+              #1,%
+            ]%
+            (\tikzlastnode.south east)%
+            -- (\tikzlastnode.south west)%
+            ;%
+        \end{pgfinterruptpath}%
+      }%
+    }%
+  },%
+  % Draw a left border
+  left border/.style={%
+    append after command={%
+      \pgfextra{%
+        \begin{pgfinterruptpath}%
+          \draw[%
+              #1,%
+            ]%
+            (\tikzlastnode.south west)%
+            -- (\tikzlastnode.north west)%
+            ;%
+        \end{pgfinterruptpath}%
+      }%
+    }%
+  },%
+  % left bordered/.initial={},%
+  cross/.style={%
+    cross out,%
+    draw,%
+    minimum size=2(#1-\pgflinewidth),%
+    inner sep=0pt,%
+    outer sep=0pt,%
+  },%
+  cross/.default={1pt},%
+}
+%% END node styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% euclidean drawing
+
+\tikzset{%
+  % 2D tangent
+  tangent/.style={%
+    decoration={%
+      markings,%
+      mark=%
+        at position #1%
+          with%
+          {%
+            \coordinate%
+              (tangent point-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})%
+              at%
+              (0,0);%
+            \coordinate%
+              (tangent unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})%
+              at (1,0);%
+            \coordinate%
+              (normal unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})%
+              at (0,1);%
+          },%
+    },%
+    postaction=decorate,%
+  },%
+  use tangent/.style={%
+    shift=(tangent point-#1),%
+    x=(tangent unit vector-#1),%
+    y=(normal unit vector-#1),%
+  },%
+  use tangent/.default=1,%
+  %
+  % 3D tangent
+  tangent 3/.style={%
+    decoration={%
+      markings,%
+      mark=%
+        at position #1%
+        with%
+        {%
+          \coordinate%
+            (tangent 3 point-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})%
+            at (0.00,0.00,0.00);%
+          \coordinate%
+            (tangent 3 unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})%
+            at (0.00,1.00,0.00);%
+          \coordinate%
+            (normal 3 unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})%
+            at (-1.00,0.00,0.00);%
+          \coordinate%
+            (binormal 3 unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})%
+            at (0.00,0.00,1.00);%
+        },%
+    },%
+    postaction=decorate,%
+  },%
+  use tangent 3/.style={%
+    shift=(tangent 3 point-#1),%
+    x=(tangent 3 unit vector-#1),%
+    y=(normal 3 unit vector-#1),%
+    z=(binormal 3 unit vector-#1),%
+  },%
+  use tangent 3/.default=1,%
+}
+
+%% END euclidean drawing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% line styles
+
+\tikzphilipptempelset{%
+  % Make every line wider than the usual 4pt
+  ultra thin/.style={%
+    line width=0.02em,%
+  },%
+  very thin/.style={%
+    line width=0.04em,%
+  },%
+  thin/.style={% DEFAULT
+    line width=0.08em,%
+  },%
+  semithick/.style={%
+    line width=0.12em,%
+  },%
+  thick/.style={%
+    line width=0.16em,%
+  },%
+  very thick/.style={%
+    line width=0.32em,%
+  },%
+  ultra thick/.style={%
+    line width=0.64em,%
+  },%
+}
+
+
+% Coordinate things
+\tikzphilipptempelset{%
+  % Coordinate system center
+  coordinate system/.style={%
+    color=PTDark-1,%
+  },%
+  % A general coordinate axis (X, Y, Z)
+  coordinate axis/.style={%
+    ->,%
+    draw=PTDark-1,%
+    color=PTDark-1,%
+  },%
+  % X-axis: colored red
+  coordinate axis x/.style={%
+    /philipptempel/coordinate axis,%
+    color=Red,%
+  },%
+  % Y-axis: colored green
+  coordinate axis y/.style={%
+    /philipptempel/coordinate axis,%
+    color=Green,%
+  },%
+  % Z-axis: colored blue
+  coordinate axis z/.style={%
+    /philipptempel/coordinate axis,%
+    color=Blue,%
+  },%
+  %
+  % Label of any coordinate axis
+  coordinate axis label/.style={%
+    pos=1.00,%
+    % font=\relsize{-1},%
+    /philipptempel/tight padding,%
+    /philipptempel/no margin,%
+  },%
+}
+
+%% END line styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% global tikz styles
+
+\tikzset{%
+  % Default line arrow style
+  >=Stealth,%
+  %
+  % Style to avoid additional post actions to be performed
+  nomorepostactions/.code={%
+    \let\tikz@postactions=\pgfutil@empty%
+  },%
+  %
+  % Per default, the "evenly marked plot" style will do nothing
+  evenly marked plot/.style 2 args={%
+    mark=#1,%
+    mark options={#2},%
+    mark repeat=11,%
+  },%
+  %
+  % Every mark a little bit smaller
+  mark size=1.75pt,%
+}%
+
+% Some styles will not be set in draft mode
+\tikzset{%
+  %
+  % Mark the curent line evenly along the x-axis
+  evenly marked plot/.style 2 args={%
+    postaction={%
+      decoration={%
+        markings,%
+        mark=between positions 0 and 1%
+          step 0.25%
+          with {%
+            \tikzset{#2, every mark}\tikz@options%
+            \pgfuseplotmark{#1}%
+          },%
+      },%
+      decorate,%
+    },%
+    /pgfplots/legend image post style={%
+      mark=#1,%
+      every mark/.append style={%
+        #2%
+      },%
+      every path/.append style={%
+        nomorepostactions,%
+      },%
+    },%
+  },%
+}%
+
+%% END global tikz styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% global pgf styles
+
+% Select only coordinates between a minimum and maximum data index
+% `select coords between index={3}{9}` plots data for x-indices [3,4,5,6,7,8,9]
+\pgfplotsset{%
+  select coords between index/.style 2 args={%
+    filter discard warning=false,%
+    x filter/.code={%
+      \ifnum\coordindex<#1\def\pgfmathresult{}\fi%
+      \ifnum\coordindex>#2\def\pgfmathresult{}\fi%
+    },%
+  },%
+  select only coord at index/.style={%
+    filter discard warning=false,%
+    x filter/.code={%
+      \ifnum\coordindex=#1\else\def\pgfmathresult{}\fi%
+    },%
+  },%
+}
+
+% Order of draw layers
+\pgfplotsset{%
+  /pgfplots/layers/philipptempel/.define layer set={%
+    axis background,%
+    axis grid,%
+    pre main,%
+    main,%
+    axis ticks,%
+    axis lines,%
+    axis tick labels,%
+    axis descriptions,%
+    axis foreground,%
+  }{%
+    /pgfplots/layers/standard%
+  },%
+}%
+
+% Do not complain about filtered coordinates
+\pgfplotsset{%
+  filter discard warning=false,%
+}
+
+% Make only some axes with fixed logarithmic tick poins
+\pgfplotsset{%
+  log x ticks with fixed point/.style={%
+    xticklabel={%
+      \pgfkeys{/pgf/fpu=true}%
+      \pgfmathparse{exp(\tick)}%
+      \pgfmathprintnumber[fixed relative, precision=3]{\pgfmathresult}%
+      \pgfkeys{/pgf/fpu=false}%
+    },%
+  },%
+  log y ticks with fixed point/.style={%
+    yticklabel={%
+      \pgfkeys{/pgf/fpu=true}%
+      \pgfmathparse{exp(\tick)}%
+      \pgfmathprintnumber[fixed relative, precision=3]{\pgfmathresult}%
+      \pgfkeys{/pgf/fpu=false}%
+    },%
+  },%
+}
+
+%% END global tikz styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mindmap style
+
+\tikzphilipptempelset{%
+  % Default mindmap node
+  mindmap node/.style={%
+    draw=PTDark-1,%
+    fill=White,%
+    shape=rectangle,%
+    rounded corners=0pt,%
+    text centered,%
+  },%
+  %
+  % Root node of a mindmap
+  mindmap root/.style={%
+    /philipptempel/mindmap node,%
+  },%
+  %
+  % Leaf node of a mindmap
+  mindmap leaf/.style={%
+    /philipptempel/mindmap node,%
+  },%
+  %
+  % Node that fits other nodes
+  mindmap collection node/.style={%
+    draw,%
+    shape=rectangle,%
+    rounded corners=0pt,%
+    draw=PTDark-1,%
+    draw opacity=1.00,%
+    fill=PTDark-1!5!White,%
+    fill opacity=0.25,%
+    text opacity=1.00,%
+  },%
+  %
+  % Just a line between nodes
+  mindmap line/.style={%
+    -,%
+    /philipptempel/thin,%
+    shorten >=0.10ex,%
+  },%
+  %
+  % Directed line between nodes
+  mindmap direction/.style={%
+    /philipptempel/mindmap line,%
+    ->,%
+  },%
+  %
+  % Thicker line connecting two nodes
+  mindmap vector/.style={%
+    /philipptempel/mindmap direction,%
+    shorten >=0.10ex,%
+    /philipptempel/thick,%
+  },%
+  %
+  % Style for an annotation node along a line
+  mindmap line annotation/.style={%
+  },%
+}
+
+%% END mindmap style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% cycle list styles
+
+% Colors we will go through
+\pgfplotscreateplotcyclelist{/philipptempel/colors 1}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  }%
+}
+\pgfplotscreateplotcyclelist{/philipptempel/colors 2}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  },{%
+    PT-2,%
+    draw opacity=1.00,%
+  }%
+}
+\pgfplotscreateplotcyclelist{/philipptempel/colors 3}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  },{%
+    PT-2,%
+    draw opacity=1.00,%
+  },{%
+    PT-3,%
+    draw opacity=1.00,%
+  }%
+}
+\pgfplotscreateplotcyclelist{/philipptempel/colors 4}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  },{%
+    PT-2,%
+    draw opacity=1.00,%
+  },{%
+    PT-3,%
+    draw opacity=1.00,%
+  },{%
+    PT-4,%
+    draw opacity=1.00,%
+  }%
+}
+\pgfplotscreateplotcyclelist{/philipptempel/colors 5}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  },{%
+    PT-2,%
+    draw opacity=1.00,%
+  },{%
+    PT-3,%
+    draw opacity=1.00,%
+  },{%
+    PT-4,%
+    draw opacity=1.00,%
+  },{%
+    PT-5,%
+    draw opacity=1.00,%
+  }%
+}
+\pgfplotscreateplotcyclelist{/philipptempel/colors 6}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  },{%
+    PT-2,%
+    draw opacity=1.00,%
+  },{%
+    PT-3,%
+    draw opacity=1.00,%
+  },{%
+    PT-4,%
+    draw opacity=1.00,%
+  },{%
+    PT-5,%
+    draw opacity=1.00,%
+  },{%
+    PT-6,%
+    draw opacity=1.00,%
+  }%
+}
+\pgfplotscreateplotcyclelist{/philipptempel/colors 7}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  },{%
+    PT-2,%
+    draw opacity=1.00,%
+  },{%
+    PT-3,%
+    draw opacity=1.00,%
+  },{%
+    PT-4,%
+    draw opacity=1.00,%
+  },{%
+    PT-5,%
+    draw opacity=1.00,%
+  },{%
+    PT-6,%
+    draw opacity=1.00,%
+  },{%
+    PT-7,%
+    draw opacity=1.00,%
+  }%
+}
+\pgfplotscreateplotcyclelist{/philipptempel/colors 8}{%
+  {%
+    PT-1,%
+    draw opacity=1.00,%
+  },{%
+    PT-2,%
+    draw opacity=1.00,%
+  },{%
+    PT-3,%
+    draw opacity=1.00,%
+  },{%
+    PT-4,%
+    draw opacity=1.00,%
+  },{%
+    PT-5,%
+    draw opacity=1.00,%
+  },{%
+    PT-6,%
+    draw opacity=1.00,%
+  },{%
+    PT-7,%
+    draw opacity=1.00,%
+  },{%
+    PT-8,%
+    draw opacity=1.00,%
+  }%
+}
+
+% Colors we will go through
+\pgfplotscreateplotcyclelist{/philipptempel/shades of gray list}{%
+  {%
+    Black,%
+    draw opacity=1.00,%
+  },{%
+    Black!66,%
+    draw opacity=1.00,%
+  },{%
+    Black!33,%
+    draw opacity=1.00,%
+  }%
+}
+
+% Colors we will go through
+\pgfplotscreateplotcyclelist{/philipptempel/black}{%
+  {%
+    Black,%
+    draw opacity=1.00,%
+  }%
+}
+
+% Default list of line styles to go through
+\pgfplotscreateplotcyclelist{/philipptempel/linestyles}{%
+  {%
+    solid,%
+    draw opacity=1.00,%
+  },{%
+    dashed,%
+    draw opacity=1.00,%
+  },{%
+    dashdotted,%
+    draw opacity=1.00,%
+  },{%
+    dotted,%
+    draw opacity=1.00,%
+  }%
+}
+
+% Extended list of line styles to go through
+\pgfplotscreateplotcyclelist{/philipptempel/linestyles*}{%
+  {%
+    solid,%
+    draw opacity=1.00,%
+  },{%
+    dashed,%
+    draw opacity=1.00,%
+  },{%
+    dashdotted,%
+    draw opacity=1.00,%
+  },{%
+    dotted,%
+    draw opacity=1.00,%
+  },{%
+    dashdotdotted,%
+    draw opacity=1.00,%
+  },{%
+    densely dashed,%
+    draw opacity=1.00,%
+  },{%
+    densely dashdotted,%
+    draw opacity=1.00,%
+  },{%
+    densely dotted,%
+    draw opacity=1.00,%
+  },{%
+    densely dashdotdotted,%
+    draw opacity=1.00,%
+  },{%
+    loosely dashed,%
+    draw opacity=1.00,%
+  },{%
+    loosely dashdotted,%
+    draw opacity=1.00,%
+  },{%
+    loosely dotted,%
+    draw opacity=1.00,%
+  },{%
+    loosely dashdotdotted,%
+    draw opacity=1.00,%
+  }%
+}
+
+%% END cycle list styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mark list
+% List of markers to go through
+\pgfplotscreateplotcyclelist{/philipptempel/mark list}{%
+  {%
+    mark=*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=square*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=triangle*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=star,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=none,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=diamond*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=otimes*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      % fill=\pgfplotsmarklistfill!33,%
+      fill=PTDark-8!33,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=|,%
+    every mark/.append style={%
+      solid,%
+      rotate=180,%
+      draw opacity=1.00,%
+      fill=none,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=pentagon*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  }%
+}
+
+\pgfplotscreateplotcyclelist{/philipptempel/mark list*}{%
+  {%
+    mark=*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=square*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=triangle*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfsquare*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=pentagon*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfcircle*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfdiamond*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      rotate=180,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=otimes*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill!33,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=diamond*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfsquare right*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfsquare left*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  }%
+}
+%% END mark list
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mark list nth
+% List of markers to go through
+\pgfplotscreateplotcyclelist{/philipptempel/mark list nth}{%
+  {%
+    mark=*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=square*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=triangle*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=star,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=none,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=diamond*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=otimes*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill!33,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=|,%
+    every mark/.append style={%
+      solid,%
+      rotate=180,%
+      draw opacity=1.00,%
+      fill=none,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=pentagon*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  }%
+}
+
+\pgfplotscreateplotcyclelist{/philipptempel/mark list nth*}{%
+  {%
+    mark=*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=square*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=triangle*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfsquare*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=pentagon*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfcircle*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfdiamond*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      rotate=180,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=otimes*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill!33,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=diamond*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfsquare right*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    mark=halfsquare left*,%
+    every mark/.append style={%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill,%
+      fill opacity=1.00,%
+    },%
+  }%
+}
+%% END mark list
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% even
+
+% Different line styles and marking styles at the same time
+\pgfplotscreateplotcyclelist{/philipptempel/mark list even}{%
+  {%
+    evenly marked plot={%
+      *%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,,%
+    },%
+  },{%
+    evenly marked plot={%
+      square*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      triangle*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      halfsquare*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      pentagon*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      halfcircle*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      halfdiamond*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      otimes*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      diamond*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  }%
+}%
+
+% Different line styles and marking styles at the same time
+\pgfplotscreateplotcyclelist{/philipptempel/mark list even*}{%
+  {%
+    evenly marked plot={%
+      *%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      square*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      triangle*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      halfsquare*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      pentagon*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      halfcircle*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      halfdiamond*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      otimes*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=\pgfplotsmarklistfill!33,%
+      fill opacity=1.00,%
+    },%
+  },{%
+    evenly marked plot={%
+      diamond*%
+    }{%
+      solid,%
+      draw opacity=1.00,%
+      fill=White,%
+      fill opacity=1.00,%
+    },%
+  }%
+}%
+%% END mark list even
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Different patterns for bar plots
+\pgfplotscreateplotcyclelist{/philipptempel/black patterns}{%
+  {%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill,%
+    fill opacity=1.00,%
+    pattern=north east lines,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill,%
+    fill opacity=1.00,%
+    pattern=north west lines,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill,%
+    fill opacity=1.00,%
+    pattern=crosshatch,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill,%
+    fill opacity=1.00,%
+    pattern=dots,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill,%
+    fill opacity=1.00,%
+    pattern=crosshatch dots,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill!25,%
+    fill opacity=1.00,%
+    pattern=north east lines,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill!25,%
+    fill opacity=1.00,%
+    pattern=north west lines,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill!25,%
+    fill opacity=1.00,%
+    pattern=crosshatch,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill!25,%
+    fill opacity=1.00,%
+    pattern=dots,%
+  },{%
+    draw=Black,%
+    draw opacity=1.00,%
+    fill=\pgfplotsmarklistfill!25,%
+    fill opacity=1.00,%
+    pattern=crosshatch dots,%
+  }%
+}%
+
+% Add Style to cycle bars with a more natural cycle list name
+\pgfplotsset{%
+  bar cycle list/.style={%
+    cycle list={%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill,%
+        fill opacity=1.00,%
+        pattern=north east lines,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill,%
+        fill opacity=1.00,%
+        pattern=north west lines,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill,%
+        fill opacity=1.00,%
+        pattern=crosshatch,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill,%
+        fill opacity=1.00,%
+        pattern=dots,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=White,%
+        fill opacity=1.00,%
+        pattern=crosshatch dots,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill!25,%
+        fill opacity=1.00,%
+        pattern=north east lines,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill!25,%
+        fill opacity=1.00,%
+        pattern=north west lines,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill!25,%
+        fill opacity=1.00,%
+        pattern=crosshatch,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill!25,%
+        fill opacity=1.00,%
+        pattern=dots,%
+      },%
+      {%
+        draw=Black,%
+        draw opacity=1.00,%
+        fill=\pgfplotsmarklistfill!25,%
+        fill opacity=1.00,%
+        pattern=crosshatch dots,%
+      }%
+    }%
+  }%
+}%
+
+%% END cycle list styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% plot styles
+
+\providelength{\subplotwidth}
+\providelength{\subplotheight}
+\providelength{\subplothsep}
+\providelength{\subplotvsep}
+
+\pgfplotsset{%
+  % General group settings
+  group/horizontal sep=\subplothsep,%
+  group/vertical sep=\subplotvsep,%
+  %
+  % Tufte styles
+  tufte-like/.style={%
+    separate axis lines,%
+    axis x line*=bottom,%
+    axis x line shift=6pt,%
+    xlabel shift=6pt,%
+    axis y line*=left,%
+    axis y line shift=6pt,%
+    ylabel shift=6pt,%
+  },%
+  tufte-like right/.style={%
+    tufte-like,%
+    axis y line*=right,%
+    axis y line shift=6pt,%
+    ylabel shift=6pt,%
+  },%
+  %
+  plot base/.style={%
+    % Scale only axis, not labels
+    scale only axis=true,%
+    %
+    % Skip coordinates that are outside of plot range
+    unbounded coords=discard,%
+    %
+    % Default font size
+    % font=\relsize{-1},%
+    %
+    % By default, do not add any marks to any of the plots
+    % no markers,%
+    %
+    % I'd like to have no enlarged axes limits by defaults
+    enlargelimits=false,%
+    %
+    % I'd like to have major grids on the y-axis
+    ymajorgrids=true,%
+    %
+    % % And default legend styles
+    every axis legend/.append style={%
+      draw=\tikzphilipptempelget{legend border color},%
+      draw opacity=1.00,%
+      fill=\tikzphilipptempelget{legend background color},%
+      fill opacity=0.25,%
+      text opacity=1.00,%
+      % font=\relsize{-1},%
+      at={(0.98,0.98)},%
+      anchor=north east,%
+      cells={%
+        anchor=west,%
+      },%
+    },%
+    %
+    % Background of axis environment
+    axis background/.append style={%
+      fill=\tikzphilipptempelget{axis background color},%
+    },%
+    %
+    % Style of axes lines
+    every outer x axis line/.append style={%
+      draw=\tikzphilipptempelget{axis border color},%
+    },%
+    every outer y axis line/.append style={%
+      draw=\tikzphilipptempelget{axis border color},%
+    },%
+    every outer z axis line/.append style={%
+      draw=\tikzphilipptempelget{axis border color},%
+    },%
+    %
+    % Draw axes above data
+    axis on top=false,%
+    %
+    % Style of axes labels
+    every axis x label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{xlabel color},%
+    },%
+    every axis y label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{ylabel color},%
+    },%
+    every axis z label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{zlabel color},%
+    },%
+    %
+    % Style of tick labels
+    every x tick label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{xlabel color},%
+    },%
+    every y tick label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{ylabel color},%
+    },%
+    every z tick label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{zlabel color},%
+    },%
+    %
+    % Grid styles; axis, major and minor
+    every axis grid/.style={%
+    },%
+    every major grid/.style={%
+      dashed,%
+      draw=\tikzphilipptempelget{major grid color},%
+    },%
+    every minor grid/.style={%
+      loosely dashed,%
+      draw=\tikzphilipptempelget{minor grid color},%
+    },%
+    %
+    % Axes titles
+    every axis title/.append style={%
+      color=\tikzphilipptempelget{title color},%
+    },%
+    %
+    % Styles of `\addplot'
+    every axis plot/.append style={%
+      semithick,%
+    },%
+  },%
+  %
+  % Default line plot style
+  line plot/.style={%
+    % Inherit
+    plot base,%
+  },%
+  %
+  % A time series plot i.e., something-vs-time
+  timeseries plot/.style={%
+    % General adjustments
+    line plot,%
+    %
+    % X-Axis
+    xlabel={Time $t / \si{\second}$},%
+  },%
+  %
+  % Y-bar plot
+  ybar plot/.style={%
+    % Base style to inherit from
+    line plot,%
+    % But make it bars
+    ybar=#1,%
+    %
+    % Legend
+    every axis legend/.append style={%
+      at={(0.98,0.98)},%
+      anchor=north east,%
+    },%
+  },%
+  ybar plot/.initial=2pt,%
+  %
+  % Stacked y-bar plot
+  ybar stacked plot/.style={%
+    % General adjustments
+    ybar plot=#1,%
+    ybar stacked,%
+  },%
+  ybar stacked plot/.initial=2pt,%
+  %
+  % Boxplot
+  boxplot plot/.style={%
+    % Base style to inherit from
+    line plot,%
+    % But make it bars
+    ybar=#1,%
+    %
+    % Legend
+    every axis legend/.append style={%
+      at={(0.98,0.98)},%
+      anchor=north east,%
+    },%
+  },%
+  boxplot plot/.initial=2pt,%
+  %
+  % Base style for double-y axes plots
+  yyaxis line plot/.style={%
+    % General styles
+    line plot,%
+    separate axis lines,%
+  },%
+  %
+  % Double y-axis plot style: left axis
+  yyaxis left/.style={%
+    % General adjustments
+    yyaxis line plot,%
+    axis lines*=left,%
+    %
+    % X-Axis
+    axis x line*=bottom,%
+    %
+    % Y-Axis
+    axis y line*=left,%
+    ylabel near ticks,%
+    %
+    % Style of axes labels
+    every axis x label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{xlabel color},%
+    },%
+    every axis y label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{ylabel color},%
+    },%
+  },%
+  %
+  % Double y-axis plot style: right axis
+  yyaxis right/.style={%
+    % General adjustments
+    yyaxis line plot,%
+    axis lines*=right,%
+    %
+    % X-Axis
+    axis x line=none,%
+    %
+    % Y-Axis
+    axis y line*=right,%
+    ylabel near ticks,%
+    %
+    % Axis
+    axis background/.style={%
+      fill=none,%
+    },%
+    %
+    % Style of axes labels
+    every axis x label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{xlabel color},%
+    },%
+    every axis y label/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{ylabel color},%
+    },%
+  },%
+  %
+  % Boxed axes style
+  boxed axes/.style={%
+    axis x line*=box,%
+    axis y line*=box,%
+  },%
+  % Lower left axes style
+  bottom left axes/.style={%
+    axis x line*=bottom,%
+    axis y line*=left,%
+  },%
+  % Top right axes styles
+  top right axes/.style={%
+    axis x line*=top,%
+    axis y line*=right,%
+  },%
+}
+
+% 3D plot styles
+\pgfplotsset{%
+  plot base 3d/.style={%
+    % Scale only axis, not labels
+    scale only axis=true,%
+    %
+    % Adjust view
+    % view={20.00}{17.50},%
+    view={15.00}{10.00},%
+    %
+    % Default font size
+    % font=\relsize{-1},%
+    %
+    % I'd like to have no enlarged axes limits by defaults
+    enlargelimits=false,%
+    %
+    % And default legend styles
+    every axis legend/.append style={%
+      draw=\tikzphilipptempelget{legend border color},%
+      draw opacity=1.00,%
+      fill=\tikzphilipptempelget{legend background color},%
+      fill opacity=0.25,%
+      text opacity=1.00,%
+      % font=\relsize{-1},%
+      at={(0.02,0.98)},%
+      anchor=north west,%
+      cells={%
+        anchor=west,%
+      },%
+    },%
+    %
+    % Background of axis environment
+    axis background/.append style={%
+      fill=\tikzphilipptempelget{axis background color},%
+    },%
+    %
+    % Style of axes lines
+    every outer x axis line/.append style={%
+      draw=\tikzphilipptempelget{axis border color},%
+    },%
+    every outer y axis line/.append style={%
+      draw=\tikzphilipptempelget{axis border color},%
+    },%
+    every outer z axis line/.append style={%
+      draw=\tikzphilipptempelget{axis border color},%
+    },%
+    %
+    % Draw axes above data
+    axis on top=false,%
+    %
+    % Style of axes labels
+    every axis label/.append style={%
+      % font=\relsize{-1},%
+    },%
+    every axis x label/.append style={%
+      color=\tikzphilipptempelget{xlabel color},%
+      sloped like x axis,%
+    },%
+    every axis y label/.append style={%
+      color=\tikzphilipptempelget{ylabel color},%
+      sloped like y axis,%
+    },%
+    every axis z label/.append style={%
+      color=\tikzphilipptempelget{zlabel color},%
+      sloped like z axis,%
+    },%
+    %
+    % Style of tick labels
+    every tick label/.append style={%
+      color=\tikzphilipptempelget{xlabel color},%
+    },%
+    every x tick label/.append style={%
+    },%
+    every y tick label/.append style={%
+    },%
+    every z tick label/.append style={%
+    },%
+    %
+    % Grid styles
+    every major grid/.append style={%
+      dashed,%
+      draw=\tikzphilipptempelget{major grid color},%
+    },%
+    every minor grid/.append style={%
+      loosely dashed,%
+      draw=\tikzphilipptempelget{minor grid color},%
+    },%
+    %
+    % Axes titles
+    every axis title/.append style={%
+      % font=\relsize{-1},%
+      color=\tikzphilipptempelget{title color},%
+    },%
+  },%
+  % Default 3D plot style
+  line plot 3d/.style={%
+    % Inherit
+    plot base 3d,%
+  },%
+  %
+  % Surface plot style
+  surface plot/.style={%
+    % Inherit
+    line plot 3d,%
+  },%
+}
+
+\tikzphilipptempelset{%
+  zoom in spy box/.style={%
+    solid,%
+    draw=\tikzphilipptempelget{zoom in spy box color},%
+    draw opacity=1.00,%
+  },%
+}
+
+%% END plot styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
