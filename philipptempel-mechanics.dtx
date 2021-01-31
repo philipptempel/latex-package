@@ -1491,14 +1491,64 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\forcesymbol}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\forcesymbol}{ }{%
+  n%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\force}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\force}{ s }{%
-  \IfBooleanTF{#1}{%
-    f%
-  }{%
-    \vect{f}%
-  }%
+\ProvideDocumentCommand{\force}{ }{%
+  \forcesymbol%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\forces}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\forces}{ s }{%
+  \vect{\forcesymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\momentsymbol}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\momentsymbol}{ }{%
+  m%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\moment}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\moment}{ }{%
+  \momentsymbol%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\moments}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\moments}{ }{%
+  \vect{\momentsymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\torquesymbol}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\torquesymbol}{ }{%
+  \tau%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1506,12 +1556,44 @@
 %
 % \begin{macro}{\torque}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\torque}{ s }{%
-  \IfBooleanTF{#1}{%
-    \tau%
-  }{%
-    \vect{\tau}%
-  }%
+\ProvideDocumentCommand{\torque}{ }{%
+  \torquesymbol%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\torques}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\torques}{ }{%
+  \vect{\torquesymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\wrenchsymbol}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\wrenchsymol}{ }{%
+  w%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\wrench}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\wrench}{ }{%
+  \wrenchsymbol%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\wrenchs}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\wrenchs}{ s }{%
+  \vect{\wrenchsymbol}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1577,6 +1659,67 @@
     \ndot{\strainsymbol}%
   }{%
     \ndotvect{\strainsymbol}%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\curvaturesymbol}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\curvaturesymbol}{ }{%
+  \kappa%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\curvature}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\curvature}{ s }{%
+  \IfBooleanTF{#1}{%
+    \curvaturesymbol%
+  }{%
+    \vect{\curvaturesymbol}%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\dotcurvature}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\dotcurvature}{ s }{%
+  \IfBooleanTF{#1}{%
+    \dot{\curvaturesymbol}%
+  }{%
+    \dotvect{\curvaturesymbol}
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ddotcurvature}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\ddotcurvature}{ s }{%
+  \IfBooleanTF{#1}{%
+    \ddot{\curvaturesymbol}%
+  }{%
+    \ddotvect{\curvaturesymbol}%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ndotcurvature}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\ndotcurvature}{ s }{%
+  \IfBooleanTF{#1}{%
+    \ndot{\curvaturesymbol}%
+  }{%
+    \ndotvect{\curvaturesymbol}%
   }%
 }%
 %    \end{macrocode}
@@ -1754,6 +1897,90 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\ppprpathcoord}{ }{%
   \pppr{\pathcoord}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\lengthcoord}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\lengthcoord}{ }{%
+  s%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\dotlengthcoord}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\dotlengthcoord}{ }{%
+  \dot{\lengthcoord}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ddotlengthcoord}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\ddotlengthcoord}{ }{%
+  \ddot{\lengthcoord}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\prlengthcoord}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\prlengthcoord}{ }{%
+  \pr{\lengthcoord}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\pprlengthcoord}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\pprlengthcoord}{ }{%
+  \ppr{\lengthcoord}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ppprlengthcoord}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\ppprlengthcoord}{ }{%
+  \pppr{\lengthcoord}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\director}
+% \cmd{\director}\marg{idx}.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\director}{ m }{%
+  \vect{d}_{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\pdirector}
+% \cmd{\pdirector}\marg{idx}.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\pdirector}{ m }{%
+  \pr{\vect{d}}_{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ppdirector}
+% \cmd{\pdirector}\marg{idx}.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\ppdirector}{ m }{%
+  \ppr{\vect{d}}_{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
