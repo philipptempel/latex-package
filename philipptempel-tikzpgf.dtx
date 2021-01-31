@@ -1751,6 +1751,21 @@
     plot base,%
   },%
   %
+  % Default Cartesian plot style
+  cartesian plot/.style={
+    plot base,%
+    %
+    % I'd like to have major grids on the x-axis and the y-axis
+    xmajorgrids=true,%
+    ymajorgrids=true,%
+    %
+    % X-Axis
+    xlabel={$x / \si{\meter}$},%
+    %
+    % Y-Axis
+    ylabel={$y / \si{\meter}$},%
+  },%
+  %
   % A time series plot i.e., something-vs-time
   timeseries plot/.style={%
     % General adjustments
@@ -1841,6 +1856,7 @@
     % Y-Axis
     axis y line*=right,%
     ylabel near ticks,%
+    ymajorgrids=false,%
     %
     % Axis
     axis background/.style={%
