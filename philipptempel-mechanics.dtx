@@ -233,15 +233,6 @@
 % |glossaries-extra| package only the options defined here are for the actual
 % package.
 %    \begin{macrocode}
-\pgfkeys{
-  /philipptempel/mechanics/rotation/.cd,%
-    .is choice,%
-}
-%    \end{macrocode}
-%
-% And now a callback for unknown options to be passed down to the
-% |glossaries-extra| class
-%    \begin{macrocode}
 \pgfkeys{%
   /philipptempel/mechanics/.cd,%
     .unknown/.code={%

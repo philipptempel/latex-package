@@ -1361,16 +1361,47 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\quaternionsymbol}
+% \cmd{\quaternionsymbol} quaternion vector.\\
+% \cmd{\quaternionsymbol}* quaternion scalar.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\quaternionsymbol}{ }{%
+  q%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\quat}
 % \cmd{\quat} quaternion vector.\\
 % \cmd{\quat}* quaternion scalar.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\quat}{ s }{%
   \IfBooleanTF{#1}{%
-    \Theta%
+    \quaternionsymbol%
   }{%
-    \vect{\Theta}%
+    \vect{\quaternionsymbol}%
   }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\quats}
+% \cmd{\quats} quaternion scalar part.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\quats}{ }{%
+  \quaternionsymbol_{s}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\quatv}
+% \cmd{\quatv} quaternion vector part.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\quatv}{ }{%
+  \vect{\quaternionsymbol}_{v}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1382,9 +1413,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\dotquat}{ s }{%
   \IfBooleanTF{#1}{%
-    \dot{\Theta}%
+    \dot{\quaternionsymbol}%
   }{%
-    \dotvect{\Theta}%
+    \dotvect{\quaternionsymbol}%
   }%
 }%
 %    \end{macrocode}
@@ -1397,9 +1428,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\ddotquat}{ s }{%
   \IfBooleanTF{#1}{%
-    \ddot{\Theta}%
+    \ddot{\quaternionsymbol}%
   }{%
-    \ddotvect{\Theta}%
+    \ddotvect{\quaternionsymbol}%
   }%
 }%
 %    \end{macrocode}
