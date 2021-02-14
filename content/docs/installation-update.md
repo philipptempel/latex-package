@@ -68,7 +68,7 @@ Since some packages depend on others, the recommended loading order is given bel
 ```latex
 \usepackage{philipptempel-colors}
 \usepackage{philipptempel-math}
-\usepackage{philipptempel-symbols}
+\usepackage{philipptempel-cablerobots}
 \usepackage{philipptempel-mechanics}
 \usepackage{philipptempel-text}
 \usepackage{philipptempel-acronyms}
