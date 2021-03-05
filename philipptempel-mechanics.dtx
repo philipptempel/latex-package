@@ -1238,11 +1238,11 @@
 %
 % \begin{macro}{\jacposconstraints}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\jacposconstraints}{ s }{%
+\ProvideDocumentCommand{\jacposconstraints}{ s o O{} }{%
   \IfBooleanTF{#1}{%
-    \jacobian{\posconstraintssymbol}%
+    \jacobian[#2][#3]{\posconstraintssymbol}%
   }{%
-    \jacobian{\vect{\posconstraintssymbol}}%
+    \jacobian[#2][#3]{\vect{\posconstraintssymbol}}%
   }%
 }%
 %    \end{macrocode}
