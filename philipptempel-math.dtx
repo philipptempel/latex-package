@@ -331,7 +331,7 @@
     multi-part-units=brackets,%
     zero-decimal-to-integer=false,%
     add-decimal-zero=false,%
-    add-integer-zero=true,%
+%     add-integer-zero=true,%
     per-mode=reciprocal,%
 % Rounding
     round-mode=places,%
@@ -343,9 +343,16 @@
     range-units=brackets,%
 % Lists |\SIlist|
     list-units=brackets,%
-% Tables
-    table-unit-alignment=left,%
   }{siunitx}
+% \@ifpackagelater{<package>}{2021/06/13}{% SIunitX newer than 3.0.0
+% %   \PassOptionsToPackage{%
+% %   }{siunitx}%
+% }{% Older versions of SIunitX still have some options
+%   \PassOptionsToPackage{%
+% % Tables
+%     table-unit-alignment=left,%
+%   }{siunitx}%
+% }%
 \RequirePackage{siunitx}
 %    \end{macrocode}
 %
