@@ -32,10 +32,11 @@ docs: ins $(DOCS)
 
 # combination of everything that needs to be done for distributing
 .PHONY:
-dist: ins
-	mkdir -p $(DISTDIR)/
-	cp *.sty $(DISTDIR)/
-	cp *.pdf $(DISTDIR)/
+dist: ins docs
+	mkdir -p $(DISTDIR)
+	cp *.sty $(DISTDIR)
+	cp *.code.tex $(DISTDIR)
+	cp *.pdf $(DISTDIR)
 
 # clean directory from all dirt
 .PHONY: clean
