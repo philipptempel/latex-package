@@ -507,7 +507,7 @@
 %
 %
 % \begin{macro}{\parentheses}
-% \cmd{\parentheses}\marg{content} wraps its \marg{content} into curly parentheses. See the |mathtools| package for implementation details.\\
+% \cmd{\parentheses}\marg{content} wraps its \marg{content} into regular parentheses. See the |mathtools| package for implementation details.\\
 % \cmd{\parentheses}\marg{} renders $\parentheses{}$.\\
 % \cmd{\parentheses}\marg{a b} renders $\parentheses{a b }$.
 %    \begin{macrocode}
@@ -533,7 +533,7 @@
 % \begin{macro}{\aparentheses}
 % \cmd{\aparentheses}\marg{content} wraps its \marg{content} into angled parentheses. See the |mathtools| package for implementation details.\\
 % \cmd{\aparentheses}\marg{} renders $\aparentheses{}$.\\
-% \cmd{\aparentheses}\marg{a b} renders $\aparentheses{a b }$.
+% \cmd{\aparentheses}\marg{a b} renders $\aparentheses{a b}$.
 %    \begin{macrocode}
 \DeclarePairedDelimiterX{\aparentheses}[1]{\langle}{\rangle}{%
   \ifblank{#1}{\cdot}{#1}%
@@ -606,17 +606,22 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\of}{ s o m }{%
   \mkern-0.50mu%
+  \ifblank{#3}{%
+    \def\innerp{\cdot}%
+  }{%
+    \def\innerp{\mkern-0.50mu#3\mkern-0.50mu}%
+  }%
   \IfBooleanTF{#1}{%
     \IfValueTF{#2}{%
-      \parentheses*[#2]{\mkern-0.50mu#3\mkern-0.50mu}%
+      \parentheses*[#2]{\innerp}%
     }{%
-      \parentheses*{\mkern-0.50mu#3\mkern-0.50mu}%
+      \parentheses*{\innerp}%
     }%
   }{%
     \IfValueTF{#2}{%
-      \parentheses[#2]{\mkern-0.50mu#3\mkern-0.50mu}%
+      \parentheses[#2]{\innerp}%
     }{%
-      \parentheses{\mkern-0.50mu#3\mkern-0.50mu}%
+      \parentheses{\innerp}%
     }%
   }%
 }%
@@ -652,7 +657,7 @@
 %
 %
 % \begin{macro}{\sof}
-% \cmd{\sof}\marg{arguments} writes the ``function of ...'' argument with curly parentheses.\\
+% \cmd{\sof}\marg{arguments} writes the ``function of ...'' argument with square parentheses.\\
 % \cmd{\sof}\oarg{parens size}\marg{arguments} sets the parentheses size to \marg{parens size} e.g., |\bigg|.\\
 % \cmd{\sof}*\marg{arguments} auto-scales the size of the braces.\\
 % \cmd{\sof}\marg{\textbackslash frac \{a\}\{b\}} renders $\sof{\frac{a}{b}}$.\\
@@ -679,7 +684,7 @@
 %
 %
 % \begin{macro}{\aof}
-% \cmd{\aof}\marg{arguments} writes the ``function of ...'' argument with curly parentheses.\\
+% \cmd{\aof}\marg{arguments} writes the ``function of ...'' argument with angled parentheses.\\
 % \cmd{\aof}\oarg{parens size}\marg{arguments} sets the parentheses size to \marg{parens size} e.g., |\bigg|.\\
 % \cmd{\aof}*\marg{arguments} auto-scales the size of the braces.\\
 % \cmd{\aof}\marg{\textbackslash frac \{a\}\{b\}} renders $\aof{\frac{a}{b}}$.\\
