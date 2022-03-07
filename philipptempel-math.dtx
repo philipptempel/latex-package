@@ -1988,11 +1988,41 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\so}
+% \cmd{so}\marg{num} algebra on $\SO{\cdot}$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\so}{ m }{%
+  \mathop{\mathfrak{so}}\of{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\SO}
-% \cmd{\SO}\marg{num}.\\
+% \cmd{\SO}\marg{num} special Orthogonality group.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\SO}{ m }{%
   \mathop{\mathrm{SO}}\of{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\se}
+% \cmd{se}\marg{num} algebra on $\SE{\cdot}$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\se}{ m }{%
+  \mathop{\mathfrak{se}}\of{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SE}
+% \cmd{\SE}\marg{num} special Euclidean group.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\SE}{ m }{%
+  \mathop{\mathrm{SE}}\of{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
