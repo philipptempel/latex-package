@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 DISTDIR = dist/
 INSTALLDIR = $(shell kpsewhich --var-value TEXMFHOME)/tex/latex/philipptempel/
-SOURCES = $(shell find ./ -type f -name "philipptempel-*.dtx")
+SOURCES = $(shell find ./ -type f -name "philipptempel-*.dtx" -and -not -name "philipptempel-vers.dtx")
 ADDL_INCLUDES = .latexmkrc
 DOCS = $(SOURCES:dtx=pdf)
 
