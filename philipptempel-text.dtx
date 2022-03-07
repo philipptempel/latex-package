@@ -19,11 +19,9 @@
 %<*driver>
 \ProvidesFile{philipptempel-text.dtx}
 %</driver>
-%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
-%<package>\ProvidesPackage{philipptempel-text}
-%<*package>
-    [2021/01/22 v1.0.0 Philipp Tempel Text]
-%</package>
+%<pre-package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]%
+%<pre-package>\ProvidesPackage{philipptempel-text}%
+%<package>Philipp Tempel Text]%
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -115,6 +113,7 @@
 %
 %
 % \section{Implementation}
+%<*package>
 %
 % \subsection{Package Dependencies}
 %
@@ -702,5 +701,8 @@
 % \end{macro}
 %
 %
-% \Finale
+%    \begin{macrocode}
 \endinput
+%    \end{macrocode}
+%</package>
+%\Finale

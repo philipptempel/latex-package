@@ -17,6 +17,7 @@
 \askforoverwritefalse
 
 \usedir{tex/latex/philipptempel}
+\UseTDS
 
 \preamble
 
@@ -38,14 +39,60 @@ and version 1.3 or later is part of all distributions of LaTeX version
 
 % Mixins
 \generate{%
-  \file{philipptempel-acronyms.sty}{\from{philipptempel-acronyms.dtx}{package}}%
-  \file{philipptempel-colors.sty}{\from{philipptempel-colors.dtx}{package}}%
-  \file{philipptempel-math.sty}{\from{philipptempel-math.dtx}{package}}%
-  \file{philipptempel-mechanics.sty}{\from{philipptempel-mechanics.dtx}{package}}%
-  \file{philipptempel-cablerobots.sty}{\from{philipptempel-cablerobots.dtx}{package}}%
-  \file{philipptempel-text.sty}{\from{philipptempel-text.dtx}{package}}%
-  \file{philipptempel-todo.sty}{\from{philipptempel-todo.dtx}{package}}%
-  \file{tikzlibraryphilipptempel.code.tex}{\from{philipptempel-tikzpgf.dtx}{package}}%
+  \file{philipptempel-acronyms.sty}{%
+    \from{philipptempel-acronyms.dtx}{pre-package}%
+    \from{philipptempel-vers.dtx}{}%
+    \from{philipptempel-acronyms.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{philipptempel-colors.sty}{%
+   \from{philipptempel-colors.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-colors.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{philipptempel-math.sty}{%
+   \from{philipptempel-math.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-math.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{philipptempel-mechanics.sty}{%
+   \from{philipptempel-mechanics.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-mechanics.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{philipptempel-cablerobots.sty}{%
+   \from{philipptempel-cablerobots.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-cablerobots.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{philipptempel-text.sty}{%
+   \from{philipptempel-text.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-text.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{philipptempel-todo.sty}{%
+   \from{philipptempel-todo.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-todo.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{tikzlibraryphilipptempel.code.tex}{%
+   \from{philipptempel-tikzpgf.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-tikzpgf.dtx}{package}%
+  }%
 }
 
 \obeyspaces

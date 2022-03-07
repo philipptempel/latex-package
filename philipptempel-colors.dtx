@@ -19,11 +19,9 @@
 %<*driver>
 \ProvidesFile{philipptempel-colors.dtx}
 %</driver>
-%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
-%<package>\ProvidesPackage{philipptempel-colors}
-%<*package>
-    [2021/01/22 v1.0.0 Philipp Tempel Colors]
-%</package>
+%<pre-package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]%
+%<pre-package>\ProvidesPackage{philipptempel-colors}%
+%<package>Philipp Tempel Colors]%
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -117,6 +115,7 @@
 %
 %
 % \section{Implementation}
+%<*package>
 %
 % \subsection{Package Options}
 %
@@ -472,5 +471,8 @@
 %    \end{macrocode}
 %
 %
-% \Finale
+%    \begin{macrocode}
 \endinput
+%    \end{macrocode}
+%</package>
+%\Finale
