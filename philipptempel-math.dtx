@@ -93,7 +93,7 @@
 %   \ifblank,%
 %   \IfBooleanTF,%
 %   \ifdefined,%
-%   \ifphilipptempel@math@rotationbold,%
+%   \ifphilipptempel@math@bold,%
 %   \IfValueT,%
 %   \IfValueTF,%
 %   \ifx,%
@@ -135,12 +135,8 @@
 %   \pgfkeyscurrentvalue,%
 %   \pgfkeysnovalue,%
 %   \phantom,%
-%   \philipptempel@math@rotation,%
-%   \philipptempel@math@rotation@ddot,%
-%   \philipptempel@math@rotation@dot,%
-%   \philipptempel@math@rotation@ndot,%
-%   \philipptempel@math@rotationboldfalse,%
-%   \philipptempel@math@rotationboldtrue,%
+%   \philipptempel@math@boldfalse,%
+%   \philipptempel@math@boldtrue,%
 %   \philipptempel@math@setdefaults,%
 %   \prescript,%
 %   \prime,%
@@ -333,7 +329,7 @@
 %     add-integer-zero=true,%
     per-mode=reciprocal,%
 % Rounding
-    round-mode=places,%
+    round-mode=none,%
     round-precision=3,%
     round-half=even,%
 % Products |\SI{1x2x3}|
@@ -440,14 +436,13 @@
 %
 % By default, all undefined options will be passed as options to the |glossaries-extra| package only the options defined here are for the actual package.
 %    \begin{macrocode}
-\newif\ifphilipptempel@math@rotationbold
-\philipptempel@math@rotationboldtrue
+\newif\ifphilipptempel@math@bold
+\philipptempel@math@boldtrue
 \pgfkeys{
-  /philipptempel/math/rotation/.cd,%
+  /philipptempel/math/bold/.cd,%
     .is choice,%
-    bold/.code={\philipptempel@math@rotationboldtrue},%
-    regular/.code={\philipptempel@math@rotationboldfalse},%
-    normal/.code={\philipptempel@math@rotationboldfalse},%
+    true/.code={\philipptempel@math@boldtrue},%
+    false/.code={\philipptempel@math@boldfalse},%
 }%
 %    \end{macrocode}
 %
@@ -471,7 +466,7 @@
 %    \begin{macrocode}
 \newcommand{\philipptempel@math@setdefaults}{%
   \pgfkeys{/philipptempel/math/.cd,%
-    rotation=bold,%
+    bold=true,%
   }%
 }%
 %    \end{macrocode}
@@ -480,6 +475,11 @@
 %    \begin{macrocode}
 \philipptempel@math@setdefaults
 \ProcessPgfPackageOptions{/philipptempel/math}
+\ifphilipptempel@math@bold%
+  \let\philipptempel@bm\bm%
+\else%
+  \let\philipptempel@bm\empty%
+\fi
 %    \end{macrocode}
 %
 %
@@ -508,7 +508,7 @@
 % \begin{macro}{\parentheses}
 % \cmd{\parentheses}\marg{content} wraps its \marg{content} into regular parentheses. See the |mathtools| package for implementation details.\\
 % \cmd{\parentheses}\marg{} renders $\parentheses{}$.\\
-% \cmd{\parentheses}\marg{a b} renders $\parentheses{a b }$.
+% \cmd{\parentheses}\marg{a b} renders $\parentheses{a b}$.
 %    \begin{macrocode}
 \DeclarePairedDelimiterX{\parentheses}[1]{\lparen}{\rparen}{%
   \ifblank{#1}{\cdot}{#1}%
@@ -520,7 +520,7 @@
 % \begin{macro}{\cparentheses}
 % \cmd{\cparentheses}\marg{content} wraps its \marg{content} into curly parentheses. See the |mathtools| package for implementation details.\\
 % \cmd{\cparentheses}\marg{} renders $\cparentheses{}$.\\
-% \cmd{\cparentheses}\marg{a b} renders $\cparentheses{a b }$.
+% \cmd{\cparentheses}\marg{a b} renders $\cparentheses{a b}$.
 %    \begin{macrocode}
 \DeclarePairedDelimiterX{\cparentheses}[1]{\lbrace}{\rbrace}{%
   \ifblank{#1}{\cdot}{#1}%
@@ -753,7 +753,7 @@
 % \cmd{\vect}\oarg{sup}\oarg{sub}\marg{v} renders~$\vect[sup][sub]{v}$.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\vect}{ O{} O{} m }{%
-  \prescript{#1}{#2}{\bm{#3}}%
+  \prescript{#1}{#2}{\philipptempel@bm{#3}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -810,6 +810,7 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\ndot}{ s m m }{%
   {#3}^{%
+    \scriptscriptstyle%
     \IfBooleanTF{#1}{%
       \parentheses*{#2}%
     }{%
@@ -954,7 +955,7 @@
 % \cmd{\matr}\oarg{sup}\oarg{sub}\marg{matrix} also prepends subscript oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\matr}{ O{} O{} m }{%
-  \prescript{#1}{#2}{\bm{#3}}%
+  \prescript{#1}{#2}{\philipptempel@bm{#3}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1089,7 +1090,7 @@
 % \cmd{\skewm}\marg{value} provides a paired delimiter for the skew-symmetric matrix of \marg{value}.
 %    \begin{macrocode}
 \ifdefined\skewm\else%
-\DeclarePairedDelimiterX{\skewm}[1]{[}{]_{\mkern-2.5mu\times}}{#1}%
+  \DeclarePairedDelimiterX{\skewm}[1]{[}{]_{\mkern-2.5mu\times}}{#1}%
 \fi%
 %    \end{macrocode}
 % \end{macro}
@@ -1693,12 +1694,14 @@
 %
 %
 % \begin{macro}{\inv}
+% \cmd{\inv}\marg{arg} renders $\inv{arg}$
+% \cmd\sarg\marg{arg} renders $\inv*{arg}$
 %    \begin{macrocode}
 \ProvideDocumentCommand{\inv}{ s m }{%
   \IfBooleanTF{#1}{%
     \parentheses*{#2}^{-1}%
   }{%
-    {#2}^{-1}%
+    #2^{-1}%
   }%
 }%
 %    \end{macrocode}
@@ -1819,142 +1822,125 @@
 \ProvideDocumentCommand{\rotationsymbol}{ }{%
   R%
 }%
-\ProvideDocumentCommand{\philipptempel@math@rotation}{ O{} O{} }{%
-  \ifphilipptempel@math@rotationbold%
-    \matr[#1][#2]{\rotationsymbol}%
-  \else%
-    \prescript{#1}{#2}{\rotationsymbol}%
-  \fi%
-}%
-\ProvideDocumentCommand{\philipptempel@math@rotation@dot}{ O{} O{} }{%
-  \ifphilipptempel@math@rotationbold%
-    \dotmatr[#1][#2]{\rotationsymbol}%
-  \else%
-    \prescript{#1}{#2}{\dot{\rotationsymbol}}%
-  \fi%
-}%
-\ProvideDocumentCommand{\philipptempel@math@rotation@ddot}{ O{} O{} }{%
-  \ifphilipptempel@math@rotationbold%
-    \ddotmatr[#1][#2]{\rotationsymbol}%
-  \else%
-    \prescript{#1}{#2}{\ddot{\rotationsymbol}}%
-  \fi%
-}%
-\ProvideDocumentCommand{\philipptempel@math@rotation@ndot}{ O{} O{} m }{%
-  \ifphilipptempel@math@rotationbold%
-    \ndotmatr[#1][#2]{#3}{\rotationsymbol}%
-  \else%
-    \prescript{#1}{#2}{\ndot{#3}{\rotationsymbol}}%
-  \fi%
-}%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\rotation}
-% \cmd{\rotation}\oarg{sup}\oarg{sub}.\\
-% $\rotation$.\\
-% $\rotation[sup]$.\\
-% $\rotation[sup][sub]$.\\
+% \cmd{\rotation} $\rotation$.\\
+% \cmd{\rotation}\oarg{sup} $\rotation[sup]$.\\
+% \cmd{\rotation}\oarg{sup}\oarg{sub} $\rotation[sup][sub]$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotation}{ o O{} }{%
-  \philipptempel@math@rotation[#1][#2]%
+  \matr[#1][#2]{\rotationsymbol}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\dotrotation}
+% \cmd{\dotrotation} $\dotrotation$.\\
+% \cmd{\dotrotation}\oarg{sup} $\dotrotation[sup]$.\\
+% \cmd{\dotrotation}\oarg{sup}\oarg{sub} $\dotrotation[sup][sub]$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\dotrotation}{ o O{} }{%
-  \philipptempel@math@rotation@dot[#1][#2]%
+  \dotmatr[#1][#2]{\rotationsymbol}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\ddotrotation}
+% \cmd{\ddotrotation} $\ddotrotation$.\\
+% \cmd{\ddotrotation}\oarg{sup} $\ddotrotation[sup]$.\\
+% \cmd{\ddotrotation}\oarg{sup}\oarg{sub} $\ddotrotation[sup][sub]$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\ddotrotation}{ o O{} }{%
-  \philipptempel@math@rotation@ddot[#1][#2]%
+  \ddotmatr[#1][#2]{\rotationsymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ndotrotation}
+% \cmd{\ndotrotation}\marg{num} $\ndotrotation{n}$.\\
+% \cmd{\ndotrotation}\oarg{sup}\marg{num} $\ndotrotation[sup]{n}$.\\
+% \cmd{\ndotrotation}\oarg{sup}\oarg{sub}\marg{num} $\ndotrotation[sup][sub]{n}$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\ndotrotation}{ o O{} m }{%
+  \ndotmatr[#1][#2]{#3}{\rotationsymbol}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\rotationx}
-% \cmd{\rotationx} provices the rotation matrix about the $x$ axis.\\
+% \cmd{\rotationx} provides the rotation matrix about the $x$ axis.\\
 % \cmd{\rotationx}\oarg{sup} preprends superscript \oarg{sup}.\\
 % \cmd{\rotationx}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationx}{ o O{} }{%
-  \rotation[#1][#2]%
-  _{\ms{x}}%
+  \rotation[#1][#2]_{\ms{x}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\rotationX}
-% \cmd{\rotationX} provices the rotation matrix about the $X$ axis.\\
+% \cmd{\rotationX} provides the rotation matrix about the $X$ axis.\\
 % \cmd{\rotationX}\oarg{sup} preprends superscript \oarg{sup}.\\
 % \cmd{\rotationX}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationX}{ o O{} }{%
-  \rotation[#1][#2]%
-  _{\ms{X}}%
+  \rotation[#1][#2]_{\ms{X}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\rotationy}
-% \cmd{\rotationy} provices the rotation matrix about the $y$ axis.\\
+% \cmd{\rotationy} provides the rotation matrix about the $y$ axis.\\
 % \cmd{\rotationy}\oarg{sup} preprends superscript \oarg{sup}.\\
 % \cmd{\rotationy}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationy}{ o O{} }{%
-  \rotation[#1][#2]%
-  _{\ms{y}}%
+  \rotation[#1][#2]_{\ms{y}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\rotationY}
-% \cmd{\rotationY} provices the rotation matrix about the $Y$ axis.\\
+% \cmd{\rotationY} provides the rotation matrix about the $Y$ axis.\\
 % \cmd{\rotationY}\oarg{sup} preprends superscript \oarg{sup}.\\
 % \cmd{\rotationY}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationY}{ o O{} }{%
-  \rotation[#1][#2]%
-  _{\ms{Y}}%
+  \rotation[#1][#2]_{\ms{Y}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\rotationz}
-% \cmd{\rotationz} provices the rotation matrix about the $z$ axis.\\
+% \cmd{\rotationz} provides the rotation matrix about the $z$ axis.\\
 % \cmd{\rotationz}\oarg{sup} preprends superscript \oarg{sup}.\\
 % \cmd{\rotationz}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationz}{ o O{} }{%
-  \rotation[#1][#2]%
-  _{\ms{z}}%
+  \rotation[#1][#2]_{\ms{z}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\rotationZ}
-% \cmd{\rotationZ} provices the rotation matrix about the $Z$ axis.\\
+% \cmd{\rotationZ} provides the rotation matrix about the $Z$ axis.\\
 % \cmd{\rotationZ}\oarg{sup} preprends superscript \oarg{sup}.\\
 % \cmd{\rotationZ}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationZ}{ o O{} }{%
-  \rotation[#1][#2]%
-  _{\ms{Z}}%
+  \rotation[#1][#2]_{\ms{Z}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1992,7 +1978,7 @@
 % \cmd{so}\marg{num} algebra on $\SO{\cdot}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\so}{ m }{%
-  \mathop{\mathfrak{so}}\of{#1}%
+  \mathfrak{so}\of{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -2002,27 +1988,27 @@
 % \cmd{\SO}\marg{num} special Orthogonality group.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\SO}{ m }{%
-  \mathop{\mathrm{SO}}\of{#1}%
+  \mathrm{SO}\of{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\se}
-% \cmd{se}\marg{num} algebra on $\SE{\cdot}$.\\
+% \cmd{se}\marg{num} algebra on $\se{\cdot}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\se}{ m }{%
-  \mathop{\mathfrak{se}}\of{#1}%
+  \mathfrak{se}\of{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\SE}
-% \cmd{\SE}\marg{num} special Euclidean group.\\
+% \cmd{\SE}\marg{num} special Euclidean group $\SE{\cdot}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\SE}{ m }{%
-  \mathop{\mathrm{SE}}\of{#1}%
+  \mathrm{SE}\of{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -2164,7 +2150,7 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\arccoth}
+% \begin{macro}{\adj}
 % \cmd{\adj} provides the corresponding math operator.
 %    \begin{macrocode}
 \ProvideMathOperator{\adj}{adj}%
@@ -2207,7 +2193,7 @@
 % \begin{macro}{\jacobiansymbol}
 % \cmd{\jacobiansymbol} provides the corresponding math operator.
 %    \begin{macrocode}
-\ProvideMathOperator{\jacobiansymbol}{\bm{D}}%
+\ProvideMathOperator{\jacobiansymbol}{\philipptempel@bm{D}}%
 %    \end{macrocode}
 % \end{macro}
 %
