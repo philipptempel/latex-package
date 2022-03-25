@@ -172,66 +172,66 @@
 \RequirePackage{pgfopts}
 %    \end{macrocode}
 %
-% \begin{macro}{\pgfphilipptempeltextset}
-% \cmd{\pgfphilipptempeltextset}\marg{key list}.\\
+% \begin{macro}{\pgfphilipptempeltodoset}
+% \cmd{\pgfphilipptempeltodoset}\marg{key list}.\\
 % Wrapper around |\pgfqkeys{/philipptempel/todo}{#1}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfphilipptempeltextset}{ m }{%
+\NewDocumentCommand{\pgfphilipptempeltodoset}{ m }{%
   \pgfqkeys{/philipptempel/todo}{#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfphilipptempeltextlet}
-% \cmd{\pgfphilipptempeltextlet}\marg{full key}\marg{macro}.\\
+% \begin{macro}{\pgfphilipptempeltodolet}
+% \cmd{\pgfphilipptempeltodolet}\marg{full key}\marg{macro}.\\
 % Wrapper around |\pgfkeyslet{/philipptempel/todo/#1}{#2}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfphilipptempeltextlet}{ m m }{%
+\NewDocumentCommand{\pgfphilipptempeltodolet}{ m m }{%
   \pgfkeyslet{/philipptempel/todo/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfphilipptempeltextvalueof}
-% \cmd{\pgfphilipptempeltextvalueof}\marg{full key}.\\
+% \begin{macro}{\pgfphilipptempeltodovalueof}
+% \cmd{\pgfphilipptempeltodovalueof}\marg{full key}.\\
 % Wrapper around |\pgfkeysvalueof{/philipptempel/todo/#1}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfphilipptempeltextvalueof}{ m }{%
+\NewDocumentCommand{\pgfphilipptempeltodovalueof}{ m }{%
   \pgfkeysvalueof{/philipptempel/todo/#1}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfphilipptempeltextgetvalue}
-% \cmd{\pgfphilipptempeltextgetvalue}\marg{full key}\marg{macro}.\\
+% \begin{macro}{\pgfphilipptempeltodogetvalue}
+% \cmd{\pgfphilipptempeltodogetvalue}\marg{full key}\marg{macro}.\\
 % Wrapper around |\pgfkeysgetvalue{/philipptempel/todo/#1}{#2}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfphilipptempeltextgetvalue}{ m m }{%
+\NewDocumentCommand{\pgfphilipptempeltodogetvalue}{ m m }{%
   \pgfkeysgetvalue{/philipptempel/todo/#1}{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfphilipptempeltextresetstyle}
-% \cmd{\pgfphilipptempeltextresetstyle}\marg{fullkey}.\\
+% \begin{macro}{\pgfphilipptempeltodoresetstyle}
+% \cmd{\pgfphilipptempeltodoresetstyle}\marg{fullkey}.\\
 % Wrapper around |\pgfqkeys{/philipptempel/todo/#1/.style}{{}}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfphilipptempeltextresetstyle}{ m }{%
+\NewDocumentCommand{\pgfphilipptempeltodoresetstyle}{ m }{%
   \pgfqkeys{/philipptempel/todo/#1/.style}{{}}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\pgfphilipptempeltextifdefined}
-% \cmd{\pgfphilipptempeltextifdefined}\marg{full key}\marg{if}\marg{else}.\\
+% \begin{macro}{\pgfphilipptempeltodoifdefined}
+% \cmd{\pgfphilipptempeltodoifdefined}\marg{full key}\marg{if}\marg{else}.\\
 % Wrapper around |\pgfkeysifdefined{/philipptempel/todo/#1}{#2}{#3}|
 %    \begin{macrocode}
-\NewDocumentCommand{\pgfphilipptempeltextifdefined}{ m m m }{%
+\NewDocumentCommand{\pgfphilipptempeltodoifdefined}{ m m m }{%
   \pgfkeysifdefined{/philipptempel/todo/#1}{#2}{#3}%
 }%
 %    \end{macrocode}
@@ -267,7 +267,7 @@
 %
 % Setting default values for options
 %    \begin{macrocode}
-\newcommand{\philipptempel@text@setdefaults}{%
+\newcommand{\philipptempel@todo@setdefaults}{%
   \pgfkeys{/philipptempel/todo/.cd,%
   }%
 }%
@@ -275,7 +275,7 @@
 %
 % Process options passed to the class
 %    \begin{macrocode}
-\philipptempel@text@setdefaults
+\philipptempel@todo@setdefaults
 \ProcessPgfPackageOptions{/philipptempel/todo}
 %    \end{macrocode}
 %
@@ -283,31 +283,22 @@
 %
 % \section{Macros}
 %
-% \begin{macro}{\comment}
-% \cmd{\comment} Place a blue-colored todo note with text
-% ``\textbf{Comment!}'' using the |todonotes| package.\\
-% \cmd{\comment}\marg{text} Put |<text>| inside the todo notes and use
-% ``\textbf{Comment!}'' as box caption.\\
-% \cmd{\comment}\oarg{args}\marg{text} Pass additional style arguments |<args>|
+% \begin{macro}{\note}
+% \cmd{\note}\marg{text} Put |<text>| inside the todo notes and use
+% ``\textbf{Comment}'' as box caption.\\
+% \cmd{\note}\oarg{args}\marg{text} Pass additional style arguments |<args>|
 % to the underlying |\todo[]{}| call. This can be used to also override the
 % |caption| option.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\comment}{ s O{} g }{
-  \IfNoValueTF{#3}{%
-    \todo[%
-        color=Blue!40,%
-        bordercolor=Blue,%
-        #2%
-      ]{\textbf{Comment!}}%
-  }{%
-    \todo[%
-        color=Blue!40,%
-        bordercolor=Blue,%
-        prepend,%
-        caption={\textbf{Comment!}},%
-        #2%
-      ]{\color{White}{#3}}%
-  }%
+\ProvideDocumentCommand{\note}{ s O{} m }{%
+  \todo[%
+      color=Blue!40,%
+      bordercolor=Blue,%
+      prepend,%
+      caption={\textbf{Note}},%
+      \IfBooleanT{#1}{inline,}%
+      #2%
+    ]{\color{White}{#3}}%
   \xspace%
 }
 %    \end{macrocode}
@@ -315,30 +306,21 @@
 %
 %
 % \begin{macro}{\addref}
-% \cmd{\addref} Place an orange-colored todo note with text
-% ``\textbf{Add Reference!}'' using the |todonotes| package.\\
 % \cmd{\addref}\marg{text} Put |<text>| inside the todo notes and use
-% ``\textbf{Add Reference!}'' as box caption.\\
+% ``\textbf{Add Reference}'' as box caption.\\
 % \cmd{\addref}\oarg{args}\marg{text} Pass additional style arguments |<args>|
 % to the underlying |\todo[]{}| call. This can be used to also override the
 % |caption| option.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\addref}{ s O{} g }{
-  \IfNoValueTF{#3}{%
-    \todo[%
-        color=Orange!40,%
-        bordercolor=Orange,%
-        #2%
-      ]{\textbf{Add Reference!}}%
-  }{%
-    \todo[%
-        color=Orange!40,%
-        bordercolor=Orange,%
-        prepend,%
-        caption={\textbf{Add Reference!}},%
-        #2%
-      ]{#3}%
-  }%
+\ProvideDocumentCommand{\addref}{ s O{} m }{%
+  \todo[%
+      color=Orange!40,%
+      bordercolor=Orange,%
+      prepend,%
+      caption={\textbf{Add Reference}},%
+      \IfBooleanT{#1}{inline,}%
+      #2%
+    ]{#3}%
   \xspace%
 }
 %    \end{macrocode}
@@ -346,30 +328,21 @@
 %
 %
 % \begin{macro}{\rewrite}
-% \cmd{\rewrite} Place a green-colored todo note with text
-% ``\textbf{Rewrite!}'' using the |todonotes| package.\\
 % \cmd{\rewrite}\marg{text} Put |<text>| inside the todo notes and use
-% ``\textbf{Rewrite!}'' as box caption.\\
+% ``\textbf{Rewrite}'' as box caption.\\
 % \cmd{\rewrite}\oarg{args}\marg{text} Pass additional style arguments |<args>|
 % to the underlying |\todo[]{}| call. This can be used to also override the
 % |caption| option.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\rewrite}{ s O{} g }{%
-  \IfNoValueTF{#3}{%
-    \todo[%
-        color=Green!40,%
-        bordercolor=Green,%
-        #2%
-      ]{\textbf{Rewrite!}}%
-  }{%
-    \todo[%
-        color=Green!40,%
-        bordercolor=Green,%
-        prepend,%
-        caption={\textbf{Rewrite!}},%
-        #2%
-      ]{#3}%
-  }%
+\ProvideDocumentCommand{\rewrite}{ s O{} m }{%
+  \todo[%
+      color=Green!40,%
+      bordercolor=Green,%
+      prepend,%
+      caption={\textbf{Rewrite}},%
+      \IfBooleanT{#1}{inline,}%
+      #2%
+    ]{#3}%
   \xspace%
 }
 %    \end{macrocode}
@@ -377,30 +350,21 @@
 %
 %
 % \begin{macro}{\amend}
-% \cmd{\amend} Place a purple-colored todo note with text
-% ``\textbf{Amend!}'' using the |todonotes| package.\\
 % \cmd{\amend}\marg{text} Put |<text>| inside the todo notes and use
-% ``\textbf{Amend!}'' as box caption.\\
+% ``\textbf{Amend}'' as box caption.\\
 % \cmd{\amend}\oarg{args}\marg{text} Pass additional style arguments |<args>|
 % to the underlying |\todo[]{}| call. This can be used to also override the
 % |caption| option.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\amend}{ s O{} g }{%
-  \IfNoValueTF{#3}{%
-    \todo[%
-        color=Purple!40,%
-        bordercolor=Purple,%
-        #2%
-      ]{\textbf{Amend!}}%
-  }{%
-    \todo[%
-        color=Purple!40,%
-        bordercolor=Purple,%
-        prepend,%
-        caption={\textbf{Amend!}},%
-        #2%
-      ]{\color{White}{#3}}%
-  }%
+\ProvideDocumentCommand{\amend}{ s O{} m }{%
+  \todo[%
+      color=Purple!40,%
+      bordercolor=Purple,%
+      prepend,%
+      caption={\textbf{Amend}},%
+      \IfBooleanT{#1}{inline,}%
+      #2%
+    ]{\color{White}{#3}}%
   \xspace%
 }
 %    \end{macrocode}
@@ -408,30 +372,21 @@
 %
 %
 % \begin{macro}{\correct}
-% \cmd{\correct} Place a red-colored todo note with text
-% ``\textbf{Needs Correction!}'' using the |todonotes| package.\\
 % \cmd{\correct}\marg{text} Put |<text>| inside the todo notes and use
-% ``\textbf{Needs Correction!}'' as box caption.\\
+% ``\textbf{Needs correction}'' as box caption.\\
 % \cmd{\correct}\oarg{args}\marg{text} Pass additional style arguments |<args>|
 % to the underlying |\todo[]{}| call. This can be used to also override the
 % |caption| option.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\correct}{ s O{} g }{%
-  \IfNoValueTF{#3}{%
-    \todo[%
-        color=Red!40,%
-        bordercolor=Red,%
-        #2%
-      ]{\textbf{Needs Correction!}}%
-  }{%
-    \todo[%
-        color=Red!40,%
-        bordercolor=Red,%
-        prepend,%
-        caption={\textbf{Needs Correction!}},%
-        #2%
-      ]{\color{White}{#3}}%
-  }%
+\ProvideDocumentCommand{\correct}{ s O{} m }{%
+  \todo[%
+      color=Red!40,%
+      bordercolor=Red,%
+      prepend,%
+      caption={\textbf{Needs correction}},%
+      \IfBooleanT{#1}{inline,}%
+      #2%
+    ]{\color{White}{#3}}%
   \xspace%
 }
 %    \end{macrocode}
@@ -440,7 +395,7 @@
 %
 % \begin{macro}{\talkabout}
 % \cmd{\talkabout}\marg{text} Put |<text>| inside the todo notes and use
-% ``\textbf{Talk about!}'' as box caption.\\
+% ``\textbf{Talk about}'' as box caption.\\
 % \cmd{\addtalkaboutref}\oarg{args}\marg{text} Pass additional style arguments |<args>|
 % to the underlying |\todo[]{}| call. This can be used to also override the
 % |caption| option.
@@ -452,6 +407,7 @@
       inline,%
       prepend,%
       caption={\textbf{Talk about}},%
+      \IfBooleanT{#1}{inline,}%
       #2%
     ]{{#3}}%
   \xspace%
@@ -461,30 +417,21 @@
 %
 %
 % \begin{macro}{\question}
-% \cmd{\question} Place a magenta-colored todo note with text
-% ``\textbf{Question?}'' using the |todonotes| package.\\
 % \cmd{\question}\marg{text} Put |<text>| inside the todo notes and use
-% ``\textbf{Question?}'' as box caption.\\
+% ``\textbf{Question}'' as box caption.\\
 % \cmd{\question}\oarg{args}\marg{text} Pass additional style arguments |<args>|
 % to the underlying |\todo[]{}| call. This can be used to also override the
 % |caption| option.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\question}{ s O{} g }{%
-  \IfNoValueTF{#3}{%
-    \todo[%
-        color=Magenta!70,%
-        bordercolor=Magenta,%
-        #2%
-      ]{\textbf{Question?}}%
-  }{%
-    \todo[%
-        color=Magenta!70,%
-        bordercolor=Magenta,%
-        prepend,%
-        caption={\textbf{Question?}},%
-        #2%
-      ]{\color{White}{#3}}%
-  }%
+\ProvideDocumentCommand{\question}{ s O{} m }{%
+  \todo[%
+      color=Magenta!70,%
+      bordercolor=Magenta,%
+      prepend,%
+      caption={\textbf{Question}},%
+      \IfBooleanT{#1}{inline,}%
+      #2%
+    ]{\color{White}{#3}}%
   \xspace%
 }
 %    \end{macrocode}
