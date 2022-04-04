@@ -1751,6 +1751,19 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\evecX}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\evecX}{ s O{e} }{%
+  \IfBooleanTF{#1}{%
+    \evec*[#2]{ \ms{X} }%
+  }{%
+    \evec[#2]{ \ms{X} }%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\evecy}
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecy}{ s O{e} }{%
@@ -1764,6 +1777,19 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\evecY}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\evecY}{ s O{e} }{%
+  \IfBooleanTF{#1}{%
+    \evec*[#2]{ \ms{Y} }%
+  }{%
+    \evec[#2]{ \ms{Y} }%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\evecz}
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecz}{ s O{e} }{%
@@ -1771,6 +1797,19 @@
     \evec*[#2]{ \ms{z} }%
   }{%
     \evec[#2]{ \ms{z} }%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\evecZ}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\evecZ}{ s O{e} }{%
+  \IfBooleanTF{#1}{%
+    \evec*[#2]{ \ms{Z} }%
+  }{%
+    \evec[#2]{ \ms{Z} }%
   }%
 }%
 %    \end{macrocode}
