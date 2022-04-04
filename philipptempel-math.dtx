@@ -1712,7 +1712,7 @@
 %
 % \begin{macro}{\inv}
 % \cmd{\inv}\marg{arg} renders $\inv{arg}$.\\
-% \cmd{\inv}\sarg\marg{arg} renders $\inv*{arg}$.\\
+% \cmd{\inv*}\marg{arg} renders $\inv*{arg}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\inv}{ s m }{%
   \IfBooleanTF{#1}{%
@@ -1728,8 +1728,8 @@
 % \begin{macro}{\evec}
 % \cmd{\evec}\marg{ax} renders $\evec{ax}$.\\
 % \cmd{\evec}\oarg{vec}\marg{ax} renders $\evec[v]\marg{ax}$.\\
-% \cmd{\evec}\sarg\marg{ax} renders $\evec*{ax}$.\\
-% \cmd{\evec}\sarg\oarg{vec}\marg{ax} renders $\evec*[v]{ax}$.\\
+% \cmd{\evec*}\marg{ax} renders $\evec*{ax}$.\\
+% \cmd{\evec*}\oarg{vec}\marg{ax} renders $\evec*[v]{ax}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evec}{ s O{e} m }{%
   \vect{ \IfBooleanTF{#1}{#2}{\hat{#2}} }_{#3}%
@@ -2031,7 +2031,7 @@
 %
 %
 % \begin{macro}{\so}
-% \cmd{so}\marg{num} algebra on $\SO{\cdot}$.\\
+% \cmd{\so}\marg{num} algebra on $\SO{\cdot}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\so}{ m }{%
   \mathfrak{so}\of{#1}%
@@ -2051,7 +2051,7 @@
 %
 %
 % \begin{macro}{\se}
-% \cmd{se}\marg{num} algebra on $\se{\cdot}$.\\
+% \cmd{\se}\marg{num} algebra on $\se{\cdot}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\se}{ m }{%
   \mathfrak{se}\of{#1}%
