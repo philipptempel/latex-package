@@ -1732,11 +1732,7 @@
 % \cmd{\evec}\sarg\oarg{vec}\marg{ax} renders $\evec*[v]{ax}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evec}{ s O{e} m }{%
-  \IfBooleanTF{#1}{%
-    \vect{#2}_{#3}%
-  }{%
-    \hat{ \vect{#2} }_{#3}%
-  }
+  \vect{ \IfBooleanTF{#1}{#2}{\hat{#2}} }_{#3}%
 }%
 %    \end{macrocode}
 % \end{macro}
