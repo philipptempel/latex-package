@@ -1558,7 +1558,7 @@
 % \cmd{\coordsys}\marg{var} typesetter for coordinate system \marg{var}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\coordsys}{ m }{%
-  \mathcal{K}_{ \mts{#1} }%
+  \mathcal{K}_{ \msubt{#1} }%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1627,7 +1627,7 @@
 % \begin{macro}{\msconst}
 %    \begin{macrocode}
 \ProvideDocumentCommand{\msconst}{ }{%
-  \mts{const}%
+  \msubt{const}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1670,7 +1670,7 @@
 %
 % \begin{macro}{\transposesymbol}
 %    \begin{macrocode}
-\newcommand{\transposesymbol}{\ms{\top}}%
+\newcommand{\transposesymbol}{\msup{\top}}%
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1701,9 +1701,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\hermconjugate}{ s O{\mkern-1.5mu} m }{%
   \IfBooleanTF{#1}{%
-    \parentheses*{#3}^{#2\ms{\mathsf{H}}}%
+    \parentheses*{#3}^{#2\msup{\mathsf{H}}}%
   }{%
-    {#3}^{#2\ms{\mathsf{H}}}%
+    {#3}^{#2\msup{\mathsf{H}}}%
   }%
 }%
 %    \end{macrocode}
@@ -1742,9 +1742,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecx}{ s O{e} }{%
   \IfBooleanTF{#1}{%
-    \evec*[#2]{ \mts{x} }%
+    \evec*[#2]{ \msubt{x} }%
   }{%
-    \evec[#2]{ \mts{x} }%
+    \evec[#2]{ \msubt{x} }%
   }%
 }%
 %    \end{macrocode}
@@ -1755,9 +1755,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecX}{ s O{e} }{%
   \IfBooleanTF{#1}{%
-    \evec*[#2]{ \mts{X} }%
+    \evec*[#2]{ \msubt{X} }%
   }{%
-    \evec[#2]{ \mts{X} }%
+    \evec[#2]{ \msubt{X} }%
   }%
 }%
 %    \end{macrocode}
@@ -1768,9 +1768,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecy}{ s O{e} }{%
   \IfBooleanTF{#1}{%
-    \evec*[#2]{ \mts{y} }%
+    \evec*[#2]{ \msubt{y} }%
   }{%
-    \evec[#2]{ \mts{y} }%
+    \evec[#2]{ \msubt{y} }%
   }%
 }%
 %    \end{macrocode}
@@ -1781,9 +1781,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecY}{ s O{e} }{%
   \IfBooleanTF{#1}{%
-    \evec*[#2]{ \mts{Y} }%
+    \evec*[#2]{ \msubt{Y} }%
   }{%
-    \evec[#2]{ \mts{Y} }%
+    \evec[#2]{ \msubt{Y} }%
   }%
 }%
 %    \end{macrocode}
@@ -1794,9 +1794,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecz}{ s O{e} }{%
   \IfBooleanTF{#1}{%
-    \evec*[#2]{ \mts{z} }%
+    \evec*[#2]{ \msubt{z} }%
   }{%
-    \evec[#2]{ \mts{z} }%
+    \evec[#2]{ \msubt{z} }%
   }%
 }%
 %    \end{macrocode}
@@ -1807,9 +1807,9 @@
 %    \begin{macrocode}
 \ProvideDocumentCommand{\evecZ}{ s O{e} }{%
   \IfBooleanTF{#1}{%
-    \evec*[#2]{ \mts{Z} }%
+    \evec*[#2]{ \msubt{Z} }%
   }{%
-    \evec[#2]{ \mts{Z} }%
+    \evec[#2]{ \msubt{Z} }%
   }%
 }%
 %    \end{macrocode}
@@ -1864,10 +1864,37 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\mts}
+% \begin{macro}{\msub}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\mts}{ m }{%
-  \ms{\text{#1}}%
+\ProvideDocumentCommand{\msub}{ m }{%
+  \ms{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\msup}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\msup}{ m }{%
+  \ms{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\msubt}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\msubt}{ m }{%
+  \msub{\text{#1}}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\msupt}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\msupt}{ m }{%
+  \msup{\text{#1}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1945,7 +1972,7 @@
 % \cmd{\rotationx}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationx}{ o O{} }{%
-  \rotation[#1][#2]_{\mts{x}}%
+  \rotation[#1][#2]_{\msubt{x}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1957,7 +1984,7 @@
 % \cmd{\rotationX}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationX}{ o O{} }{%
-  \rotation[#1][#2]_{\mts{X}}%
+  \rotation[#1][#2]_{\msubt{X}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1969,7 +1996,7 @@
 % \cmd{\rotationy}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationy}{ o O{} }{%
-  \rotation[#1][#2]_{\mts{y}}%
+  \rotation[#1][#2]_{\msubt{y}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1981,7 +2008,7 @@
 % \cmd{\rotationY}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationY}{ o O{} }{%
-  \rotation[#1][#2]_{\mts{Y}}%
+  \rotation[#1][#2]_{\msubt{Y}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -1993,7 +2020,7 @@
 % \cmd{\rotationz}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationz}{ o O{} }{%
-  \rotation[#1][#2]_{\mts{z}}%
+  \rotation[#1][#2]_{\msubt{z}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -2005,7 +2032,7 @@
 % \cmd{\rotationZ}\oarg{sup}\oarg{sub} also prepends subscript \oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\rotationZ}{ o O{} }{%
-  \rotation[#1][#2]_{\mts{Z}}%
+  \rotation[#1][#2]_{\msubt{Z}}%
 }%
 %    \end{macrocode}
 % \end{macro}
