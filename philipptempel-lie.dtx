@@ -280,6 +280,20 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\liebracket}
+% \cmd{\liebracket}\marg{X}\marg{Y} Lie-bracket operation
+%    \begin{macrocode}
+\ProvideDocumentCommand{\liebracket}{ m m }{%
+  \sparentheses{%
+    \ifblank{#1}{\cdot}{#1}%
+    , %
+    \ifblank{#2}{\cdot}{#2}%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 %    \begin{macrocode}
 \endinput
 %    \end{macrocode}
