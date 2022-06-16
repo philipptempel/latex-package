@@ -730,10 +730,8 @@
 % \cmd{\overlinebm}\marg{var} writes an overlined bold font variable.\\
 % \cmd{\overlinebm}\marg{M} renders~$\overlinebm{M}$.\\
 %    \begin{macrocode}
-\ProvideDocumentCommand{\overlinebm}{ m }{%
-  \ThisStyle{\ooalign{%
-    $\SavedStyle\mkern2.5mu\overline{\phantom{\mathrm{#1}}}$\cr$\SavedStyle\bm{{#1}}$%
-  }}%
+\ProvideDocumentCommand{\overlinebm}{ O{2.5} m }{%
+  {}\mkern#1mu\overline{\mkern-#1mu\bm{#2}}%
 }%
 %    \end{macrocode}
 % \end{macro}
