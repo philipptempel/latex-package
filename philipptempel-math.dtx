@@ -493,9 +493,9 @@
 \philipptempel@math@setdefaults
 \ProcessPgfPackageOptions{/philipptempel/math}
 \ifphilipptempel@math@bold%
-  \let\philipptempel@bm\bm%
+  \let\bm@philipptempel\bm%
 \else%
-  \let\philipptempel@bm\empty%
+  \let\bm@philipptempel\empty%
 \fi
 %    \end{macrocode}
 %
@@ -731,7 +731,7 @@
 % \cmd{\overlinebm}\marg{M} renders~$\overlinebm{M}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\overlinebm}{ O{2.5} m }{%
-  {}\mkern#1mu\overline{\mkern-#1mu\philipptempel@bm{#2}}%
+  {}\mkern#1mu\overline{\mkern-#1mu\bm@philipptempel{#2}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -768,7 +768,7 @@
 % \cmd{\vect}\oarg{sup}\oarg{sub}\marg{v} renders~$\vect[sup][sub]{v}$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\vect}{ O{} O{} m }{%
-  \prescript{#1}{#2}{\philipptempel@bm{#3}}%
+  \prescript{#1}{#2}{\bm@philipptempel{#3}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -970,7 +970,7 @@
 % \cmd{\matr}\oarg{sup}\oarg{sub}\marg{matrix} also prepends subscript oarg{sub}.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\matr}{ O{} O{} m }{%
-  \prescript{#1}{#2}{\philipptempel@bm{#3}}%
+  \prescript{#1}{#2}{\bm@philipptempel{#3}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -2283,7 +2283,7 @@
 % \begin{macro}{\jacobiansymbol}
 % \cmd{\jacobiansymbol} provides the corresponding math operator.\\
 %    \begin{macrocode}
-\ProvideMathOperator{\jacobiansymbol}{\philipptempel@bm{D}}%
+\ProvideMathOperator{\jacobiansymbol}{\bm@philipptempel{D}}%
 %    \end{macrocode}
 % \end{macro}
 %
