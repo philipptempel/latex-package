@@ -1237,7 +1237,7 @@
 %
 % \begin{macro}{\jacposconstraints}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\jacposconstraints}{ s o O{} }{%
+\ProvideDocumentCommand{\jacposconstraints}{ s O{\genq} O{} }{%
   \IfBooleanTF{#1}{%
     \jacobian[#2][#3]{\posconstraintssymbol}%
   }{%
