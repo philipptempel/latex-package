@@ -930,6 +930,30 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\hessian}
+% \cmd{\hessian}\marg{var} applies the Hessian operator to argument \marg{var}.\\
+% \cmd{\hessian}\oarg{sup}\marg{var} prepends superscript \oarg{sup} to the Hessian operator.\\
+% \cmd{\hessian}\oarg{sup}\oarg{sub}\marg{var} also prepends subscript \oarg{sub} to the Hessian operator.\\
+% \cmd{\hessian}*\oarg{sup}\oarg{sub}\marg{var} adds and auto-scales parentheses \marg{var}.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\hessian}{ s o O{} m }{%
+  \hessiansymbol%
+  \IfValueTF{#2}{%
+    _{\mkern-2.0mu\smaller[1] #2}^{\mkern-2.0mu\smaller[1] #3}%
+    \mkern-4.0mu
+  }{%
+    \mkern-5.0mu
+  }%
+  \IfBooleanTF{#1}{%
+    \parentheses*{#4}%
+  }{%
+    #4%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\eye}
 % \cmd{\eye} unit-matrix.\\
 %    \begin{macrocode}
@@ -2284,6 +2308,14 @@
 % \cmd{\jacobiansymbol} provides the corresponding math operator.\\
 %    \begin{macrocode}
 \ProvideMathOperator{\jacobiansymbol}{\bm@philipptempel{D}}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\hessiansymbol}
+% \cmd{\hessiansymbol} provides the corresponding math operator.\\
+%    \begin{macrocode}
+\ProvideMathOperator{\hessiansymbol}{\philipptempel@bm{H}}%
 %    \end{macrocode}
 % \end{macro}
 %
