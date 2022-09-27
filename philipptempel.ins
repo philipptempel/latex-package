@@ -46,10 +46,24 @@ and version 1.3 or later is part of all distributions of LaTeX version
   }%
 }%
 \generate{%
+  \file{philipptempel-cablerobots.sty}{%
+   \from{philipptempel-cablerobots.dtx}{pre-package}%
+   \from{philipptempel-vers.dtx}{}%
+   \from{philipptempel-cablerobots.dtx}{package}%
+  }%
+}%
+\generate{%
   \file{philipptempel-colors.sty}{%
    \from{philipptempel-colors.dtx}{pre-package}%
    \from{philipptempel-vers.dtx}{}%
    \from{philipptempel-colors.dtx}{package}%
+  }%
+}%
+\generate{%
+  \file{philipptempel-lie.sty}{%
+   \from{philipptempel-lie.dtx}{pre-package}%
+   \from{philipptempel-lie.dtx}{}%
+   \from{philipptempel-lie.dtx}{package}%
   }%
 }%
 \generate{%
@@ -67,17 +81,7 @@ and version 1.3 or later is part of all distributions of LaTeX version
   }%
 }%
 \generate{%
-  \file{philipptempel-lie.sty}{%
-   \from{philipptempel-lie.dtx}{pre-package}%
-   \from{philipptempel-lie.dtx}{}%
-   \from{philipptempel-lie.dtx}{package}%
-  }%
-}%
-\generate{%
-  \file{philipptempel-cablerobots.sty}{%
-   \from{philipptempel-cablerobots.dtx}{pre-package}%
    \from{philipptempel-vers.dtx}{}%
-   \from{philipptempel-cablerobots.dtx}{package}%
   }%
 }%
 \generate{%
@@ -107,10 +111,11 @@ and version 1.3 or later is part of all distributions of LaTeX version
 \Msg{* file into a directory searched by TeX:                    *}
 \Msg{*                                                           *}
 \Msg{*     philipptempel-acronyms.sty                            *}
+\Msg{*     philipptempel-cablerobots.sty                         *}
 \Msg{*     philipptempel-colors.sty                              *}
+\Msg{*     philipptempel-lie.sty                                 *}
 \Msg{*     philipptempel-math.sty                                *}
 \Msg{*     philipptempel-mechanics.sty                           *}
-\Msg{*     philipptempel-cablerobots.sty                         *}
 \Msg{*     philipptempel-text.sty                                *}
 \Msg{*     philipptempel-todo.sty                                *}
 \Msg{*     tikzlibraryphilipptempel.code.tex                     *}

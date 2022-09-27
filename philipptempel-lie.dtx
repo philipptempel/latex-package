@@ -169,6 +169,34 @@
 % \section{Macros}
 %
 %
+% \begin{macro}{\VecToSkew}
+% \cmd{\VecToSkew}\marg{M} vector to skew-symmetric matrix operator~$\VecToSkew{M}$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\VecToSkew}{ s m }{%
+  \IfBooleanTF{#1}{%
+    \parentheses*{#2}%
+  }{%
+    #2%
+  }^{\wedge}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SkewToVec}
+% \cmd{\SkewToVec}\marg{V} skew-symmetric matrix to vector operator~$\SkewToVec{V}$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\SkewToVec}{ s m }{%
+  \IfBooleanTF{#1}{%
+    \parentheses*{#2}%
+  }{%
+    #2%
+  }^{\vee}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\dse}
 % \cmd{\dse}\marg{N} algebra~$\dse{N}$ on~$\DSE{N}$.\\
 %    \begin{macrocode}
