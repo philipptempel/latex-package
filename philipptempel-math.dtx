@@ -623,21 +623,21 @@
 \ProvideDocumentCommand{\of}{ s o m }{%
   \mkern-0.50mu%
   \ifblank{#3}{%
-    \def\innerp{\cdot}%
+    \def\inparen{\cdot}%
   }{%
-    \def\innerp{\mkern-0.50mu#3\mkern-0.50mu}%
+    \def\inparen{\mkern-0.50mu #3 \mkern-0.50mu}%
   }%
   \IfBooleanTF{#1}{%
     \IfValueTF{#2}{%
-      \parentheses*[#2]{\innerp}%
+      \parentheses*[#2]{\inparen}%
     }{%
-      \parentheses*{\innerp}%
+      \parentheses*{\inparen}%
     }%
   }{%
     \IfValueTF{#2}{%
-      \parentheses[#2]{\innerp}%
+      \parentheses[#2]{\inparen}%
     }{%
-      \parentheses{\innerp}%
+      \parentheses{\inparen}%
     }%
   }%
 }%
