@@ -254,9 +254,59 @@
 %
 %
 % \begin{macro}{\TFDM}
-% \cmd{\TFDM} tangent of forward dynamics model.
+% \cmd{\TFDM} tangent of forward dynamics model.\\
 %    \begin{macrocode}
 \ProvideMathOperator{\TFDM}{TFDM}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\qsymbol}
+% \cmd{\qsymbol} symbol used for generalized coordinates.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\qsymbol}{ }{%
+  q%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\q}
+% \cmd{\q} generalized coordinate~$\q$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\q}{ }{%
+  \vect{\qsymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\qdot}
+% \cmd{\qdot} first time-derivative~$\qdot$ of generalized coordinate~$\q$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\qdot}{ }{%
+  \dotvect{\qsymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\qddot}
+% \cmd{\qddot} second time-derivative~$\qddot$ of generalized coordinate~$\q$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\qddot}{ }{%
+  \ddotvect{\qsymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\qndot}
+% \cmd{\qndot}\marg{n} $n$-th time-derivative~$\qndot{n}$ of generalized coordinate~$\q$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\qndot}{ m }{%
+  \ndotvect{#1}{\qsymbol}%
+}%
 %    \end{macrocode}
 % \end{macro}
 %
