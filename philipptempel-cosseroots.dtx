@@ -169,6 +169,61 @@
 % \section{Macros}
 %
 %
+% \begin{macro}{\MaterialCoordinate}
+% \cmd{\MaterialCoordinate} material coordinate of a slender flexible rod.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\MaterialCoordinate}{ }{%
+  s%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\stresssymbol}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\StressSymbol}{ }{%
+  \Lambda%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Stress}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\Stress}{ }{%
+  \vect{\StressSymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Stressdot}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\Stressdot}{ }{%
+  \dotvect{\StressSymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Stressddot}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\Stressddot}{ }{%
+  \ddotvect{\StressSymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Stressndot}
+%    \begin{macrocode}
+\ProvideDocumentCommand{\Stressndot}{ m }{%
+  \ndotvect{#1}{\StressSymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 %    \begin{macrocode}
 \endinput
 %    \end{macrocode}
