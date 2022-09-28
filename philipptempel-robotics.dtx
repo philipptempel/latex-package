@@ -173,7 +173,7 @@
 % \cmd{\ofbody}\marg{p}\marg{b} describes property~$p$ of body~$b$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\ofbody}{ m m }{%
-  #1_{\msubt{#2}}%
+  #1_{#2}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -183,7 +183,7 @@
 % \cmd{\betweenbodies}\marg{p}\marg{b1}\marg{b2} describes property $p$ between bodies~$b1$ and~$b2$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\betweenbodies}{ m m m }{%
-  #1_{\msubt{#2},\msubt{#3}}%
+  #1_{#2,#3}%
 }
 %    \end{macrocode}
 % \end{macro}
