@@ -180,7 +180,7 @@
 %
 %
 % \begin{macro}{\betweenbodies}
-% \cmd{\betweenbodies}\marg{p}\marg{b1}\marg{b2} describes property $p$ between bodies~$b1$ and~$b2$.
+% \cmd{\betweenbodies}\marg{p}\marg{b1}\marg{b2} describes property $p$ between bodies~$b1$ and~$b2$.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\betweenbodies}{ m m m }{%
   #1_{\msubt{#2},\msubt{#3}}%
@@ -189,18 +189,48 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\withrespectbody}
-% \cmd{\withrespectbody}\marg{p}\marg{b1}\marg{b2} describes property $p$ of body~$b2$ with respect to body~$b1$
+% \begin{macro}{\parentsymbol}
+% \cmd{\parentsymbol} symbol used to typeset the parent~$\parent{b}$ of body~$b$.\\
 %    \begin{macrocode}
-\ProvideDocumentCommand{\withrespectbody}{ m m m }{%
-  #1_{\msubt{#3}/\msubt{#2}}%
+\ProvideDocumentCommand{\parentsymbol}{ }{%
+  \lambda%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\parent}
+% \cmd{\parent}\marg{b} typesets the parent~$\parent{b}$ of body~$b$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\parent}{ m }{%
+  \parentsymbol \of{#1}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\childrensymbol}
+% \cmd{\childrensymbol} symbol used to typeset the children~$\children{b}$ of body~$b$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\childrensymbol}{ }{%
+  \mu%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\children}
+% \cmd{\children}\marg{b} typesets the variable~$\children{b}$ for children of body~$b$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\children}{ m }{%
+  \childrensymbol \of{#1}%
 }
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\IDM}
-% \cmd{\IDM} inverse dynamics model.
+% \cmd{\IDM} inverse dynamics model.\\
 %    \begin{macrocode}
 \ProvideMathOperator{\IDM}{IDM}%
 %    \end{macrocode}
@@ -208,7 +238,7 @@
 %
 %
 % \begin{macro}{\TIDM}
-% \cmd{\TIDM} tangent of inverse dynamics model.
+% \cmd{\TIDM} tangent of inverse dynamics model.\\
 %    \begin{macrocode}
 \ProvideMathOperator{\TIDM}{TIDM}%
 %    \end{macrocode}
@@ -216,7 +246,7 @@
 %
 %
 % \begin{macro}{\FDM}
-% \cmd{\FDM} forward dynamics model.
+% \cmd{\FDM} forward dynamics model.\\
 %    \begin{macrocode}
 \ProvideMathOperator{\FDM}{FDM}%
 %    \end{macrocode}
