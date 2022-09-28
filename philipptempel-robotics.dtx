@@ -189,6 +189,16 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\withrespectbody}
+% \cmd{\withrespectbody}\marg{p}\marg{b1}\marg{b2} describes property $p$ of body~$b2$ with respect to body~$b1$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\withrespectbody}{ m m m }{%
+  #1_{#3/#2}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\parentsymbol}
 % \cmd{\parentsymbol} symbol used to typeset the parent~$\parent{b}$ of body~$b$.\\
 %    \begin{macrocode}
