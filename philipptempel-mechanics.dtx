@@ -1634,41 +1634,44 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\dotstrain}
+% \begin{macro}{\straindot}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\dotstrain}{ s }{%
+\ProvideDocumentCommand{\straindot}{ s }{%
   \IfBooleanTF{#1}{%
     \dot{\strainsymbol}%
   }{%
     \dotvect{\strainsymbol}
   }%
 }%
+\let\dotstrain\straindot
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\ddotstrain}
+% \begin{macro}{\strainddot}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\ddotstrain}{ s }{%
+\ProvideDocumentCommand{\strainddot}{ s }{%
   \IfBooleanTF{#1}{%
     \ddot{\strainsymbol}%
   }{%
     \ddotvect{\strainsymbol}%
   }%
 }%
+\let\ddotstrain\strainddot
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\ndotstrain}
+% \begin{macro}{\strainndot}
 %    \begin{macrocode}
-\ProvideDocumentCommand{\ndotstrain}{ s }{%
+\ProvideDocumentCommand{\strainndot}{ s }{%
   \IfBooleanTF{#1}{%
     \ndot{\strainsymbol}%
   }{%
     \ndotvect{\strainsymbol}%
   }%
 }%
+\let\ndotstrain\strainndot
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1805,7 +1808,7 @@
   }%
 }%
 %    \end{macrocode}
-% \end{macro}s
+% \end{macro}
 %
 %
 % \begin{macro}{\bendsymbol}
