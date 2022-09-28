@@ -353,6 +353,26 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\Forcesymbol}
+% \cmd{\Forcesymbol} symbold denoting a spatial generalized force.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\Forcesymbol}{ }{%
+  F%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Force}
+% \cmd{\Force} generalized $6$D force.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\Force}{ }{%
+  \vect{\Forcesymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 %    \begin{macrocode}
 \endinput
 %    \end{macrocode}
