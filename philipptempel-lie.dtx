@@ -289,6 +289,20 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\liebracket}
+% \cmd{\liebracket}\marg{X}\marg{Y} Lie-bracket operation
+%    \begin{macrocode}
+\ProvideDocumentCommand{\liebracket}{ m m }{%
+  \sparentheses{%
+    \ifblank{#1}{\cdot}{#1}%
+    , %
+    \ifblank{#2}{\cdot}{#2}%
+  }%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\tformsymbol}
 % \cmd{\tformsymbol} symbol of homogeneous transformation.
 %    \begin{macrocode}
@@ -303,21 +317,37 @@
 % \cmd{\tform} homogeneous transformation
 %    \begin{macrocode}
 \ProvideDocumentCommand{\tform}{ }{%
-  \bm{\tformsymbol}%
+  \vect{\tformsymbol}%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\liebracket}
-% \cmd{\liebracket}\marg{X}\marg{Y} Lie-bracket operation
+% \begin{macro}{\twistsymbol}
+% \cmd{\twistsymbol} symbol of twists.
 %    \begin{macrocode}
-\ProvideDocumentCommand{\liebracket}{ m m }{%
-  \sparentheses{%
-    \ifblank{#1}{\cdot}{#1}%
-    , %
-    \ifblank{#2}{\cdot}{#2}%
-  }%
+\ProvideDocumentCommand{\twistsymbol}{ }{%
+  \eta%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\twist}
+% \cmd{\twist} twists
+%    \begin{macrocode}
+\ProvideDocumentCommand{\twist}{ }{%
+  \vect{\twistsymbol}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\twistdot}
+% \cmd{\twistdot} twist velocities.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\twistdot}{ }{%
+  \dotvect{\twistsymbol}%
 }%
 %    \end{macrocode}
 % \end{macro}
