@@ -4,6 +4,7 @@
 *.dict
 *.tex
 *.pdf
+*.hd
 docs/
 
 # release directory

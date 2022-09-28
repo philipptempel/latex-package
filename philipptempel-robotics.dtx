@@ -1,0 +1,238 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2019--2021--2020 by Philipp Tempel <latex@philipptempel.me>
+% -------------------------------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{philipptempel-robotics.dtx}
+%</driver>
+%<pre-package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]%
+%<pre-package>\ProvidesPackage{philipptempel-robotics}[%
+%<package>Philipp Tempel Robotics]%
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{hyperref}
+\usepackage{philipptempel-math}
+\usepackage{philipptempel-robotics}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{philipptempel-robotics.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2021/01/22}{Initial version}
+%
+% \GetFileInfo{philipptempel-robotics.dtx}
+%
+% \DoNotIndex{%
+% }
+% \expandafter\DoNotIndex\expandafter{\string\{}
+% \expandafter\DoNotIndex\expandafter{\string\}}
+%
+%
+% \title{The \textsf{philipptempel-robotics} package\thanks{This document
+%   corresponds to \textsf{philipptempel-robotics}~\fileversion, dated \filedate.}}
+% \author{Philipp Tempel \\ \texttt{latex@philipptempel.me}}
+%
+% \maketitle
+%
+% \section{Introduction}
+%
+% \section{Usage}
+%
+% \StopEventually{}
+%
+%
+% \section{Implementation}
+%<*package>
+%
+% \subsection{Package Dependencies}
+%
+% The package is a toolbox of programming facilities geared primarily towards
+% LaTeX class and package authors. It provides LaTeX frontends to some of the
+% new primitives provided by e-TeX as well as some generic tools which are not
+% strictly related to e-TeX but match the profile of this package. Note that the
+% initial versions of this package were released under the name elatex. The
+% package provides functions that seem to offer alternative ways of implementing
+% some LaTeX kernel commands; nevertheless, the package will not modify any part
+% of the LaTeX kernel.
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+%    \end{macrocode}
+%
+% xparse – A generic document command parser
+% The package provides a high-level interface for producing document-level
+% commands. In that way, it offers a replacement for LaTeX2e’s |\newcommand|
+% macro, with significantly improved functionality.
+% The package is distributed as part of the l3packages bundle.
+%    \begin{macrocode}
+\RequirePackage{xparse}
+%    \end{macrocode}
+%
+% The pgfkeys package (part of the pgf distribution) is a well-designed way of
+% defining and using large numbers of keys for key-value syntaxes. However,
+% pgfkeys itself does not offer means of handling LaTeX class and package
+% options. This package adds such option handling to pgfkeys, in the same way
+% that kvoptions adds the same facility to the LaTeX standard keyval package.
+%    \begin{macrocode}
+\RequirePackage{pgfkeys}
+\RequirePackage{pgfopts}
+%    \end{macrocode}
+%
+%
+%
+% \subsection{Package Options}
+%
+% Configure the \marg{pgfopts}-package
+%    \begin{macrocode}
+\pgfkeys{%
+  /philipptempel/robotics/.is family,%
+  /philipptempel/robotics/.cd,%
+}%
+%    \end{macrocode}
+%
+% By default, all undefined options will be passed as options to the |glossaries-extra| package only the options defined here are for the actual package.
+%    \begin{macrocode}
+\pgfkeys{
+}%
+%    \end{macrocode}
+%
+% And now a callback for unknown options to be passed down to the |glossaries-extra| class
+%    \begin{macrocode}
+\pgfkeys{%
+  /philipptempel/robotics/.cd,%
+    .unknown/.code={%
+      \let\currname\pgfkeyscurrentname%
+      \let\currval\pgfkeyscurrentvalue%
+      \ifx#1\pgfkeysnovalue%
+        \PassOptionsToPackage{\currname}{glossaries-extra}%
+      \else%
+        \PassOptionsToPackage{\expandafter\currname\expandafter=\currval}{glossaries-extra}%
+      \fi%
+    },%
+}%
+%    \end{macrocode}
+%
+% Setting default values for options
+%    \begin{macrocode}
+\newcommand{\philipptempel@robotics@setdefaults}{%
+  \pgfkeys{/philipptempel/robotics/.cd,%
+  }%
+}%
+%    \end{macrocode}
+%
+% Process options passed to the class
+%    \begin{macrocode}
+\philipptempel@robotics@setdefaults
+\ProcessPgfPackageOptions{/philipptempel/robotics}
+%    \end{macrocode}
+%
+%
+% \section{Macros}
+%
+%
+% \begin{macro}{\ofbody}
+% \cmd{\ofbody}\marg{p}\marg{b} describes property~$p$ of body~$b$.\\
+%    \begin{macrocode}
+\ProvideDocumentCommand{\ofbody}{ m m }{%
+  #1_{\msubt{#2}}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\betweenbodies}
+% \cmd{\betweenbodies}\marg{p}\marg{b1}\marg{b2} describes property $p$ between bodies~$b1$ and~$b2$.
+%    \begin{macrocode}
+\ProvideDocumentCommand{\betweenbodies}{ m m m }{%
+  #1_{\msubt{#2},\msubt{#3}}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\withrespectbody}
+% \cmd{\withrespectbody}\marg{p}\marg{b1}\marg{b2} describes property $p$ of body~$b2$ with respect to body~$b1$
+%    \begin{macrocode}
+\ProvideDocumentCommand{\withrespectbody}{ m m m }{%
+  #1_{\msubt{#3}/\msubt{#2}}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IDM}
+% \cmd{\IDM} inverse dynamics model.
+%    \begin{macrocode}
+\ProvideMathOperator{\IDM}{IDM}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\TIDM}
+% \cmd{\TIDM} tangent of inverse dynamics model.
+%    \begin{macrocode}
+\ProvideMathOperator{\TIDM}{TIDM}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\FDM}
+% \cmd{\FDM} forward dynamics model.
+%    \begin{macrocode}
+\ProvideMathOperator{\FDM}{FDM}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\TFDM}
+% \cmd{\TFDM} tangent of forward dynamics model.
+%    \begin{macrocode}
+\ProvideMathOperator{\TFDM}{TFDM}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%    \begin{macrocode}
+\endinput
+%    \end{macrocode}
+%</package>
+%\Finale
