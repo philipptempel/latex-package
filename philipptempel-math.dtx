@@ -957,8 +957,9 @@
 % \begin{macro}{\eye}
 % \cmd{\eye} unit-matrix.\\
 %    \begin{macrocode}
-\ProvideDocumentCommand{\eye}{ }{%
+\ProvideDocumentCommand{\eye}{ o }{%
   \mathbb{I}%
+  \IfValueT{#1}{_{#1}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -967,8 +968,9 @@
 % \begin{macro}{\zeros}
 % \cmd{\zeros} zero-matrix.\\
 %    \begin{macrocode}
-\ProvideDocumentCommand{\zeros}{ }{%
+\ProvideDocumentCommand{\zeros}{ o }{%
   \mathds{O}%
+  \IfValueT{#1}{_{#1}}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -978,11 +980,8 @@
 % \cmd{\ones} ones-matrix.\\
 %    \begin{macrocode}
 \ProvideDocumentCommand{\ones}{ o }{%
-  \IfValueTF{#1}{%
-    \mathbb{1}_{#1}%
-  }{%
-    \mathbb{1}%
-  }%
+  \mathbb{1}%
+  \IfValueT{#1}{_{#1}}%
 }%
 %    \end{macrocode}
 % \end{macro}
